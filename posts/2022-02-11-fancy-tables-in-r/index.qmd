@@ -38,7 +38,7 @@ The dataframe or tibble is passed into the GT function, which can be passed into
 ChickWeight %>% head() %>% gt()
 ```
 
-The result is a simple a clean table the displays the required data. There is a set structure for the GT objects, which is outlined in the following diagram: ![GT table structure](images/gt_parts_of_a_table.svg)
+The result is a simple a clean table the displays the required data. There is a set structure for the GT objects, which is outlined in the following diagram: ![GT table structure](gt_parts_of_a_table.svg)
 
 ## Function Chaining
 

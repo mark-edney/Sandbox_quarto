@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>The Data Sandbox</title>
+<link>https://datasandbox.netlify.app/index.html#category=Python</link>
+<atom:link href="https://datasandbox.netlify.app/index-python.xml" rel="self" type="application/rss+xml"/>
+<description>The Data Sandbox is a collection of Data Science projects and discussions on Data Science topics.</description>
+<generator>quarto-1.0.37</generator>
+<lastBuildDate>Mon, 16 May 2022 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>The beauty of List comprehensions in Python</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-05-16-the-beauty-of-list-comprehensions-in-python/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://datasandbox.netlify.app/posts/2022-05-16-the-beauty-of-list-comprehensions-in-python/beauty-list.jpg" class="img-fluid"></p>
+<p>I have spent awhile learning Python, and I was a little perplexed when it came to list comprehensions. Why would you use them? Isn’t there just an easier why?</p>
+<p>As my proficiency increase, I have found them to be an incredibly useful tool. They save you lines of code, are easy to understand, and are usually better for performance. A good list comprehension, is truly a work of beauty.</p>
+<section id="structure" class="level2">
+<h2 class="anchored" data-anchor-id="structure">Structure</h2>
+<p>The basic structure of a list comprehension is pretty simple, you contain an expression and an iterable within a set of <code>[]</code>. Depending on the type of brackets used, you can create a list, a generator, set or a dictionary.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">[i <span class="cf" style="color: #003B4F;">for</span> i <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">5</span>)]</span>
+<span id="cb1-2">(i <span class="cf" style="color: #003B4F;">for</span> i <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">5</span>))</span>
+<span id="cb1-3">{i <span class="cf" style="color: #003B4F;">for</span> i <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">5</span>)}</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>{0, 1, 2, 3, 4}</code></pre>
+</div>
+</div>
+<p>It may appear from first impressions that a list comprehension is a simple one line for loop, but it is much more powerful than that.</p>
+<section id="conditions" class="level3">
+<h3 class="anchored" data-anchor-id="conditions">Conditions</h3>
+<p>Much more complicated lists can be created with an included if statement. The if statement fits right at the end of the statement.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">[a <span class="cf" style="color: #003B4F;">for</span> a <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">10</span>) <span class="cf" style="color: #003B4F;">if</span> a <span class="op" style="color: #5E5E5E;">%</span> <span class="dv" style="color: #AD0000;">2</span> <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">0</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>[0, 2, 4, 6, 8]</code></pre>
+</div>
+</div>
+<p>But what if you need to create an even more complicated list, one that requires an else statement along with the if statement. Then the structure of the list comprehension changes a little, the iterable statement is moved to the end.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">[a <span class="cf" style="color: #003B4F;">if</span> a <span class="op" style="color: #5E5E5E;">%</span> <span class="dv" style="color: #AD0000;">2</span> <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">0</span> <span class="cf" style="color: #003B4F;">else</span> <span class="dv" style="color: #AD0000;">0</span> <span class="cf" style="color: #003B4F;">for</span> a <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">10</span>)]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>[0, 0, 2, 0, 4, 0, 6, 0, 8, 0]</code></pre>
+</div>
+</div>
+</section>
+<section id="expressions" class="level3">
+<h3 class="anchored" data-anchor-id="expressions">Expressions</h3>
+<p>Of course, expressions can be more complicated than returning single values. One common issue I find is when I have a list of a value type and I need them to be of a different type. This conversion is easy with list comprehensions.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">a <span class="op" style="color: #5E5E5E;">=</span> [<span class="st" style="color: #20794D;">'0'</span>, <span class="st" style="color: #20794D;">'1'</span>, <span class="st" style="color: #20794D;">'2'</span>, <span class="st" style="color: #20794D;">'3'</span>, <span class="st" style="color: #20794D;">'4'</span>]</span>
+<span id="cb7-2">[<span class="bu" style="color: null;">int</span>(x) <span class="cf" style="color: #003B4F;">for</span> x <span class="kw" style="color: #003B4F;">in</span> a]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>[0, 1, 2, 3, 4]</code></pre>
+</div>
+</div>
+<p>There is nearly an unlimited potential of different expressions you can use.</p>
+</section>
+<section id="more-iterables" class="level3">
+<h3 class="anchored" data-anchor-id="more-iterables">More Iterables</h3>
+<p>List comprehensions are not limited to a single iterable. Far warning, however, increasing the number of iterables will reduce readability. At some level of complication, it will be a better idea to separate steps.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">a <span class="op" style="color: #5E5E5E;">=</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">5</span>)</span>
+<span id="cb9-2">b <span class="op" style="color: #5E5E5E;">=</span> [<span class="dv" style="color: #AD0000;">5</span>,<span class="dv" style="color: #AD0000;">10</span>,<span class="dv" style="color: #AD0000;">15</span>]</span>
+<span id="cb9-3">[x<span class="op" style="color: #5E5E5E;">*</span>y <span class="cf" style="color: #003B4F;">for</span> x <span class="kw" style="color: #003B4F;">in</span> a <span class="cf" style="color: #003B4F;">for</span> y <span class="kw" style="color: #003B4F;">in</span> b]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>[0, 0, 0, 5, 10, 15, 10, 20, 30, 15, 30, 45, 20, 40, 60]</code></pre>
+</div>
+</div>
+<p>The results are an element-wise evaluation across multiple iterables. These iterables don’t need to be the same size.</p>
+</section>
+<section id="dictionary-comprehensions" class="level3">
+<h3 class="anchored" data-anchor-id="dictionary-comprehensions">Dictionary Comprehensions</h3>
+<p>As previously mentioned, by changing the structure, we can generate dictionaries.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">{char : num <span class="cf" style="color: #003B4F;">for</span> num, char <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">enumerate</span>([<span class="st" style="color: #20794D;">'a'</span>,<span class="st" style="color: #20794D;">'b'</span>,<span class="st" style="color: #20794D;">'c'</span>,<span class="st" style="color: #20794D;">'d'</span>,<span class="st" style="color: #20794D;">'e'</span>])}</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>{'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4}</code></pre>
+</div>
+</div>
+<p>Likewise, you can create a set rather than a list. Sets can be useful if you don’t need the data to be in order, and you don’t want any duplicate values.</p>
+</section>
+<section id="other-applications" class="level3">
+<h3 class="anchored" data-anchor-id="other-applications">Other Applications</h3>
+<p>There is great potential in list comprehensions. Often I find that I need to create a list of zeroes or of boolean logic of the same size as a current list. This is easy to create, just don’t refer to the iterable within the expression.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">a <span class="op" style="color: #5E5E5E;">=</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">5</span>)</span>
+<span id="cb13-2">[<span class="va" style="color: #111111;">True</span> <span class="cf" style="color: #003B4F;">for</span> x <span class="kw" style="color: #003B4F;">in</span> a]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>[True, True, True, True, True]</code></pre>
+</div>
+</div>
+<p>While it may not be best practice, you can nest a list comprehension within another list comprehension.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1">[x <span class="cf" style="color: #003B4F;">for</span> x <span class="kw" style="color: #003B4F;">in</span> [b <span class="cf" style="color: #003B4F;">for</span> b <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">20</span>) <span class="cf" style="color: #003B4F;">if</span> b <span class="op" style="color: #5E5E5E;">%</span><span class="dv" style="color: #AD0000;">2</span> <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">0</span>] <span class="cf" style="color: #003B4F;">if</span> x <span class="op" style="color: #5E5E5E;">%</span><span class="dv" style="color: #AD0000;">3</span> <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">0</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>[0, 6, 12, 18]</code></pre>
+</div>
+</div>
+</section>
+<section id="conclusions" class="level3">
+<h3 class="anchored" data-anchor-id="conclusions">Conclusions</h3>
+<p>Hopefully I have won you over with the beauty of list comprehensions. They are simple and clean to create yet extremely flexible in their design. So take a minute, to really appreciate the beauty of list comprehensions.</p>
+<blockquote class="blockquote">
+<p>Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/lists?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+</blockquote>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>How-to</category>
+  <category>Python</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-05-16-the-beauty-of-list-comprehensions-in-python/index.html</guid>
+  <pubDate>Mon, 16 May 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-05-16-the-beauty-of-list-comprehensions-in-python/beauty-list.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Formatting our output with Python’s F strings</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-05-09-formatting-our-outout-with-python-s-f-strings/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://datasandbox.netlify.app/posts/2022-05-09-formatting-our-outout-with-python-s-f-strings/format.jpg" class="img-fluid"></p>
+<p>I have recently been on a tear of different challenges on the site <a href="hackerrank.com">HackerRank</a>. I am about halfway through their 30 days of code and 10 days of statistics. These challenges often require to output number to a certain a number of significant digits. I’ve always thought that the <code>round</code> function can be used for this, but I am wrong. The F string seems to be a powerful tool to accomplish this, and worth your time learning if you are unfamiliar.</p>
+<section id="structure-of-an-f-string" class="level2">
+<h2 class="anchored" data-anchor-id="structure-of-an-f-string">Structure of an F string</h2>
+<p>The formatting of an F string starts with a <code>f</code> prior to quotations, whether they be single or double quotes. Any variable can then be included within a series of <code>{}</code>. This formatting can make it easier than turning values into strings and concatenating all strings into a single line of text. This is easily demonstrated with a large mix of values and strings.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">x <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">1</span><span class="op" style="color: #5E5E5E;">/</span><span class="dv" style="color: #AD0000;">3</span></span>
+<span id="cb1-2">y <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">1</span><span class="op" style="color: #5E5E5E;">/</span><span class="dv" style="color: #AD0000;">6</span></span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="bu" style="color: null;">print</span>(<span class="st" style="color: #20794D;">"The value is "</span> <span class="op" style="color: #5E5E5E;">+</span> <span class="bu" style="color: null;">str</span>(x) <span class="op" style="color: #5E5E5E;">+</span> <span class="st" style="color: #20794D;">" is greater than "</span> <span class="op" style="color: #5E5E5E;">+</span> <span class="bu" style="color: null;">str</span>(y))</span>
+<span id="cb1-5"><span class="bu" style="color: null;">print</span>(<span class="ss" style="color: #20794D;">f"The value is </span><span class="sc" style="color: #5E5E5E;">{</span>x<span class="sc" style="color: #5E5E5E;">}</span><span class="ss" style="color: #20794D;"> is greater than </span><span class="sc" style="color: #5E5E5E;">{</span>y<span class="sc" style="color: #5E5E5E;">}</span><span class="ss" style="color: #20794D;">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The value is 0.3333333333333333 is greater than 0.16666666666666666
+The value is 0.3333333333333333 is greater than 0.16666666666666666</code></pre>
+</div>
+</div>
+<p>The values can then be formatted with <code>:</code> after the variable name. The number of digits prior and post the decimal can then be specified. The <code>f</code> is added after the decimal formatting to ensure the value is treated as a float.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="bu" style="color: null;">print</span>(<span class="ss" style="color: #20794D;">f"The value is </span><span class="sc" style="color: #5E5E5E;">{</span>x<span class="sc" style="color: #5E5E5E;">:.3f}</span><span class="ss" style="color: #20794D;"> is greater than </span><span class="sc" style="color: #5E5E5E;">{</span>y<span class="sc" style="color: #5E5E5E;">:.2f}</span><span class="ss" style="color: #20794D;">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The value is 0.333 is greater than 0.17</code></pre>
+</div>
+</div>
+<p>The values passed are not specific to the number of digits, but the minimum number of spaces. This means you can ensure specific space aligned, such as for a table, by including these values.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">z <span class="op" style="color: #5E5E5E;">=</span> [<span class="dv" style="color: #AD0000;">10000</span>, <span class="dv" style="color: #AD0000;">500</span>, <span class="dv" style="color: #AD0000;">10</span>, <span class="fl" style="color: #AD0000;">0.001</span>, <span class="fl" style="color: #AD0000;">.1</span>]</span>
+<span id="cb5-2"><span class="cf" style="color: #003B4F;">for</span> i <span class="kw" style="color: #003B4F;">in</span> z:</span>
+<span id="cb5-3">        <span class="bu" style="color: null;">print</span>(<span class="ss" style="color: #20794D;">f"the value is: </span><span class="sc" style="color: #5E5E5E;">{</span>i<span class="sc" style="color: #5E5E5E;">:5}</span><span class="ss" style="color: #20794D;">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>the value is: 10000
+the value is:   500
+the value is:    10
+the value is: 0.001
+the value is:   0.1</code></pre>
+</div>
+</div>
+<p>Additionally, we can add leading zeros by adding zero prior to the number of digits.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="cf" style="color: #003B4F;">for</span> i <span class="kw" style="color: #003B4F;">in</span> z:</span>
+<span id="cb7-2">        <span class="bu" style="color: null;">print</span>(<span class="ss" style="color: #20794D;">f"the value is: </span><span class="sc" style="color: #5E5E5E;">{</span>i<span class="sc" style="color: #5E5E5E;">:05}</span><span class="ss" style="color: #20794D;">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>the value is: 10000
+the value is: 00500
+the value is: 00010
+the value is: 0.001
+the value is: 000.1</code></pre>
+</div>
+</div>
+</section>
+<section id="alternative-formatting" class="level2">
+<h2 class="anchored" data-anchor-id="alternative-formatting">Alternative formatting</h2>
+<p>There are a few alternative methods for f strings. From my understanding, they are not as fast when it comes to performance. I don’t think that is of particular importance. If your script needs a high level of performance, than you probably don’t want many print statements.</p>
+<section id="format-method" class="level3">
+<h3 class="anchored" data-anchor-id="format-method">Format Method()</h3>
+<p>The <code>format</code> method is very similar to <code>f strings</code> with the use of the <code>{}</code>. The string is not preceded by f and the <code>{}</code> can remain empty or contain position indexing. The values are then added in the <code>.format</code> function after the string. The order of the variable in the string will correspond with the number used in the <code>{}</code>, if used at all.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="bu" style="color: null;">print</span>(<span class="st" style="color: #20794D;">"The value is </span><span class="sc" style="color: #5E5E5E;">{}</span><span class="st" style="color: #20794D;"> is greater than </span><span class="sc" style="color: #5E5E5E;">{}</span><span class="st" style="color: #20794D;">"</span>.<span class="bu" style="color: null;">format</span>(<span class="dv" style="color: #AD0000;">1</span><span class="op" style="color: #5E5E5E;">/</span><span class="dv" style="color: #AD0000;">3</span>, <span class="dv" style="color: #AD0000;">1</span><span class="op" style="color: #5E5E5E;">/</span><span class="dv" style="color: #AD0000;">6</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The value is 0.3333333333333333 is greater than 0.16666666666666666</code></pre>
+</div>
+</div>
+</section>
+<section id="old-method" class="level3">
+<h3 class="anchored" data-anchor-id="old-method">Old % Method</h3>
+<p>The Old % operator (modulo) replaces the value in the string. Formatting details, such as those previously discussed, are entered after the <code>%</code>. The variables or values are then entered after the string when preceded by another <code>%</code>. Multiple values can be passed.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="bu" style="color: null;">print</span>(<span class="st" style="color: #20794D;">"The value is </span><span class="sc" style="color: #5E5E5E;">%5.3f</span><span class="st" style="color: #20794D;"> is greater than </span><span class="sc" style="color: #5E5E5E;">%5.3f</span><span class="st" style="color: #20794D;">"</span> <span class="op" style="color: #5E5E5E;">%</span>(x,y))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The value is 0.333 is greater than 0.167</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>Whichever method you decide, it probably won’t make a huge difference. The important part is to understand is the actual formatting. F strings also seem to make it easier to understand the code, as the actual values are inline with the string and the formatting.</p>
+<blockquote class="blockquote">
+<p>Photo by <a href="https://unsplash.com/@sigmund?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Sigmund</a> on <a href="https://unsplash.com/s/photos/output?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+</blockquote>
+
+
+</section>
+
+ ]]></description>
+  <category>How-to</category>
+  <category>Python</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-05-09-formatting-our-outout-with-python-s-f-strings/index.html</guid>
+  <pubDate>Mon, 09 May 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-05-09-formatting-our-outout-with-python-s-f-strings/format.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Level up your programming skills</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/index.en.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/hackerrank.png" class="img-fluid"></p>
+<p>How do you become a better programmer? Well, there is strong scientific evidence for the support of the principle of deliberate practice. Deliberate practice is a method of skill development first written by Anders Ericsson in the book “Peak: Secrets from the New Science of Expertise”. I would also recommend reading “Talent Is Overrated: What Really Separates World-Class Performers from Everybody Else” by Geoff Colvin.</p>
+<section id="deliberate-practice" class="level2">
+<h2 class="anchored" data-anchor-id="deliberate-practice">Deliberate Practice</h2>
+<p>Deliberate Practice can be summarized to the following points:</p>
+<ul>
+<li><p>Talent is not enough, and to become great at a task requires a lot of practice and repetition.</p></li>
+<li><p>Deliberate practice is hard-work, in order strengthen your skills through practice you need to be challenged. This means that repetition by itself will not develop skill. This also means you need to constantly increase the challenge of your practice as you become better at it.</p></li>
+<li><p>Focus plays a large role in deliberate practice. This connects to the previous point for the required challenge of practice. This can also tie into the principles of flow, as best described by Mihaly Csikszentmihalyi in his book “Flow: The Psychology of Optimal Experience”.</p></li>
+<li><p>Setting goals becomes a powerful motivator. With the completion of a goal, there is a release of endorphins, which cause a sense of satisfaction. Goals are can also be utilized to increase the difficulty of practice, making an otherwise easy task a challenge.</p></li>
+<li><p>Feedback is important. Feedback provides motivation by comparing current to previous performance.</p></li>
+</ul>
+</section>
+<section id="application-for-programmers" class="level2">
+<h2 class="anchored" data-anchor-id="application-for-programmers">Application for programmers</h2>
+<p>So, how can programmers incorporate the principles of deliberate practice? I’ve recently been recommended the site <a href="https://www.hackerrank.com">Hacker Rank</a> and I can say it is fantastic. The Hacker Rank site provides a wide array of challenges for programmers of varying skills levels. There is a selection of different topics from Algorithms to Regular Expressions.</p>
+<p>So how does Hacker Rank fit in with deliberate practice? Well, there certainly are a good level of challenges to work through. There a three different levels per topic, with challenges in the same difficulty having nothing in common.</p>
+<p>The design of the site is quite simple, with very little to distract you from your challenge. There is the option for a dark theme if you are, like me, a person of sophistication. It also pretty easy to have the problem on one side of your screen with your programming on the other.</p>
+<p>There are multiple built-in goals to work on. Certifications for each topic to test your current skill level and to advertise to potential employers. There a preparation kits for interviews with time frames between 1 and 12 weeks, which ever is most convenient for you.</p>
+<p>There is immediate feedback from assignments, with automated program testing. A leader board is provided for the most competitive, who are interested in their global ranking. You also get feedback from the built-in IDE on your programming errors.</p>
+</section>
+<section id="site-criticisms" class="level2">
+<h2 class="anchored" data-anchor-id="site-criticisms">Site Criticisms</h2>
+<p>I do enjoy the site, but I still have some minor issues. To its credit, the site does support multiple programming languages, even different versions of the same programming language. This does, however, make it difficult to following along with the tutorials if they are done in a language that you are not familiar with.</p>
+<p>Also, at this time, there doesn’t seem to be support to retake certification exams for some topics. I myself, had failed the R basic certification as I am more used to using the <code>tidyverse</code> package rather than base <code>R</code>.</p>
+<p>I can’t really speak on behalf of the incorporation of potential employers in it. But that does seem like a very promising idea. I still think it is a great to tool for the programming community, and I will continue to utilize it for my personal skill development, as it can easily provide a source of deliberate practice.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>General</category>
+  <category>Python</category>
+  <category>R</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/index.en.html</guid>
+  <pubDate>Sun, 01 May 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/hackerrank.png" medium="image" type="image/png" height="64" width="144"/>
+</item>
+<item>
+  <title>Merging PDFs with Python</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-04-14-merging-pdfs-with-python/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://datasandbox.netlify.app/posts/2022-04-14-merging-pdfs-with-python/union.jpg" class="img-fluid"></p>
+<p>I am currently looking for a new job, which means I need to create many resumes and cover letters. When creating a resume, it is good practice to create a PDF file. PDFs cannot be edited, which can make them difficult to work with, but they retain their formatting. It is impossible to tell which version of Microsoft Word a hiring manager is using. So you have to risk a possible formatting error or create a compatible resumes without the latest features.</p>
+<p>One issue with using PDFs is that employers will sometimes ask for a cover letter and resume to be submitted as a single PDF. This wouldn’t be an issue if they were both stored in the same document, but if you are like me, you have separate documents creating separate PDFs. You can always use free online PDF mergers, but they can have limitations, and it may not be desirable to give away your personal data. So I decided to create a small Python script that will merge my PDFs together.</p>
+<p>The script will require the <code>PyPDF2</code> package for dealing with PDFs and the <code>os</code> package. The <code>os</code> package is just used to automatically merge all PDFs in the root folder.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;">import</span> PyPDF2, os</span></code></pre></div>
+</div>
+<p>The first step is to create a list of the PDFs in the current folder. It also ensures that the merged PDF is not in the list.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">pdfiles <span class="op" style="color: #5E5E5E;">=</span> []</span>
+<span id="cb2-2"></span>
+<span id="cb2-3"><span class="cf" style="color: #003B4F;">for</span> filename <span class="kw" style="color: #003B4F;">in</span> os.listdir(<span class="st" style="color: #20794D;">'.'</span>):</span>
+<span id="cb2-4">        <span class="cf" style="color: #003B4F;">if</span> filename.endswith(<span class="st" style="color: #20794D;">'.pdf'</span>):</span>
+<span id="cb2-5">                <span class="cf" style="color: #003B4F;">if</span> filename <span class="op" style="color: #5E5E5E;">!=</span> <span class="st" style="color: #20794D;">'merged.pdf'</span>:</span>
+<span id="cb2-6">                        pdfiles.append(filename)</span>
+<span id="cb2-7">                        </span>
+<span id="cb2-8">pdfiles.sort(key <span class="op" style="color: #5E5E5E;">=</span> <span class="bu" style="color: null;">str</span>.lower)</span></code></pre></div>
+</div>
+<p>The file list is also sorted alphabetically to ensure the results are predictable and easy to control. The merged PDF will contain the PDFs in the same order.</p>
+<p>The next step is to create a <code>PdfFileMerger</code> object, which will be the destination for all the data in the PDFs. The first step is to open the first PDF file in the PDF file list. The <code>PdfFileMerger</code> object will only accept a file object, so we need to create a <code>PdfFileReader</code> object from the opened PDF. This <code>PdfFileReader</code> object will then be appended to the <code>PdfFileMerger</code> object. We proceed then to the next PDF. After all files are added, the write method is used on the merged object to create a merged PDF.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">pdfMerge <span class="op" style="color: #5E5E5E;">=</span> PyPDF2.PdfFileMerger()</span>
+<span id="cb3-2"></span>
+<span id="cb3-3"><span class="cf" style="color: #003B4F;">for</span> filename <span class="kw" style="color: #003B4F;">in</span> pdfiles:</span>
+<span id="cb3-4">        pdfFile <span class="op" style="color: #5E5E5E;">=</span> <span class="bu" style="color: null;">open</span>(filename, <span class="st" style="color: #20794D;">'rb'</span>)</span>
+<span id="cb3-5">        pdfReader <span class="op" style="color: #5E5E5E;">=</span> PyPDF2.PdfFileReader(pdfFile)</span>
+<span id="cb3-6">        pdfMerge.append(pdfReader)</span>
+<span id="cb3-7"></span>
+<span id="cb3-8">pdfFile.close()</span>
+<span id="cb3-9">pdfMerge.write(<span class="st" style="color: #20794D;">'merged.pdf'</span>)</span></code></pre></div>
+</div>
+<p>And that’s everything, a simple Python script that creates a merged PDF from all PDFs in the root folder. It is important to remember that a PDF file needs to be opened, and then a file object can be created. Using the regular PDF file will not work.</p>
+<blockquote class="blockquote">
+<p>Photo by <a href="https://unsplash.com/@krakenimages?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">krakenimages</a> on <a href="https://unsplash.com/s/photos/union?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+</blockquote>
+
+
+
+ ]]></description>
+  <category>How-to</category>
+  <category>Python</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-04-14-merging-pdfs-with-python/index.html</guid>
+  <pubDate>Thu, 14 Apr 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-04-14-merging-pdfs-with-python/union.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Simple Neural Networks in Python</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-03-20-simple-neural-networks-in-python/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://datasandbox.netlify.app/posts/2022-03-20-simple-neural-networks-in-python/network.jpg" class="img-fluid"> Neural Networks (NN) have become incredibly popular due to their high level of accuracy. The creation of a NN can be complicated and have a high level of customization. I wanted to explore just the simplest NN that you could create. A framework as a workhorse for developing new NN.</p>
+<p>The <code>SciKitlearn</code> provides the easiest solution with the Multi-Layer Perceptron series of functions. It doesn’t provide a bunch of the more advanced features of <code>TensorFlow</code>, like GPU support, but that is not what I’m looking for.</p>
+<section id="initialization" class="level2">
+<h2 class="anchored" data-anchor-id="initialization">Initialization</h2>
+<p>For the demonstration, I decided to use a data set on faults found in <a href="https://www.openml.org/d/1504">steel plates</a> from the OpenML website. The data set includes 27 features with 7 binary predictors.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;">import</span> pandas <span class="im" style="color: #00769E;">as</span> pd</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;">import</span> numpy <span class="im" style="color: #00769E;">as</span> np</span>
+<span id="cb1-3"><span class="im" style="color: #00769E;">from</span> sklearn.model_selection <span class="im" style="color: #00769E;">import</span> train_test_split</span>
+<span id="cb1-4"></span>
+<span id="cb1-5">df <span class="op" style="color: #5E5E5E;">=</span> pd.read_csv(<span class="st" style="color: #20794D;">'https://www.openml.org/data/get_csv/1592296/php9xWOpn'</span>)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">predictors <span class="op" style="color: #5E5E5E;">=</span> [<span class="st" style="color: #20794D;">'V28'</span>, <span class="st" style="color: #20794D;">'V29'</span>, <span class="st" style="color: #20794D;">'V30'</span>, <span class="st" style="color: #20794D;">'V31'</span>, <span class="st" style="color: #20794D;">'V32'</span>, <span class="st" style="color: #20794D;">'V33'</span>, <span class="st" style="color: #20794D;">'Class'</span>]</span>
+<span id="cb1-8">df[<span class="st" style="color: #20794D;">'Class'</span>] <span class="op" style="color: #5E5E5E;">-=</span> <span class="dv" style="color: #AD0000;">1</span> </span></code></pre></div>
+</div>
+<p>Since there are multiple binary predictors, I needed to create a single class variable to represent each class. The <code>Class</code> variable doesn’t currently represent this, it represents all faults that don’t fit in the categories of <code>V28</code> to <code>V33</code>. The single variable class was created with the <code>np.argmax</code> function which returns the index of the highest value between all the predictors.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">y <span class="op" style="color: #5E5E5E;">=</span> np.argmax(df[predictors].values, axis <span class="op" style="color: #5E5E5E;">=</span><span class="dv" style="color: #AD0000;">1</span>)</span>
+<span id="cb2-2">X <span class="op" style="color: #5E5E5E;">=</span> df.drop(predictors, axis <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">1</span>)</span>
+<span id="cb2-3">X_train, X_test, y_train, y_test <span class="op" style="color: #5E5E5E;">=</span> train_test_split(X, y, random_state<span class="op" style="color: #5E5E5E;">=</span><span class="dv" style="color: #AD0000;">1</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="modelling" class="level2">
+<h2 class="anchored" data-anchor-id="modelling">Modelling</h2>
+<p>This is the most basic model that I would like to evaluate. I’ve used the <code>GridSearch</code> function, so all combinations of parameters are tested. The only parameter I wanted to examine was the size of the hidden layers. Each hidden layer provided is a tuple, where each number represents the number of nodes in a singled layer. Multiple numbers represent additional layers.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;">from</span> sklearn.neural_network <span class="im" style="color: #00769E;">import</span> MLPClassifier</span>
+<span id="cb3-2"><span class="im" style="color: #00769E;">from</span> sklearn.model_selection <span class="im" style="color: #00769E;">import</span> GridSearchCV</span>
+<span id="cb3-3"></span>
+<span id="cb3-4">parameters <span class="op" style="color: #5E5E5E;">=</span> {<span class="st" style="color: #20794D;">'hidden_layer_sizes'</span>:[(<span class="dv" style="color: #AD0000;">1</span>),(<span class="dv" style="color: #AD0000;">100</span>), (<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>), (<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>), </span>
+<span id="cb3-5">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>), </span>
+<span id="cb3-6">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>), </span>
+<span id="cb3-7">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>), </span>
+<span id="cb3-8">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>),</span>
+<span id="cb3-9">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>),</span>
+<span id="cb3-10">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>),</span>
+<span id="cb3-11">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>)]}</span>
+<span id="cb3-12">model <span class="op" style="color: #5E5E5E;">=</span> MLPClassifier(random_state <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">1</span>,max_iter <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">10000</span>, </span>
+<span id="cb3-13">solver <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">'adam'</span>, learning_rate <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">'adaptive'</span>)</span>
+<span id="cb3-14"></span>
+<span id="cb3-15">grid <span class="op" style="color: #5E5E5E;">=</span> GridSearchCV(estimator <span class="op" style="color: #5E5E5E;">=</span> model, param_grid <span class="op" style="color: #5E5E5E;">=</span> parameters)</span>
+<span id="cb3-16">grid.fit(X_train, y_train)</span>
+<span id="cb3-17"><span class="bu" style="color: null;">print</span>(grid.best_score_)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.4054982817869416</code></pre>
+</div>
+</div>
+<p>The performance of the best model in the grid is not impressive. It took me awhile to realize that I had forgotten to scale the features. I included this error to show the importance of scaling on model performance.</p>
+</section>
+<section id="feature-scaling" class="level2">
+<h2 class="anchored" data-anchor-id="feature-scaling">Feature Scaling</h2>
+<p>The features are simply scaled with the <code>StandardScaler</code> function. The same model is used on the scaled features.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;">from</span> sklearn.preprocessing <span class="im" style="color: #00769E;">import</span> StandardScaler</span>
+<span id="cb5-2"></span>
+<span id="cb5-3">sc <span class="op" style="color: #5E5E5E;">=</span> StandardScaler()</span>
+<span id="cb5-4">scaler <span class="op" style="color: #5E5E5E;">=</span> sc.fit(X_train)</span>
+<span id="cb5-5">X_train_sc <span class="op" style="color: #5E5E5E;">=</span> scaler.transform(X_train)</span>
+<span id="cb5-6">X_test_sc <span class="op" style="color: #5E5E5E;">=</span> scaler.transform(X_test)</span>
+<span id="cb5-7"></span>
+<span id="cb5-8">parameters <span class="op" style="color: #5E5E5E;">=</span> {<span class="st" style="color: #20794D;">'hidden_layer_sizes'</span>:[(<span class="dv" style="color: #AD0000;">1</span>),(<span class="dv" style="color: #AD0000;">100</span>), (<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>), (<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>), </span>
+<span id="cb5-9">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>), </span>
+<span id="cb5-10">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>), </span>
+<span id="cb5-11">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>), </span>
+<span id="cb5-12">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>),</span>
+<span id="cb5-13">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>),</span>
+<span id="cb5-14">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>),</span>
+<span id="cb5-15">(<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">100</span>)]}</span>
+<span id="cb5-16">model <span class="op" style="color: #5E5E5E;">=</span> MLPClassifier(random_state <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">1</span>,max_iter <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">10000</span>, </span>
+<span id="cb5-17">solver <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">'adam'</span>, learning_rate <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">'adaptive'</span>)</span>
+<span id="cb5-18"></span>
+<span id="cb5-19">grid <span class="op" style="color: #5E5E5E;">=</span> GridSearchCV(estimator <span class="op" style="color: #5E5E5E;">=</span> model, param_grid <span class="op" style="color: #5E5E5E;">=</span> parameters, cv<span class="op" style="color: #5E5E5E;">=</span><span class="dv" style="color: #AD0000;">3</span>)</span>
+<span id="cb5-20">grid.fit(X_train_sc, y_train)</span>
+<span id="cb5-21">grid.best_score_</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>0.7553264604810996</code></pre>
+</div>
+</div>
+<p>The performance of the scaled model is much more impressive. After the <code>GridSearch</code> function finds the parameters for the best model, it retrains the model on the entire dataset. This is because the function utilize cross validation, so some data was withheld for comparing the different models on test data.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>With our model constructed, we can now test its performance on the original test set. It is important to remember to use the scaled test features, as that is what the model is expecting.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">grid.score(X_test_sc, y_test)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>0.7304526748971193</code></pre>
+</div>
+</div>
+<p>The results are pretty satisfactory. A decent level of accuracy without a lot of complicated code. Default values were used, whenever they were appropriate. Additional steps could be taken, but this remains a good foundation for future exploratory analysis.</p>
+<blockquote class="blockquote">
+<p>Photo by <a href="https://unsplash.com/@alinnnaaaa?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Alina Grubnyak</a> on <a href="https://unsplash.com/s/photos/neural-networks?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+</blockquote>
+
+
+</section>
+
+ ]]></description>
+  <category>How-to</category>
+  <category>Python</category>
+  <category>NN</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-03-20-simple-neural-networks-in-python/index.html</guid>
+  <pubDate>Sun, 20 Mar 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-03-20-simple-neural-networks-in-python/network.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Python in R Markdown</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/python.jpg" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Photo by <a href="https://unsplash.com/@davidclode?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">David Clode</a> on <a href="https://unsplash.com/s/photos/python?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+</blockquote>
+<p>The main advantage of using the R Markdown format is the utility of running R code within the text. This is clearly more advantageous than just writing code in a Markdown file. R Markdown is however limited to R code, unable to run Python scripts. The R library <code>reticulate</code> looks to add this capability.</p>
+<section id="initial-setup" class="level2">
+<h2 class="anchored" data-anchor-id="initial-setup">Initial Setup</h2>
+<p>The initial setup requires the installation of the <code>reticulate</code> library, after installation you shouldn’t need to call it, but I do in the preceding code. I have loaded the <code>trees</code> dataset as a test dataset and the tidyverse library just to explore the data a bit.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(reticulate)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">data</span>(trees)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;">glimpse</span>(trees)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 31
+Columns: 3
+$ Girth  &lt;dbl&gt; 8.3, 8.6, 8.8, 10.5, 10.7, 10.8, 11.0, 11.0, 11.1, 11.2, 11.3, …
+$ Height &lt;dbl&gt; 70, 65, 63, 72, 81, 83, 66, 75, 80, 75, 79, 76, 76, 69, 75, 74,…
+$ Volume &lt;dbl&gt; 10.3, 10.3, 10.2, 16.4, 18.8, 19.7, 15.6, 18.2, 22.6, 19.9, 24.…</code></pre>
+</div>
+</div>
+<p>Now, R Studio will use your local version of Python when you write any code in a code chuck labelled with the “{Python}” header. If you don’t have any local version, R Studio will ask if you would like to install Miniconda. From here, you will need to start downloading the required Python modules.</p>
+<p>Modules can be downloaded with the <code>pip</code> python package installer from the terminal or command line. The easiest method in R Studio is within the terminal window next to the console window. The command used is <code>pip install "module name"</code>. Some modules can be tricky and won’t work if not installed after other modules.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;">import</span> numpy <span class="im" style="color: #00769E;">as</span> np</span>
+<span id="cb3-2"><span class="im" style="color: #00769E;">import</span> pandas <span class="im" style="color: #00769E;">as</span> pd</span>
+<span id="cb3-3"><span class="im" style="color: #00769E;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;">as</span> plt</span>
+<span id="cb3-4"><span class="im" style="color: #00769E;">import</span> seaborn <span class="im" style="color: #00769E;">as</span> sns</span></code></pre></div>
+</div>
+</section>
+<section id="multiple-environments" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-environments">Multiple Environments</h2>
+<p>After the setup, you should see some additional options in the environment in R Studio. You should see that you have the option to switch between the R and Python environments.</p>
+<p>Data is transitioned from the R environment to the Python environment with the <code>r</code> variable. This method should pretty similar to the Shiny Apt’s use of <code>input\output</code>. It is not only data that can move between environments, but functions too.</p>
+<p>The following code takes data from the R environment and creates a plot in <code>Seaborn</code>. The mean values of the columns are calculated in <code>python</code> to be imported into the R environment. A simple linear model is created with the <code>SKlearn</code> module.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">data <span class="op" style="color: #5E5E5E;">=</span> r.trees</span>
+<span id="cb4-2">means <span class="op" style="color: #5E5E5E;">=</span> np.mean(data, axis <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">0</span>)</span>
+<span id="cb4-3">data[<span class="st" style="color: #20794D;">"big"</span>] <span class="op" style="color: #5E5E5E;">=</span> data.Height <span class="op" style="color: #5E5E5E;">&gt;</span> means.Height </span>
+<span id="cb4-4">sns.scatterplot(data <span class="op" style="color: #5E5E5E;">=</span> data, x<span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">"Girth"</span>, y<span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">"Height"</span>, hue <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">"big"</span>)</span>
+<span id="cb4-5">sns.set_theme(color_codes<span class="op" style="color: #5E5E5E;">=</span><span class="va" style="color: #111111;">True</span>)</span>
+<span id="cb4-6">plt.show()</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/index_files/figure-html/enviroment-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;">from</span> sklearn.linear_model <span class="im" style="color: #00769E;">import</span> LinearRegression</span>
+<span id="cb5-2">mdl <span class="op" style="color: #5E5E5E;">=</span> LinearRegression()</span>
+<span id="cb5-3">mdl.fit(data[[<span class="st" style="color: #20794D;">"Girth"</span>]], data[[<span class="st" style="color: #20794D;">"Height"</span>]])</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>LinearRegression()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="bu" style="color: null;">print</span>(mdl.coef_)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1.05436881]]</code></pre>
+</div>
+</div>
+<p>Data is transitioned from <code>Python</code> to, <code>R</code> similarly with the variable <code>py</code>. Information on models can be passed but not the models themselves. This is important if you are more comfortable creating models in <code>Python</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;">print</span>(py<span class="sc" style="color: #5E5E5E;">$</span>means)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Girth   Height   Volume 
+13.24839 76.00000 30.17097 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;">print</span>(py<span class="sc" style="color: #5E5E5E;">$</span>mdl<span class="sc" style="color: #5E5E5E;">$</span>intercept_)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 62.03131</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">py<span class="sc" style="color: #5E5E5E;">$</span>data <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb13-2">        <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> Girth, <span class="at" style="color: #657422;">y =</span> Height, <span class="at" style="color: #657422;">colour =</span> big)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb13-3">        <span class="fu" style="color: #4758AB;">geom_point</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/index_files/figure-html/return-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>How-to</category>
+  <category>R</category>
+  <category>Python</category>
+  <category>Rmarkdown</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/index.html</guid>
+  <pubDate>Thu, 03 Mar 2022 05:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/python.jpg" medium="image" type="image/jpeg"/>
+</item>
+</channel>
+</rss>

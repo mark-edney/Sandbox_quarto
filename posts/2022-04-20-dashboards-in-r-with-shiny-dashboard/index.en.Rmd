@@ -8,7 +8,7 @@ categories:
   - GGPlot
   - Leaflet
   - R
-  - Shiny-App
+  - Shiny App
 draft: false
 image: shiny-dash.png
 description: 'An outline to creating great looking dashboards with Shiny Dashboards'

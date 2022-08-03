@@ -7,7 +7,7 @@ categories:
   - How-to
   - R
   - Shiny App
-  - ggplot
+  - GGPlot
   - Rmarkdown
   - Leaflet
 draft: false

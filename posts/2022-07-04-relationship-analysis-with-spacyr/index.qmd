@@ -7,7 +7,7 @@ categories:
   - How-to
   - Project
   - NLP
-  - r
+  - R
 draft: false
 description: 'A tutorial of the `Spacyr` packaged for the realationship extraction through the stormlight archieve book series.'
 toc: true

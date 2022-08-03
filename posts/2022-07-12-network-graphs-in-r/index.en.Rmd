@@ -8,7 +8,7 @@ categories:
 - Project
 - NLP
 - R
-- GGplot
+- GGPlot
 draft: false
 description: 'A look at the diffrent options for exploring network graphs in R.'
 image: 'storm_graph.png'

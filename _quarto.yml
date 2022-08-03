@@ -3,8 +3,10 @@ project:
 
 website:
   title: "The Data Sandbox"
+  site-url: https://datasandbox.netlify.app
   description: "The Data Sandbox is a collection of Data Science projects and discussions on Data Science topics."
-  twitter-card: true
+  twitter-card:
+    creator: "@edney_mark"
   navbar:
     right:
       - about.qmd
@@ -12,6 +14,8 @@ website:
         href: https://github.com/mark-edney
       - icon: twitter
         href: https://twitter.com/edney_mark
+      - icon: rss
+        href: index.xml
 
 format:
   html:
