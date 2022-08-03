@@ -1,0 +1,32 @@
+---
+title: "About"
+image: profile.jpg
+description: A playground for Data Science Projects
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/edney_mark
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/edneymark/
+    - icon: github
+      text: Github
+      href: https://github.com/mark-edney
+---
+
+The Data Sandbox is a collection of Data Science projects and discussions on Data Science topics. These projects are based on *R* or *Python* code. The Sandbox was started in January 2022.
+
+Mark Edney is the sole writer for all articles. He performs his own research, and all projects are those that he has completed from a selection of different Data Science certifications. He also manages the website. 
+
+Mark is a Engineer in Training located in Toronto Ontario Canada. He has studied data science since 2019 but has programmed for years before that. He is proficient in *R*, *Python* and *Matlab* but has previously learned some *C* and *C++*. 
+
+This website is created in *R* with the *blogdown* package. All assets are stored on Github and generously hosted by Netlify. For any inquires, please refer to the contact page. 
+
+# Blogroll
+
+A collection of interesting and related blogs:
+
+*  [r-bloggers](http://www.r-bloggers.com/)
+*  [python-bloggers](https://python-bloggers.com/)

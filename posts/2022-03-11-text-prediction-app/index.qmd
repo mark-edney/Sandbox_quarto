@@ -1,0 +1,148 @@
+---
+title: Text Prediction Shiny App pt 1
+author: Mark Edney
+date: '2022-05-31'
+slug: []
+categories:
+  - Project
+  - Shiny App
+  - NLP
+  - R
+draft: false
+description: 'A predictive Text Shiny Application'
+image: "predict_text.jpg"
+archives:
+  - 2022/05
+latex: true
+toc: true
+---
+
+![](predict_text.jpg)
+
+> This Shiny App was first written in May of 2021
+
+## Description
+
+The goal of this project was to create an N-gram based model to predict the word to follow the user's input. This project was to complete the Capstone project for the Johns Hopkins University Data science program on Coursera. The data for this project was provided by Swiftkey.
+
+This project will be broken down to multiple parts as the entire project is quite large. The first part will deal with the creation of the corpus. This corpus will require additional filtering to remove words that are not English, contractions and words that are considered profanity.
+
+## Initialization
+
+The initial step that loads the required libraries and downloads the data sets if not all read on file.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, eval = FALSE)
+```
+
+```{r initial}
+library(tidyverse)
+library(tidytext)
+library(pryr)
+
+#downloads the corpus files, profanity filter and English dictionary
+
+url <- "https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip"
+url2 <- "https://www.freewebheaders.com/download/files/facebook-bad-words-list_comma-separated-text-file_2021_01_18.zip"
+url3 <- "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt"
+url4 <- "https://raw.githubusercontent.com/mark-edney/Capestone/1c143b40dd71f0564c3248df2a8638d08af10440/data/contractions.txt"
+
+# I have added this if statement for testing, if the files are found than they will not be downloaded again
+if(dir.exists("~/R/Capestone/data/") == FALSE){
+       dir.create("~/R/Capestone/data/")}
+
+if(file.exists("~/R/Capestone/data/data.zip") == FALSE|
+   file.exists("~/R/Capestone/data/prof.zip")==FALSE|
+   file.exists("~/R/Capestone/data/diction.txt")==FALSE|
+    file.exists("~/R/Capestone/data/contractions.txt")==FALSE){
+        download.file(url,destfile = "~/R/Capestone/data/data.zip")
+        download.file(url2,destfile = "~/R/Capestone/data/prof.zip")
+        download.file(url3,destfile = "~/R/Capestone/data/diction.txt")
+        download.file(url4,destfile = "~/R/Capestone/data/contractions.txt")
+        setwd("~/R/Capestone/data/")
+        unzip("~/R/Capestone/data/prof.zip")
+        unzip("~/R/Capestone/data/data.zip")
+        setwd("~/R/Capestone")
+}
+```
+
+## Creating a Corpus
+
+The project requires a Corpus, or a large body of text, to create models. At this stage, the files are opened and joined. The Corpus is so large and requires so much ram that a sample of 10% is taken.
+
+```{r corpus}
+
+blog <- read_lines("~/R/Capestone/data/final/en_US/en_US.blogs.txt")
+news <- read_lines("~/R/Capestone/data/final/en_US/en_US.news.txt")
+twitter <- read_lines("~/R/Capestone/data/final/en_US/en_US.twitter.txt")
+blog <- tibble(text = blog) 
+news <- tibble(text = news)
+twitter <- tibble(text = twitter)
+
+set.seed(90210)
+corpus <- bind_rows(blog,twitter,news) %>% 
+        slice_sample(prop = 0.10) %>%
+        mutate(line = row_number())
+```
+
+## Corpus filtering
+
+Here, the corpus filter is created to remove profanity and any word that is not in the English dictionary.
+
+```{r filter}
+prof <- read_lines("~/R/Capestone/data/facebook-bad-words-list_comma-separated-text-file_2021_01_18.txt")[15]
+prof <- prof %>% 
+        str_split(", ") %>% 
+        flatten() %>% 
+        unlist()
+prof <- tibble("word" = prof)
+
+english <- read_lines("~/R/Capestone/data/diction.txt")
+english <- tibble("word" = english[!english==""])
+
+contract <- read_lines("~/R/Capestone/data/contractions.txt")
+contract <- tibble("word" = contract) %>% unnest_tokens(word,word)
+```
+
+## Vocabulary
+
+A vocabulary of words is created from the unique words with the applied filters.
+
+```{r vocab}
+#clean up ram
+rm(blog,news,twitter)
+voc <- bind_rows(english, contract) %>% anti_join(prof)
+
+unigram <- corpus %>% unnest_tokens(ngram, text, token = "ngrams", n = 1) %>%
+        semi_join(voc, by = c("ngram"="word")) 
+#decreases the voc size
+voc <- tibble(word = unique(unigram$ngram))
+```
+
+## Corpus Exploration
+
+```{r corpusload, include=FALSE, eval=TRUE}
+library(tidyverse)
+corpus = read_rds('corpus10.rds')
+unigram = read_rds('unigram10.rds')
+voc <- tibble(word = unique(unigram$ngram))
+```
+
+Now that the corpus is created, we can do some exploration into the text. There are some lines of text that have some odd behaviour, but on the whole it mostly makes sense.
+
+```{r expore, eval=TRUE}
+corpus %>% 
+        head()
+```
+
+## Vocabulary Exploration
+
+By using the `arrange` function, we can sort the unigrams by their counts. This provides some insight on which words come up the most frequently. It is not surprisingly that the most common word is "the". These frequencies will play an important role in the test prediction, so it is important to consider them. It is very common to filter out "Stop Words" as they likely add little value to predictions.
+
+```{r vocabtest, eval=TRUE}
+unigram %>%
+        arrange(desc(n)) %>%
+        head()
+```
+
+> Photo by [Sandy Millar](https://unsplash.com/@sandym10?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/predictive-text?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

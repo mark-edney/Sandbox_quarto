@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>The Data Sandbox</title>
+<link>https://datasandbox.netlify.app/index.html</link>
+<atom:link href="https://datasandbox.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
+<description>The Data Sandbox is a collection of Data Science projects and discussions on Data Science topics.</description>
+<generator>quarto-1.0.37</generator>
+<lastBuildDate>Tue, 08 Feb 2022 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>{B4F502887207:/posts/2022-02-08-professional-tables/index.html}</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-02-08-professional-tables/index.html</link>
+  <description>{B4F502887207:/posts/2022-02-08-professional-tables/index.html}</description>
+  <category>How-to</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-02-08-professional-tables/index.html</guid>
+  <pubDate>Tue, 08 Feb 2022 05:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-02-08-professional-tables/data.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2022-01-30-job-posting-analysis/index.html}</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-01-30-job-posting-analysis/index.html</link>
+  <description>{B4F502887207:/posts/2022-01-30-job-posting-analysis/index.html}</description>
+  <category>Project</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-01-30-job-posting-analysis/index.html</guid>
+  <pubDate>Sun, 06 Feb 2022 05:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-01-30-job-posting-analysis/jobsearch.jpg" medium="image" type="image/jpeg"/>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mark Edney">
+<meta name="dcterms.date" content="2022-07-04">
+<meta name="description" content="A tutorial of the Spacyr packaged for the realationship extraction through the stormlight archieve book series.">
+
+<title>The Data Sandbox - Relationship Extraction with Spacyr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="The Data Sandbox - Relationship Extraction with Spacyr">
+<meta name="twitter:description" content="A tutorial of the Spacyr packaged for the realationship extraction through the stormlight archieve book series.">
+<meta name="twitter:image" content="dogcat.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">The Data Sandbox</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mark-edney"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/edney_mark"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Relationship Extraction with Spacyr</h1>
+                  <div>
+        <div class="description">
+          A tutorial of the <code>Spacyr</code> packaged for the realationship extraction through the stormlight archieve book series.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">How-to</div>
+                <div class="quarto-category">Project</div>
+                <div class="quarto-category">NLP</div>
+                <div class="quarto-category">r</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Mark Edney </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 4, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#initialization" id="toc-initialization" class="nav-link" data-scroll-target="#initialization">Initialization</a></li>
+  <li><a href="#text-reading" id="toc-text-reading" class="nav-link" data-scroll-target="#text-reading">Text Reading</a></li>
+  <li><a href="#relationship-modelling" id="toc-relationship-modelling" class="nav-link" data-scroll-target="#relationship-modelling">Relationship modelling</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p><img src="dogcat.jpg" class="img-fluid"></p>
+<p>This is the continuation of the previous project, where we scrapped the Cooper Mind website with the <code>rvest</code> package. Please refer to that posting for the necessary steps to obtain the verified character names.</p>
+<p>As a reminder, this project was inspired by the work of <a href="https://www.youtube.com/watch?v=RuNolAh_4bU">Thu Vu</a> where she created a network mapping of the characters in the Witcher series. I thought it would be interesting to do some recreation of this project, but in <code>R</code> and with the <strong>Stormlight Archive</strong> book series.</p>
+<p>For those unfamiliar with the series, it is an epic fantasy story sprawling over four main books at the time of the publishing of this post. Sanderson is a fantastic author and I feel that the <strong>Stormlight Archive</strong> is his best work.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>So in a previous post, we created a list of characters which will represent the nodes in our network graph. The next step in the project is to create the edges. The edges represent the relationships between characters. In our graph, we are going to have the edges represent that strength of the relationships between characters. In order to determine these edge values, we will need to perform relationship extraction from the text with the <code>spacyr</code> package.</p>
+<p>The <code>spacyr</code> package is simply a wrapper for the python <code>spaCy</code> library, with the following functionality:</p>
+<ul>
+<li>tokenization</li>
+<li>lemmatizing tokens</li>
+<li>parsing dependencies (to determine grammatical structure)</li>
+<li>extracting form named entities</li>
+</ul>
+<p>It uses the <code>reticulate</code> to create the python environment. I have previously written a post about using the <code>reticulate</code> package for using python code in RMarkdown.</p>
+</section>
+<section id="initialization" class="level2">
+<h2 class="anchored" data-anchor-id="initialization">Initialization</h2>
+<p>We start with the loading of the necessary libraries to complete the project.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spacyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#necessary to create a corpus object</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readtext)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rainette)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you have an environment of python with a version a <code>spaCy</code>, you can pass the destination into the <code>spacy_intialize</code> function. If not, you need to use the <code>spacy_install</code> function to create a Conda environment that will also include the <code>spaCy</code> package. For this project, I let <code>spacyr</code> create the Conda environment for me. This process did take a while for me, so don’t be surprised if it is the same for you.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spacy_install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I have the name list from the web scraping post saved as a RDS files. RDS files are compressed text files which load quicker and take up much less space than a CSV file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data/names.RDS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="text-reading" class="level2">
+<h2 class="anchored" data-anchor-id="text-reading">Text Reading</h2>
+<p>The first step is to read all the text files into the system. I found this interesting little snippet of code that allows you to create a list of all the text files in a specific folder. For this project, all the books were stored in a single data folder.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>list_of_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">"."</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.txt$"</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>With the list of files, we can use the <code>map_df</code> function from the <code>purr</code> package. The <code>purr</code> package is part of the <code>tidyverse</code> package, so we don’t need to load it separately. The <code>map</code> series of functions allows use to pass a vector of values and a function. Each value will then be passed to that function. The <code>_df</code> part of the function is just the requirement that the output be in the format of a dataframe.</p>
+<p>The same task can be completed with a for loop, but it is much faster in the <code>map</code> function as it utilize vectorization. Vectorization is the strategy of performing multiple operations rather than a single operation at the same time. I am not very familiar with the <code>purr</code> package, so I plan to write a new article on the topic in the near future.</p>
+<p>After all the books are read into memory, we need to create a corpus. A corpus is a large body of text, much like a library, for the sorting and organization of books. This is completed with the <code>corpus</code> function from the <code>quanteda</code> package. This corpus structure is necessary to utilize functions from the <code>spacyr</code> package.</p>
+<p>The organizational structure in the Corpus is why I needed to load the books in with the <code>readtext</code> function from the <code>readtext</code> package. I’ve tried many methods to read the text(<code>readlines</code>, <code>read_Lines</code>, <code>readfile</code>) but none of them performed the proper way for the <code>corpus</code> function. There were plenty of issues, hours of difficulty, which resulted in me referring to the <code>quanteda</code> package website. There I learnt about the <code>readtext</code> function and it worked flawlessly on the first time. Well, I did find an issue with the default encoding not interpreting characters correctly, but this was corrected easily.</p>
+<p>When the time came to modelling, issues arose with the size of the Corpus. There is a limitation in <code>spaCy</code>, it will only work with text files less than 100,000,000 characters long. I think that each book was a little over twice that size. So I needed to batch the process by breaking the corpus up into smaller sections. This was done with the <code>split_segments</code> function from the <code>rainette</code> package. The function only accepts a split based on number of sentences, so I arrived at a value of 100,000 sentences per document.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> list_of_files <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">map_df</span>(readtext, <span class="at">encoding=</span><span class="st">'utf-8'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">corpus</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        rainette<span class="sc">::</span><span class="fu">split_segments</span>(<span class="at">segment_size =</span> <span class="dv">100000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  Splitting...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  Done.</code></pre>
+</div>
+</div>
+<p>With the books read into file, the corpus created and the corpus split into sections, we now have 18 documents. We can proceed to entity modelling with the <code>spaCy</code> functions.</p>
+<p>Unfortunately, we still have size issues, as passing the entire Corpus to be parsed is unaffected by the number of documents. So I needed to create a simple for loop to analyze each document one at a time and bind the results to a data table. Data tables are like data frames, but they have some unique notation and increased performance.</p>
+<p>The Corpus is parsed with the <code>spacy_parse</code> function. Setting <code>pos</code> and <code>lemma</code> to false should reduce performance time as the function doesn’t need to return dependency POS tag set and lemmatized tokens. The POS tag set refers to the type of word such as Noun, while the lemmatized token is the base of a word, such as for the word “am” would be lemmatized to “be”. The parsing of the corpus takes a very long time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> corpus[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">spacy_parse</span>(<span class="at">pos =</span> <span class="cn">FALSE</span>, <span class="at">lemma =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Found 'spacy_condaenv'. spacyr will use this environment</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>successfully initialized (spaCy Version: 3.1.3, language model: en_core_web_sm)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>(python options: type = "condaenv", value = "spacy_condaenv")</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(corpus)){</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>        temp <span class="ot">&lt;-</span> corpus[[i]] <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">spacy_parse</span>(<span class="at">pos =</span> <span class="cn">FALSE</span>, <span class="at">lemma =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df,temp)}</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The parsing creates an object that acts very similarly as a data table. There is an entry for each word, which is more than what is required for this project. The original data table is preserved, in case we would like to reference a sentence in the corpus, and we create a filtered data table. The data table is filtering the tokens in the names list and by the identified entity, making sure it starts with person.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dfclean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(token <span class="sc">%in%</span> names,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">str_starts</span>(entity, <span class="st">"PERSON"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="relationship-modelling" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-modelling">Relationship modelling</h2>
+<p>The final step is to create a model that will connect people in the data table. I have decided to use a sentence windows that creates a connection when two names are mentioned within that window.</p>
+<p>This is another very time-consuming tasks the requires two for loops. The first loop goes through all 30025 rows and its sentence id. A second for loop that excludes all rows already used in the first loop is used to compare a second sentence id. If the difference between the sentence ids is less than the windows, the tokens for these rows are added to an empty data table. If the difference is greater than the window size, we break the second for loop as all the sentence ids are incremental. It is not a very clean or smooth method, but it works.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>window_size <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>related <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="st">"Person1"</span> <span class="ot">=</span> <span class="fu">character</span>(), <span class="st">"Person2"</span> <span class="ot">=</span> <span class="fu">character</span>())</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span> (<span class="fu">nrow</span>(dfclean)<span class="sc">-</span><span class="dv">1</span>)){</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(j <span class="cf">in</span> (i <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">nrow</span>(dfclean)){</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span>((dfclean<span class="sc">$</span>sentence_id[j] <span class="sc">-</span> dfclean<span class="sc">$</span>sentence_id[i]) <span class="sc">&lt;</span> window_size){</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                        </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                        related <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(<span class="fu">list</span>(related, <span class="fu">list</span>(dfclean<span class="sc">$</span>token[i], dfclean<span class="sc">$</span>token[j])))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span>{</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">break</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The following is a sample of the data table we have created to build the relationships.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>related <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Person1 Person2
+1: Shallan  Kabsal
+2: Jezrien Jezrien
+3: Jezrien Jezrien
+4: Jezrien Jezrien
+5: Jezrien Jezrien
+6: Jezrien   Kalak</code></pre>
+</div>
+</div>
+<p>We can identify two issues with this sample. The first issue is when two of the same names are within the same window. We will have to filter out when ‘Person1’ is equal to ‘Person2’. The second issue is that we would actually like to aggregate the data. We would like a count of when two different names are in the same window. Both of these tasks are easy enough to solve using the built-in data table notation. For more information on data tables, please refer to my previous post on the topic.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>relatedagg <span class="ot">&lt;-</span> related[Person1 <span class="sc">!=</span> Person2,.N,by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Person1"</span>, <span class="st">"Person2"</span>)]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>relatedagg <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Person1 Person2  N
+1: Shallan  Kabsal  8
+2: Jezrien   Kalak 10
+3:   Kalak Jezrien  9
+4:   Szeth Dalinar 98
+5:   Szeth  Jasnah 11
+6:   Szeth Elhokar  3</code></pre>
+</div>
+</div>
+<p>The final issue is for the relationships for ‘Person1’ and ‘Person2’ when their places are switched, but that will be dealt with in the next post.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>With some hard-work, we were able to create an organized Corpus of all the current 4 <strong>Stormlight Archive</strong> books. We were able to split this Corpus into smaller sized documents, making them easier to manage. The <code>spacyr</code> library was then used to model entities within the Corpus, identifying the tokens that represent people. The next step was to clean up the results, keeping only the verified characters names as tokens. We then used a model to developed relationships using a window. A relationship was created whenever two character names were mentioned in the same window. We then filtered out characters relationships to themselves and aggregated the data. The clear next step is to actually build the graphs with the characters as nodes and their relationships as edges. But that is a post for another day.</p>
+Photo by <a href="https://unsplash.com/@alecfavale?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Alec Favale</a> on <a href="https://unsplash.com/s/photos/relationships?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+  
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

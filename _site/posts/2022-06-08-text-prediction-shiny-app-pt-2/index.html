@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mark Edney">
+<meta name="dcterms.date" content="2022-06-08">
+<meta name="description" content="The second part of the creation of a test prediction shiny app.">
+
+<title>The Data Sandbox - Text Prediction Shiny App pt 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="The Data Sandbox - Text Prediction Shiny App pt 2">
+<meta name="twitter:description" content="The second part of the creation of a test prediction shiny app.">
+<meta name="twitter:image" content="books.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">The Data Sandbox</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mark-edney"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/edney_mark"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Text Prediction Shiny App pt 2</h1>
+                  <div>
+        <div class="description">
+          The second part of the creation of a test prediction shiny app.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Project</div>
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">NLP</div>
+                <div class="quarto-category">Shiny App</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Mark Edney </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 8, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
+  <li><a href="#n-gram-models" id="toc-n-gram-models" class="nav-link" data-scroll-target="#n-gram-models">N-gram models</a></li>
+  <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models">Models</a>
+  <ul class="collapse">
+  <li><a href="#stupid-back-off" id="toc-stupid-back-off" class="nav-link" data-scroll-target="#stupid-back-off">Stupid Back-off</a></li>
+  <li><a href="#maximum-likelihood-estimation" id="toc-maximum-likelihood-estimation" class="nav-link" data-scroll-target="#maximum-likelihood-estimation">Maximum Likelihood Estimation</a></li>
+  <li><a href="#add-one-smoothing" id="toc-add-one-smoothing" class="nav-link" data-scroll-target="#add-one-smoothing">Add One Smoothing</a></li>
+  <li><a href="#good-turing" id="toc-good-turing" class="nav-link" data-scroll-target="#good-turing">Good Turing</a></li>
+  <li><a href="#absolute-discounting" id="toc-absolute-discounting" class="nav-link" data-scroll-target="#absolute-discounting">Absolute Discounting</a></li>
+  <li><a href="#kneser-ney" id="toc-kneser-ney" class="nav-link" data-scroll-target="#kneser-ney">Kneser-Ney</a></li>
+  </ul></li>
+  <li><a href="#shiny-app" id="toc-shiny-app" class="nav-link" data-scroll-target="#shiny-app">Shiny App</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p><img src="books.jpg" class="img-fluid"></p>
+<section id="description" class="level2">
+<h2 class="anchored" data-anchor-id="description">Description</h2>
+<p>This is the second part for the creation of a text prediction Shiny Application. From the previous post, we have developed and Corpus of text to start creating text prediction applications.</p>
+<p>We have also explored the corpus, looking at the frequency of words in the vocabulary. It is now time to start to develop ngram models.</p>
+</section>
+<section id="n-gram-models" class="level2">
+<h2 class="anchored" data-anchor-id="n-gram-models">N-gram models</h2>
+<p>A ngram is a continuous sequence of tokens, where the order is determined by how many tokens are in the sequence. For our purpose, a token is created for each word in a sentence. Other tokens can be created, such as sentence in a paragraph or letters in a word. It really depends on your application needs.</p>
+<p>A line of text can be broken down into ngrams in many ways. For example, the following text:</p>
+<p>“The quick brown fox”</p>
+<p>can be broken down to the following unigrams:</p>
+<blockquote class="blockquote">
+<p>(“the”)(“quick”)(“brown”)(“fox”)</p>
+</blockquote>
+<p>or to the following bigrams:</p>
+<blockquote class="blockquote">
+<p>(“the quick”)(“quick brown”)(“brown fox”)</p>
+</blockquote>
+<p>or to the following trigrams:</p>
+<blockquote class="blockquote">
+<p>(“the quick brown”)(“quick brown fox”)</p>
+</blockquote>
+<p>or to the single tetragram:</p>
+<blockquote class="blockquote">
+<p>(“the quick brown fox”)</p>
+</blockquote>
+<p>The process for creating tokens from text, tokenization, drops the text to lower case and removes all punctuation. For this application, I would recommend the <code>unnest_tokens</code> function from the <code>tidytext</code> package.</p>
+<p>Ngrams can be used for predictive text by reserving the last word in the ngram as the predicted word.</p>
+</section>
+<section id="models" class="level2">
+<h2 class="anchored" data-anchor-id="models">Models</h2>
+<section id="stupid-back-off" class="level3">
+<h3 class="anchored" data-anchor-id="stupid-back-off">Stupid Back-off</h3>
+<p>A higher level of n-gram should provide a better predictive quality for our models. However, these higher n-grams have lower levels of occurrences. Each additional word included in the created n-grams, reduce the different possible solutions but should have a higher level of accuracy as there is more context provided to the model.</p>
+<p>We need to create some shiny functions to help use determine the highest possible ngram model that we can use. The first function, turns the user input in unigram tokens, which does a lot of pre-processing for us. For words not in the vocabulary, we change the values to the ‘<unk>’ token, which the models already have included in the ngrams.</unk></p>
+<p>The final function simply finds the minimum between the length of the user input and the highest level of ngram models. The result will be the highest degree of ngram that we can use. This is often refereed to as the “Stupid Back-off” method, as a higher order ngram is “backed-offed” to a lower level ngram.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>truetext <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        truetext <span class="ot">&lt;-</span> input<span class="sc">$</span>text <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">tibble</span>(<span class="at">text=</span>.) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">unnest_tokens</span>(word, text, <span class="at">token=</span><span class="st">"ngrams"</span>, <span class="at">n=</span><span class="dv">1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        truetext[<span class="sc">!</span>truetext<span class="sc">$</span>word <span class="sc">%in%</span> voc<span class="sc">$</span>word,] <span class="ot">&lt;-</span> <span class="st">"unk"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        truetext})</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        maxuse <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                <span class="fu">min</span>(<span class="fu">nrow</span>(<span class="fu">truetext</span>()) <span class="sc">+</span> <span class="dv">1</span>,maxn)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="maximum-likelihood-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="maximum-likelihood-estimation">Maximum Likelihood Estimation</h3>
+<p>The maximum likelihood estimation (MLE) is the simplest model to examine. We simply count all the occurrence where the all values from the user input match with the ngrams to the final word in the n-gram. The final for in the ngram is reserved for the predicted estimation.</p>
+<p><span class="math display">\[p_x = \frac{C_x}{C}
+\]</span></p>
+<p>Where <span class="math inline">\(p_x\)</span> is the probability that the word x will be predicted, <span class="math inline">\(C_x\)</span> is the count of the word x occurring, and <span class="math inline">\(C\)</span> is the count of all words.</p>
+<p>The MLE model produces an unbalanced model, where there a many values from the vocabulary that have zero probability of being predicted. We would like to address this issue by developing more complicated models.</p>
+<p>The following plot is a sample distribution created with the MLE model. The predicted values are sorted into bins based on the first letter of the predicted value. Some bins/letters have no value and therefore will have no probability assigned to them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> ngrams<span class="sc">$</span>three <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(word1 <span class="sc">==</span><span class="st">"what"</span>, word2 <span class="sc">==</span> <span class="st">"is"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(word3, n) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">right_join</span>(voc, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"word3"</span> <span class="ot">=</span> <span class="st">"word"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">bin =</span> <span class="fu">substr</span>(word3,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(bin)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>n[<span class="fu">is.na</span>(df<span class="sc">$</span>n)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bin, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/mleplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="add-one-smoothing" class="level3">
+<h3 class="anchored" data-anchor-id="add-one-smoothing">Add One Smoothing</h3>
+<p>The simplest way to deal with the issue of zero probability values is to add one to all unseen counts. This is also referred to as Laplace Smoothing.</p>
+<p><span class="math display">\[p_x = \begin{cases}
+\frac{C_x}{C} &amp; C_x &gt; 0 \\
+\frac{1}{C} &amp; C_x = 0
+\end{cases}
+\]</span></p>
+<p>The plot for the add one model is pretty easy to create from the previous sample. It is clear that there are some values now in each bin, so there is some probability to every word in the vocabulary. The heights of the bins are also increased, as there previously were words in each bin that had 0 occurrences now occurring once.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> ngrams<span class="sc">$</span>three <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(word1 <span class="sc">==</span><span class="st">"what"</span>, word2 <span class="sc">==</span> <span class="st">"is"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(word3, n) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">right_join</span>(voc, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"word3"</span> <span class="ot">=</span> <span class="st">"word"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">bin =</span> <span class="fu">substr</span>(word3,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(bin)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>n[<span class="fu">is.na</span>(df<span class="sc">$</span>n)] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bin, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/addplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="good-turing" class="level3">
+<h3 class="anchored" data-anchor-id="good-turing">Good Turing</h3>
+<p>In order to understand the Good Turing Smoothing, we need to introduce some new notation, <span class="math inline">\(N_C\)</span>, to represent the frequency of frequencies. The frequency of frequencies represents how often a number of occurrences will happen in or distribution. For example, <span class="math inline">\(N_0\)</span> represents the word count in our vocabulary where there are no occurrences of that word in the distribution. <span class="math inline">\(N_1\)</span> then represents the count of the words that have one occurrence. The frequency of frequencies is a one layer of abstraction from our counts. It is helpful to consider our previous plots where we created bins based on the first letter of the predicted word, but instead we are creating bins one how often our predicted words occur.</p>
+<p>To create these <span class="math inline">\(N_C\)</span> values, we can use the count function. The original values for ‘n’ were created with the count function, we can repeat it over the values of ‘n’ to create a count of counts which I have called ‘nn’. The plot is as expected, there are many words with a low number of counts and a few high count values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> ngrams<span class="sc">$</span>three <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(word1 <span class="sc">==</span><span class="st">"what"</span>, word2 <span class="sc">==</span> <span class="st">"is"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(word3, n) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">right_join</span>(voc, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"word3"</span> <span class="ot">=</span> <span class="st">"word"</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>n[<span class="fu">is.na</span>(df<span class="sc">$</span>n)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Nr <span class="ot">&lt;-</span> <span class="fu">count</span>(df, n, <span class="at">name =</span> <span class="st">"nn"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Nr <span class="sc">%&gt;%</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+      n    nn
+  &lt;dbl&gt; &lt;int&gt;
+1     0 64330
+2     2    51
+3     3    28
+4     4    13
+5     5     2
+6     6     7</code></pre>
+</div>
+</div>
+<p>The first intuition of the Good Turing is that the probability of something new, a word with a count of zero, should be assigned the probability for an event that occurred once. For this example, we have the very unlikely event that there are no counts of words that appear once, so we use the next available count(X). This will give the probability of all words with zero count, we will later divide it by the number of words with the count 0.</p>
+<p><span class="math display">\[P_0 = \frac{C_1}{C} = \frac{C_x\cdot N_x}{\Sigma C_N\cdot N_N}
+\]</span></p>
+<p>Since we have grouped the words by frequencies, we can use the product of all frequency of the frequencies by their count.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">sum</span>(Nr<span class="sc">$</span>nn<span class="sc">*</span>Nr<span class="sc">$</span>n)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1449</code></pre>
+</div>
+</div>
+<p>Good Turing requires some additional calculations, so it is beneficial to add some columns to the dataframe at this point.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Nr <span class="ot">&lt;-</span> Nr <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(n) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">c=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">sc =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">GT =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This snippet of code is used to determine the probability for a word with zero count.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#the probability for unseen matches is set to the next value probability</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Nr<span class="sc">$</span>GT[Nr<span class="sc">$</span>n<span class="sc">==</span><span class="dv">0</span>] <span class="ot">&lt;-</span> Nr<span class="sc">$</span>nn[<span class="dv">2</span>]<span class="sc">*</span>Nr<span class="sc">$</span>n[<span class="dv">2</span>]<span class="sc">/</span>total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>All other counts are to be adjusted. The Good Turing Smoothing is defined by the following equation:</p>
+<p><span class="math display">\[C^*=\frac{(C+1)N_{C+1}}{N_C}\]</span></p>
+<p>Where <span class="math inline">\(C^*\)</span> is the adjusted count number. Since the general trend is that the frequencies decrease as the count increases, the term <span class="math inline">\(\frac{N_{C+1}}{N_C}\)</span> will decrease the value for the count. This is the desired behaviour, as we want that probability to be distributed to zero counts.</p>
+<p>One major issue that need to be addressed is that the frequency table is not continuous. There are holes as not all counts exist. To overcome this obstacle, we can create a regression model to fill in the missing values. A logistics regression model fits the values much better than a linear model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Zn <span class="ot">&lt;-</span> Nr[<span class="sc">-</span><span class="dv">1</span>,] <span class="sc">%&gt;%</span> <span class="fu">add_row</span>(<span class="at">n=</span>Nr<span class="sc">$</span>n[<span class="fu">nrow</span>(Nr)]<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Zr <span class="ot">&lt;-</span> Nr[<span class="sc">-</span><span class="dv">1</span>,] <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="fu">log</span>(nn)<span class="sc">~</span><span class="fu">log</span>(n), <span class="at">data=</span>.) <span class="sc">%&gt;%</span> <span class="fu">predict</span>(<span class="at">newdata=</span>Zn)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Zr <span class="ot">&lt;-</span> <span class="fu">exp</span>(Zr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The next code chunk can look quite complicated. In this chunk, the corrected count, <span class="math inline">\(C^*\)</span>, are calculated. The variable j is used to control whether the regression model is used to substitute the value for <span class="math inline">\(N_{C+1}\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creates the new adjusted counts</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>j <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(Nr)) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        Nr<span class="sc">$</span>c[i] <span class="ot">&lt;-</span>  (Nr<span class="sc">$</span>n[i]<span class="sc">+</span><span class="dv">1</span>)<span class="sc">*</span>Nr<span class="sc">$</span>nn[i<span class="sc">+</span><span class="dv">1</span>]<span class="sc">/</span>Nr<span class="sc">$</span>nn[i]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        Nr<span class="sc">$</span>c[i][<span class="fu">is.na</span>(Nr<span class="sc">$</span>c[i])] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        Nr<span class="sc">$</span>sc[i] <span class="ot">&lt;-</span>  (Nr<span class="sc">$</span>n[i]<span class="sc">+</span><span class="dv">1</span>)<span class="sc">*</span>Zr[i]<span class="sc">/</span>Zr[i<span class="dv">-1</span>]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(Nr<span class="sc">$</span>n[i<span class="sc">+</span><span class="dv">1</span>]<span class="sc">-</span>Nr<span class="sc">$</span>n[i] <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">|</span> i <span class="sc">==</span> <span class="fu">nrow</span>(Nr)){</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                j <span class="ot">&lt;-</span> <span class="dv">1</span>}</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        Nr<span class="sc">$</span>GT[i] <span class="ot">&lt;-</span>  Nr<span class="sc">$</span>c[i]<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>j) <span class="sc">+</span> Nr<span class="sc">$</span>sc[i]<span class="sc">*</span>j</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The probabilities at this time need two additional modifications, they need to be normalized as the regression model skews the overall probability and the probabilities need to be divided by the frequency counts to get a word specific probability.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#the specific prop from words with the same count</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Nr<span class="sc">$</span>GT[Nr<span class="sc">$</span>GT <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> Nr<span class="sc">$</span>nn[<span class="dv">2</span>]<span class="sc">/</span>total</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Nr<span class="sc">$</span>GT <span class="ot">&lt;-</span> Nr<span class="sc">$</span>GT<span class="sc">/</span><span class="fu">sum</span>(Nr<span class="sc">$</span>GT)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Nr<span class="sc">$</span>GT2 <span class="ot">&lt;-</span> Nr<span class="sc">$</span>GT<span class="sc">/</span>Nr<span class="sc">$</span>nn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can now plot the completed ngram prediction for the Good Turing Smoothing. The plot looks similar to previous plots, but we plot the probabilities rather than the count values ‘n’.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> ngrams<span class="sc">$</span>three <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(word1 <span class="sc">==</span><span class="st">"what"</span>, word2 <span class="sc">==</span> <span class="st">"is"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(word3, n) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">right_join</span>(voc, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"word3"</span> <span class="ot">=</span> <span class="st">"word"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">bin =</span> <span class="fu">substr</span>(word3,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(bin)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>n[<span class="fu">is.na</span>(df<span class="sc">$</span>n)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">left_join</span>(<span class="fu">select</span>(Nr,n,GT2), <span class="at">by =</span> <span class="st">"n"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bin, <span class="at">y =</span> GT2)) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/gtplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="absolute-discounting" class="level3">
+<h3 class="anchored" data-anchor-id="absolute-discounting">Absolute Discounting</h3>
+<p>Good Turing Smoothing is an effective model, but man can it be complicated. One observation that you can make when looking at the values for <span class="math inline">\(C\)</span> and <span class="math inline">\(C^*\)</span> is that there is nearly constant discounting. The distribution in our example is skewed, but we can see that the most common value is between 0 and 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Nr <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(c,sc) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">diff =</span> c<span class="sc">-</span>sc) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>diff)) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/adinsight-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This would suggest that we could significantly simplify the adjusted counts calculations by subtracting a constant value. The algorithm is described by the following equation:</p>
+<p><span class="math display">\[p_x = \frac{C_x - d}{C} + \lambda \cdot p_{unigram}
+\]</span></p>
+<p>where ‘d’ is the discounting amount, <span class="math inline">\(\lambda\)</span> is the Interpolation rate and <span class="math inline">\(p_{unigram}\)</span> is the unigram probability based on the MLE.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>discount <span class="ot">&lt;-</span> <span class="fl">0.75</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ADI <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(word3, n) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">ADI =</span> (n <span class="sc">-</span> discount)<span class="sc">/</span><span class="fu">sum</span>(n))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>ADI<span class="sc">$</span>ADI[ADI<span class="sc">$</span>ADI <span class="sc">&lt;</span> <span class="dv">0</span> ] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As previously mentioned, the unigram probability is calculated by applying the MLE to the unigram counts.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>unigram.prop <span class="ot">&lt;-</span> ngrams<span class="sc">$</span>one <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The interpolated weight (<span class="math inline">\(\lambda\)</span>) can be found by finding the probability that was discounted.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>uni.wt <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(ADI<span class="sc">$</span>ADI)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ADI <span class="ot">&lt;-</span> ADI <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">add_column</span>(<span class="at">uni =</span> unigram.prop<span class="sc">$</span>prop<span class="sc">*</span>uni.wt) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">ADI =</span> ADI <span class="sc">+</span> uni, <span class="at">.keep =</span> <span class="st">"unused"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can see that the plot of the probabilities for the absolute discounting is very similar to the Good Turing plot, but it was much easier to understand and calculate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ADI <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">bin =</span> <span class="fu">substr</span>(word3,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(bin) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bin, <span class="at">y =</span> ADI)) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/adiplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="kneser-ney" class="level3">
+<h3 class="anchored" data-anchor-id="kneser-ney">Kneser-Ney</h3>
+<p>The issue with Absolute Discounting is the reliance on the unigram probabilities. The unigram probability doesn’t provide any contextual information. We would rather rely on the continuation probability. Rather than looking at how often the word occurs, the continuation probability looks at how many bigrams the word completes. The Kneser-Ney model follows this equation:</p>
+<p><span class="math display">\[p_x = \frac{max(C_x - d, 0)}{C} + \lambda \cdot p_{continuation}
+\]</span></p>
+<p>The next chunk of code is very similar to the code used in the absolute discounting model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>KNS <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>        ungroup <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(word3, n) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">KNS =</span> (n <span class="sc">-</span> discount)<span class="sc">/</span><span class="fu">sum</span>(n))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>KNS<span class="sc">$</span>KNS[KNS<span class="sc">$</span>KNS <span class="sc">&lt;</span> <span class="dv">0</span> ] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>cont.wt <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(KNS<span class="sc">$</span>KNS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="continuation-probabilities" class="level4">
+<h4 class="anchored" data-anchor-id="continuation-probabilities">Continuation Probabilities</h4>
+<p>The following code is used to determine the continuation probabilities. Since the highest order ngram is six, the continuation probability needs to be calculated for six different ngram series.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cont.prop.func <span class="ot">&lt;-</span> <span class="cf">function</span>(word, ngrams){</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>        out <span class="ot">&lt;-</span> ngrams <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">filter</span>(.[,<span class="fu">ncol</span>(ngrams)<span class="sc">-</span><span class="dv">1</span>] <span class="sc">==</span> word) <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">nrow</span>() </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        out <span class="sc">/</span> <span class="fu">nrow</span>(ngrams)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>cont.prop <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>cont.prop<span class="sc">$</span>one <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">word=</span>voc<span class="sc">$</span>word, <span class="at">prop =</span> ngrams<span class="sc">$</span>one<span class="sc">$</span>n<span class="sc">/</span><span class="fu">sum</span>(ngrams<span class="sc">$</span>one<span class="sc">$</span>n))</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>cont.prop<span class="sc">$</span>two <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">word=</span>voc<span class="sc">$</span>word, <span class="at">prop =</span> <span class="fu">map_dbl</span>(word, cont.prop.func, <span class="at">ngrams=</span>ngrams<span class="sc">$</span>two))</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>cont.prop<span class="sc">$</span>three <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">word=</span>voc<span class="sc">$</span>word, <span class="at">prop =</span> <span class="fu">map_dbl</span>(word, cont.prop.func, <span class="at">ngrams=</span>ngrams<span class="sc">$</span>three))</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>cont.prop<span class="sc">$</span>four <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">word=</span>voc<span class="sc">$</span>word, <span class="at">prop =</span> <span class="fu">map_dbl</span>(word, cont.prop.func, <span class="at">ngrams=</span>ngrams<span class="sc">$</span>four))</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>cont.prop<span class="sc">$</span>five <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">word=</span>voc<span class="sc">$</span>word, <span class="at">prop =</span> <span class="fu">map_dbl</span>(word, cont.prop.func, <span class="at">ngrams=</span>ngrams<span class="sc">$</span>five))</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>cont.prop<span class="sc">$</span>six <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">word=</span>voc<span class="sc">$</span>word, <span class="at">prop =</span> <span class="fu">map_dbl</span>(word, cont.prop.func, <span class="at">ngrams=</span>ngrams<span class="sc">$</span>six))</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(cont.prop, <span class="st">"cont.prop.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The difficulty is with finding the continuation probability. After they are found, it is pretty easy to add them to the model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>KNS<span class="sc">$</span>KNS <span class="ot">&lt;-</span> KNS<span class="sc">$</span>KNS <span class="sc">+</span> cont.prop<span class="sc">$</span>three<span class="sc">$</span>prop<span class="sc">*</span>cont.wt</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>KNS <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">bin =</span> <span class="fu">substr</span>(word3,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(bin) <span class="sc">%&gt;%</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bin, <span class="at">y =</span> KNS)) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/kn2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="shiny-app" class="level2">
+<h2 class="anchored" data-anchor-id="shiny-app">Shiny App</h2>
+<p>With all the models created, we can bundle it together in a single Shiny Application. This Shiny Application retrieves the user’s input and attempts to predict the next word. A table is generated to summarize the most highly predicted word. Since there are five different models, there are five different rows. A plot is generated for each model where the predicted words are in bins with other words with the same first letter.</p>
+<div class="cell">
+<div class="cell-output-display">
+<iframe title="Text Prediction" width="100%" height="500" src="https://m2edney.shinyapps.io/Text_Predictive_Model/?_ga=2.265904783.1867833987.1655568288-1341333380.1645206372"></iframe>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Photo by <a href="https://unsplash.com/@jareddc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Jaredd Craig</a> on <a href="https://unsplash.com/s/photos/book?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

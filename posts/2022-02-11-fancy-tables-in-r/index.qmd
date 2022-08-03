@@ -1,0 +1,81 @@
+---
+title: Fancy Tables in R
+author: Mark Edney
+date: '2022-02-11'
+slug: []
+categories:
+  - How-to
+  - R
+draft: false
+description: 'Creating fancy tables with the GT library'
+image: fancy_tables.jpg
+archives:
+  - 2022/02
+---
+
+![](fancy_tables.jpg)
+
+> Photo by [Juan Gomez](https://unsplash.com/@nosoylasonia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on <a href="">[Unsplash](https://unsplash.com/s/photos/tables?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+
+## Introduction
+
+As a continuation from my previous post exploring the use of the Stargazer library to create better looking tables, I thought I would look into the GT library. The GT library takes a different approach by creating an object class with the GT function. It is still able to create great looking tables in html or latex, but also adds support for RTF.
+
+## GT Library Intuition
+
+The use of the GT library is pretty simple and starts with the creation of a GT object. For this example, I will use the ChickenWeight database that looks at the weights of different chickens.
+
+```{r Inialization, message=FALSE, warning=FALSE}
+
+library(gt)
+library(tidyverse)
+data("ChickWeight")
+```
+
+The dataframe or tibble is passed into the GT function, which can be passed into additional modifier functions. This is better outlined and easier understood using the piping operator from the magrittr library, which is also included in the tidyverse library. The piping operator is incredibly useful and common.
+
+```{r step1}
+ChickWeight %>% head() %>% gt()
+```
+
+The result is a simple a clean table the displays the required data. There is a set structure for the GT objects, which is outlined in the following diagram: ![GT table structure](images/gt_parts_of_a_table.svg)
+
+## Function Chaining
+
+As previously mentioned, by chaining GT functions together, we can add elements to the table. These elements can include titles, footnotes, source notes and conditional formatting similar to what you would use in an Excel table.
+
+```{r chains}
+ChickWeight %>%
+        head() %>%
+        gt() %>%
+        tab_header(
+                title = "Chicken Weight data", 
+                subtitle = "remember to weight your chickens!"
+        ) %>%
+        tab_footnote(footnote = "measured in seconds",
+                     locations = cells_column_labels(Time)) %>%
+        tab_source_note(source_note = "From ChickenWeight Database") %>%
+        tab_style(style = cell_fill(color = "red"),
+                  locations = cells_body(
+                          columns = weight,
+                          rows = weight > 50
+                  )) %>%
+        summary_rows(columns = c(weight,Time),
+                           fns = list(
+                                   avg = ~mean(., na.rm = TRUE),
+                                   total = ~sum(., na.rm = TRUE),
+                                   s.d. = ~sd(., na.rm = TRUE))
+                           )
+```
+
+## Helper functions
+
+The previous code includes smaller helper functions within the element functions. These functions (ex. cells_body) provide targeting information for locations or conditioning. There is a learning curve for these functions, I would recommend looking them up as you work on your table rather than trying to learn them all. The everything() function seems to be of particular usefulness, as it allows you to use all values, such as all columns.
+
+## Additional notes
+
+The summary_rows function can create summary rows for each grouping if the grouping is defined in the function or if the data is grouped itself. You can then use the grand_summary_rows function to create a grand summary.
+
+It is always good practice to pass the na.rm = TRUE for your summary functions. Without it, you can create undesirable results.
+
+A useful resource for learning the GT library is an article on R studio found [here](https://gt.rstudio.com/articles/intro-creating-gt-tables.html). It goes through more in depth on the topics that I have skimmed over.

@@ -1,0 +1,16 @@
+{
+  "hash": "479cf339217e202348bd0993b2ab1171",
+  "result": {
+    "markdown": "---\ntitle: R-Bloggers site\nauthor: Mark Edney\ndate: '2022-04-11'\nslug: []\ncategories:\n  - General\ntags:\n  - r\ndraft: no\ndescription: 'A collection of R blogs'\nimage: \"/img/rblogger.jpg\"\narchives:\n  - 2022/04\n---\n\n\nI would like to take the time to mention the [r-bloggers](https://www.google.com/url?q=http://r-bloggers.com&sa=D&source=editors&ust=1649728986132366&usg=AOvVaw2vAkyuJT7uhjS9BQpH-Upw) site. It is a vast collection of Blogs on everything that has to do will the R language. I would very much like to contribute to their work with this blog. \n\nJust to keep it interesting, I would like to recommend this specific post by [The Jumping Rivers Blog](https://www.r-bloggers.com/2022/04/upcoming-r-conferences-2022/) about upcoming R conferences. I've attended a few digital R Conferences, hosted by R-Studio, and they are very rewarding experiences. They have the ability to both inspire and educate. Unfortunately, there are no conferences in my native Canada.\n\n> Photo by [Andrew Neel](https://unsplash.com/@andrewtneel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/bloggers?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)\n  \n",
+    "supporting": [
+      "index.en_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

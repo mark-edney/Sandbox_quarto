@@ -1,0 +1,60 @@
+---
+title: Merging PDFs with Python
+author: Mark Edney
+date: '2022-04-14'
+slug: []
+categories:
+  - How-to
+  - Python
+draft: false
+description: 'A simple script for merging PDFs.'
+image: union.jpg
+archives:
+  - 2022/04
+---
+
+![](union.jpg)
+
+I am currently looking for a new job, which means I need to create many resumes and cover letters. When creating a resume, it is good practice to create a PDF file. PDFs cannot be edited, which can make them difficult to work with, but they retain their formatting. It is impossible to tell which version of Microsoft Word a hiring manager is using. So you have to risk a possible formatting error or create a compatible resumes without the latest features. 
+
+One issue with using PDFs is that employers will sometimes ask for a cover letter and resume to be submitted as a single PDF. This wouldn't be an issue if they were both stored in the same document, but if you are like me, you have separate documents creating separate PDFs. You can always use free online PDF mergers, but they can have limitations, and it may not be desirable to give away your personal data. So I decided to create a small Python script that will merge my PDFs together.  
+
+The script will require the `PyPDF2` package for dealing with PDFs and the `os` package. The `os` package is just used to automatically merge all PDFs in the root folder.
+
+```{python intro}
+import PyPDF2, os
+```
+
+The first step is to create a list of the PDFs in the current folder. It also ensures that the merged PDF is not in the list. 
+
+```{python files}
+pdfiles = []
+
+for filename in os.listdir('.'):
+        if filename.endswith('.pdf'):
+                if filename != 'merged.pdf':
+                        pdfiles.append(filename)
+                        
+pdfiles.sort(key = str.lower)
+```
+
+The file list is also sorted alphabetically to ensure the results are predictable and easy to control. The merged PDF will contain the PDFs in the same order. 
+
+The next step is to create a `PdfFileMerger` object, which will be the destination for all the data in the PDFs. The first step is to open the first PDF file in the PDF file list. The `PdfFileMerger` object will only accept a file object, so we need to create a `PdfFileReader` object from the opened PDF. This `PdfFileReader` object will then be appended to the `PdfFileMerger` object. We proceed then to the next PDF. After all files are added, the write method is used on the merged object to create a merged PDF.   
+
+```{python pdf}
+pdfMerge = PyPDF2.PdfFileMerger()
+
+for filename in pdfiles:
+        pdfFile = open(filename, 'rb')
+        pdfReader = PyPDF2.PdfFileReader(pdfFile)
+        pdfMerge.append(pdfReader)
+
+pdfFile.close()
+pdfMerge.write('merged.pdf')
+```
+
+And that's everything, a simple Python script that creates a merged PDF from all PDFs in the root folder. It is important to remember that a PDF file needs to be opened, and then a file object can be created. Using the regular PDF file will not work. 
+
+> Photo by [krakenimages](https://unsplash.com/@krakenimages?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/union?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+  

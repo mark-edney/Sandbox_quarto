@@ -1,0 +1,159 @@
+---
+title: Relationship Extraction with Spacyr
+author: Mark Edney
+date: '2022-07-04'
+slug: []
+categories:
+  - How-to
+  - Project
+  - NLP
+  - r
+draft: false
+description: 'A tutorial of the `Spacyr` packaged for the realationship extraction through the stormlight archieve book series.'
+toc: true
+image: 'dogcat.jpg'
+archives:
+  - 2022/07
+---
+![](dogcat.jpg)
+
+This is the continuation of the previous project, where we scrapped the Cooper Mind website with the `rvest` package. Please refer to that posting for the necessary steps to obtain the verified character names. 
+
+As a reminder, this project was inspired by the work of [Thu Vu](https://www.youtube.com/watch?v=RuNolAh_4bU) where she created a network mapping of the characters in the Witcher series. I thought it would be interesting to do some recreation of this project, but in `R` and with the **Stormlight Archive** book series. 
+
+For those unfamiliar with the series, it is an epic fantasy story sprawling over four main books at the time of the publishing of this post. Sanderson is a fantastic author and I feel that the **Stormlight Archive** is his best work. 
+
+## Introduction 
+
+So in a previous post, we created a list of characters which will represent the nodes in our network graph. The next step in the project is to create the edges. The edges represent the relationships between characters. In our graph, we are going to have the edges represent that strength of the relationships between characters. In order to determine these edge values, we will need to perform relationship extraction from the text with the `spacyr` package.
+
+The `spacyr` package is simply a wrapper for the python `spaCy` library, with the following functionality:
+
+- tokenization
+- lemmatizing tokens
+- parsing dependencies (to determine grammatical structure)
+- extracting form named entities
+
+It uses the `reticulate` to create the python environment. I have previously written a post about using the `reticulate` package for using python code in RMarkdown. 
+
+## Initialization
+We start with the loading of the necessary libraries to complete the project. 
+
+```{r inital1, message=FALSE, warning=FALSE}
+library(spacyr)
+library(tidyverse)
+library(data.table)
+#necessary to create a corpus object
+library(readtext)
+library(quanteda)
+library(rainette)
+```
+
+If you have an environment of python with a version a `spaCy`, you can pass the destination into the `spacy_intialize` function. If not, you need to use the `spacy_install` function to create a Conda environment that will also include  the `spaCy` package. For this project, I let `spacyr` create the Conda environment for me. This process did take a while for me, so don't be surprised if it is the same for you.   
+
+```{r spacy, eval=FALSE}
+spacy_install()
+```
+
+I have the name list from the web scraping post saved as a RDS files. RDS files are compressed text files which load quicker and take up much less space than a CSV file. 
+```{r rds}
+names <- read_rds("data/names.RDS")
+```
+
+## Text Reading
+
+The first step is to read all the text files into the system. I found this interesting little snippet of code that allows you to create a list of all the text files in a specific folder. For this project, all the books were stored in a single data folder.  
+```{r textlist}
+list_of_files <- list.files(path = ".", recursive = TRUE,
+                            pattern = "\\.txt$", 
+                            full.names = TRUE)
+```
+
+With the list of files, we can use the `map_df` function from the `purr` package. The `purr` package is part of the `tidyverse` package, so we don't need to load it separately. The `map` series of functions allows use to pass a vector of values and a function. Each value will then be passed to that function. The `_df` part of the function is just the requirement that the output be in the format of a dataframe. 
+
+The same task can be completed with a for loop, but it is much faster in the `map` function as it utilize vectorization. Vectorization is the strategy of performing multiple operations rather than a single operation at the same time. I am not very familiar with the `purr` package, so I plan to write a new article on the topic in the near future. 
+
+After all the books are read into memory, we need to create a corpus. A corpus is a large body of text, much like a library, for the sorting and organization of books. This is completed with the `corpus` function from the `quanteda` package. This corpus structure is necessary to utilize functions from the `spacyr` package.
+
+The organizational structure in the Corpus is why I needed to load the books in with the `readtext` function from the `readtext` package. I've tried many methods to read the text(`readlines`, `read_Lines`, `readfile`) but none of them performed the proper way for the `corpus` function. There were plenty of issues, hours of difficulty, which resulted in me referring to the `quanteda` package website. There I learnt about the `readtext` function and it worked flawlessly on the first time. Well, I did find an issue with the default encoding not interpreting characters correctly, but this was corrected easily.
+
+When the time came to modelling, issues arose with the size of the Corpus. There is a limitation in `spaCy`, it will only work with text files less than 100,000,000 characters long. I think that each book was a little over twice that size. So I needed to batch the process by breaking the corpus up into smaller sections. This was done with the `split_segments` function from the `rainette` package. The function only accepts a split based on number of sentences, so I arrived at a value of 100,000 sentences per document. 
+
+```{r read}
+corpus <- list_of_files %>% 
+        map_df(readtext, encoding='utf-8') %>%
+        corpus() %>%
+        rainette::split_segments(segment_size = 100000)
+```
+
+With the books read into file, the corpus created and the corpus split into sections, we now have `r length(corpus)` documents. We can proceed to entity modelling with the `spaCy` functions.
+
+Unfortunately, we still have size issues, as passing the entire Corpus to be parsed is unaffected by the number of documents. So I needed to create a simple for loop to analyze each document one at a time and bind the results to a data table. Data tables are like data frames, but they have some unique notation and increased performance.
+
+The Corpus is parsed with the `spacy_parse` function. Setting `pos` and `lemma` to false should reduce performance time as the function doesn't need to return dependency POS tag set and lemmatized tokens. The POS tag set refers to the type of word such as Noun, while the lemmatized token is the base of a word, such as for the word "am" would be lemmatized to "be". The parsing of the corpus takes a very long time. 
+
+```{r model}
+df <- corpus[[1]] %>%
+        spacy_parse(pos = FALSE, lemma = FALSE)
+
+for (i in 2:length(corpus)){
+        temp <- corpus[[i]] %>%
+        spacy_parse(pos = FALSE, lemma = FALSE) 
+        
+        df <- rbind(df,temp)}
+rm(temp)
+```
+The parsing creates an object that acts very similarly as a data table. There is an entry for each word, which is more than what is required for this project. The original data table is preserved, in case we would like to reference a sentence in the corpus, and we create a filtered data table. The data table is filtering the tokens in the names list and by the identified entity, making sure it starts with person.
+
+```{r token}
+dfclean <- df %>% 
+        filter(token %in% names,
+               str_starts(entity, "PERSON")) 
+```
+
+## Relationship modelling
+
+The final step is to create a model that will connect people in the data table. I have decided to use a sentence windows that creates a connection when two names are mentioned within that window.
+
+This is another very time-consuming tasks the requires two for loops. The first loop goes through all `r nrow(dfclean)` rows and its sentence id. A second for loop that excludes all rows already used in the first loop is used to compare a second sentence id. If the difference between the sentence ids is less than the windows, the tokens for these rows are added to an empty data table. If the difference is greater than the window size, we break the second for loop as all the sentence ids are incremental. It is not a very clean or smooth method, but it works. 
+
+```{r relations}
+window_size <- 5
+related <- data.table("Person1" = character(), "Person2" = character())
+
+for(i in 1: (nrow(dfclean)-1)){
+        for(j in (i + 1):nrow(dfclean)){
+                if((dfclean$sentence_id[j] - dfclean$sentence_id[i]) < window_size){
+                        
+                        related <- rbindlist(list(related, list(dfclean$token[i], dfclean$token[j])))
+                }
+                
+                else{
+                        break
+                }
+        }
+}
+```
+
+The following is a sample of the data table we have created to build the relationships.
+
+```{r sample}
+related %>% head()
+```
+We can identify two issues with this sample. The first issue is when two of the same names are within the same window. We will have to filter out when 'Person1' is equal to 'Person2'. The second issue is that we would actually like to aggregate the data. We would like a count of when two different names are in the same window. Both of these tasks are easy enough to solve using the built-in data table notation. For more information on data tables, please refer to my previous post on the topic.  
+
+```{r agg}
+relatedagg <- related[Person1 != Person2,.N,by = c("Person1", "Person2")]
+
+relatedagg %>% head()
+```
+The final issue is for the relationships for 'Person1' and 'Person2' when their places are switched, but that will be dealt with in the next post. 
+
+## Conclusion
+
+With some hard-work, we were able to create an organized Corpus of all the current 4 **Stormlight Archive** books. We were able to split this Corpus into smaller sized documents, making them easier to manage. The `spacyr` library was then used to model entities within the Corpus, identifying the tokens that represent people. The next step was to clean up the results, keeping only the verified characters names as tokens. We then used a model to developed relationships using a window. A relationship was created whenever two character names were mentioned in the same window. We then filtered out characters relationships to themselves and aggregated the data. The clear next step is to actually build the graphs with the characters as nodes and their relationships as edges. But that is a post for another day.
+
+```{=html}
+Photo by <a href="https://unsplash.com/@alecfavale?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alec Favale</a> on <a href="https://unsplash.com/s/photos/relationships?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
+```

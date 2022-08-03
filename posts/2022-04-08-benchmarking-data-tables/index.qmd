@@ -1,0 +1,124 @@
+---
+title: Benchmarking Data Tables
+author: Mark Edney
+date: '2022-04-13'
+slug: []
+categories:
+  - How-to
+  - R
+draft: false
+description: 'A look into the claim performance of Data Tables in the R language.'
+image: "racecar.jpg"
+archives:
+  - 2022/04
+---
+
+![](racecar.jpg)
+
+When I started learning R, I heard vague tales of the use of Data Tables. Really just whisperers, of something to consider in the future after I've become more proficient. Well now is the time to learn what if anything I've been missing out on.
+
+## Introduction
+
+Data Tables are a potential replacement for the common dataframe. It  seeks to perform that same role but with improved performance. I would like to see the speed comparison between Data Frames, Data Tables and Tibbles. I will use the `microbenchmark` package to perform the actual benchmarking.
+
+```{r packages, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(data.table)
+library(microbenchmark)
+library(farff)
+```
+
+For the benchmark, I will use the 'credit-g' dataset, which can be found on the [open ml](https://www.openml.org/search?type=data&status=active&id=31) website. I'm pretty sure the last open ml dataset I used was a csv file, but they seem to have moved to a ARFF format. I will need to use the `farff` package to load the data. 
+
+```{r load, message=FALSE}
+df <- farff::readARFF('dataset_31_credit-g.arff')
+dt <- setDT(df)
+ti <- tibble(df)
+```
+
+## Syntax
+
+The syntax for Data Tables is a little different:
+
+> DT[i,j,by]
+
+In this manner, a data table can be subset by i, to calculate j when grouped with a by. Along with the special syntax, there are some common functions that add some additional simplification.
+
+> .()
+
+The '.()' function can be used as a placeholder for 'list()'. The list function is useful for subsetting.
+
+## Grouped Aggregate
+
+Aggregating data in Data Tables is simple by using the j and by parameters in the syntax. Again, multiple functions or even multiple groupings can be passed with the '.()' function. For this comparison, we will look at the performance of finding the average age of the credit holders grouped by the class or credit rating. 
+
+```{r grouped}
+group <- microbenchmark(Data_Frame = df %>% 
+                                 group_by(class) %>%
+                       summarise(avg = mean(age)),
+               Data_Table = dt[,.(avg = mean(age)), by = class],
+               Tibble = ti %>% 
+                       group_by(class) %>%
+                       summarise(avg = mean(age)))
+print(group)
+```
+```{r groupdiff, include=FALSE}
+avg = summary(group)$mean
+groupdiff <- mean((avg[2]-avg[1])/avg[1], (avg[2]-avg[3])/avg[3])*100
+```
+
+## Taking counts
+
+Another function of interest is the '.N' function. This function will return the count of rows. The test looks are the number of people with over 5000 in credit and younger than 35. 
+
+```{r counts}
+counts <- microbenchmark(Data_Frame = df %>% 
+                                 filter(credit_amount > 5000, age <35) %>%
+                       nrow(),
+               Data_Table = dt[credit_amount > 5000 & age < 35, .N ,],
+               Tibble = ti %>% 
+                       filter(credit_amount > 5000, age <35) %>%
+                       nrow())
+print(counts)
+```
+
+```{r countsdiff, include=FALSE}
+avg = summary(counts)$mean
+countdiff <- mean((avg[2]-avg[1])/avg[1], (avg[2]-avg[3])/avg[3])*100
+```
+## Creating new columns
+
+Data Tables also contain a very simple syntax for creating a new column with ':='. I compare this to the `tidyverse` mutate function. Using the base R to create a column is still the fastest  method, taking about half the time of the Data Table method. 
+
+```{r new_col}
+new <- microbenchmark(Data_Frame = df %>% mutate(property = paste(property_magnitude, housing)),
+               Data_Table = dt[,property := paste(property_magnitude, housing)],
+               Tibble = ti %>% mutate(property = paste(property_magnitude, housing)))
+print(new)
+```
+```{r newdiff, include=FALSE}
+avg = summary(new)$mean
+newdiff <- mean((avg[2]-avg[1])/avg[1], (avg[2]-avg[3])/avg[3])*100
+```
+
+## Chaining Data Tables
+
+Another point of exploration is that Data Tables can be chained together to create more complicated structures
+
+```{r chain}
+dt[credit_amount > 1000, .(age = mean(age)),by = .(purpose, class)][class == "good" & age < mean(age)]
+```
+I don't think this is the most useful feature, as you can already create some very complicated transformation with a single call. Chaining also makes it more difficult to understand. 
+
+## Conclusions
+
+```{r conc, include=FALSE}
+total <- round(mean(groupdiff, countdiff, newdiff))
+```
+It is clear that there are significant performance improvements when using Data Tables versus Data Frames
+(an average decrease of time by `r total`%). There are also insignificant differences between Data Frames and Tibbles. Also, the syntax for Data Tables is fairly simple and straight forward and yet extremely powerful.
+
+So, to answer the most important question, should you change to Data Tables from Data Frames? Probably, they present a significant performance gain and their structure is very flexible. 
+
+> Photo by [Tyler Clemmensen](https://unsplash.com/@tyler_clemmensen?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/race-car?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+  

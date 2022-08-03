@@ -1,0 +1,98 @@
+---
+title: The beauty of List comprehensions in Python
+author: Mark Edney
+date: '2022-05-16'
+slug: []
+categories:
+  - How-to
+  - Python
+draft: false
+image: 'beauty-list.jpg'
+description: 'List Comprehensions are an elegent and useful tool in Python, that every Python coder should know about.'
+archives:
+  - 2022/05
+---
+![](beauty-list.jpg)
+
+I have spent awhile learning Python, and I was a little perplexed when it came to list comprehensions. Why would you use them? Isn't there just an easier why?
+
+As my proficiency increase, I have found them to be an incredibly useful tool. They save you lines of code, are easy to understand, and are usually better for performance. A good list comprehension, is truly a work of beauty.
+
+## Structure
+
+The basic structure of a list comprehension is pretty simple, you contain an expression and an iterable within a set of `[]`. Depending on the type of brackets used, you can create a list, a generator, set or a dictionary.
+
+```{python intro}
+[i for i in range(5)]
+(i for i in range(5))
+{i for i in range(5)}
+```
+
+It may appear from first impressions that a list comprehension is a simple one line for loop, but it is much more powerful than that. 
+
+### Conditions
+
+Much more complicated lists can be created with an included if statement. The if statement fits right at the end of the statement. 
+
+```{python condition}
+[a for a in range(10) if a % 2 == 0]
+```
+
+But what if you need to create an even more complicated list, one that requires an else statement along with the if statement. Then the structure of the list comprehension changes a little, the iterable statement is moved to the end. 
+
+```{python condition2}
+[a if a % 2 == 0 else 0 for a in range(10)]
+```
+
+### Expressions
+
+Of course, expressions can be more complicated than returning single values. One common issue I find is when I have a list of a value type and I need them to be of a different type. This conversion is easy with list comprehensions. 
+
+```{python exp}
+a = ['0', '1', '2', '3', '4']
+[int(x) for x in a]
+```
+There is nearly an unlimited potential of different expressions you can use.
+
+### More Iterables
+
+List comprehensions are not limited to a single iterable. Far warning, however, increasing the number of iterables will reduce readability. At some level of complication, it will be a better idea to separate steps. 
+
+```{python iterables}
+a = range(5)
+b = [5,10,15]
+[x*y for x in a for y in b]
+```
+
+The results are an element-wise evaluation across multiple iterables. These iterables don't need to be the same size.
+
+### Dictionary Comprehensions
+
+As previously mentioned, by changing the structure, we can generate dictionaries.
+
+```{python dict}
+{char : num for num, char in enumerate(['a','b','c','d','e'])}
+```
+Likewise, you can create a set rather than a list. Sets can be useful if you don't need the data to be in order, and you don't want any duplicate values. 
+
+### Other Applications
+
+There is great potential in list comprehensions. Often I find that I need to create a list of zeroes or of boolean logic of the same size as a current list. This is easy to create, just don't refer to the iterable within the expression. 
+
+```{python other}
+a = range(5)
+[True for x in a]
+```
+
+While it may not be best practice, you can nest a list comprehension within another list comprehension. 
+
+```{python other2}
+[x for x in [b for b in range(20) if b %2 == 0] if x %3 == 0]
+```
+
+### Conclusions
+
+Hopefully I have won you over with the beauty of list comprehensions. They are simple and clean to create yet extremely flexible in their design. So take a minute, to really appreciate the beauty of list comprehensions. 
+
+>Photo by [Kelly Sikkema](https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/lists?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+  

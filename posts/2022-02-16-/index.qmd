@@ -1,0 +1,97 @@
+---
+title: 'Speed cameras in Toronto'
+author: Mark Edney
+date: '2022-02-16'
+slug: []
+categories:
+  - Project
+  - R
+  - Leaflet
+draft: false
+description: 'Creating a Leaflet map of all the speed cameras in Toronto'
+image: 'toronto_traffic.jpg'
+archives:
+  - 2022/02
+---
+
+![](toronto_traffic.jpg)
+
+> Photo by [Sepideh Golchin Rad](https://unsplash.com/@sepidehgolchin?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+
+> This project was originally written on 02/01/2021 as part of the Data Products course for the Data Science Specialization from Johns Hopkins University on Coursera
+
+## Objective
+
+This report plots the speed cameras in the Greater Toronto Area from the data provided by Open Toronto, which can be found [here](https://open.toronto.ca/dataset/automated-speed-enforcement-locations/).
+
+## Initialization
+
+The following code is used to initialize the required libraries.
+
+```{r, include=FALSE}
+
+# widgetframe supports 3 custom knitr chunk options...
+
+# For all practicle purposes this should always be FALSE 
+knitr::opts_chunk$set(widgetframe_self_contained = FALSE) # default = FALSE
+
+# For all practicle purposes this should always be TRUE 
+knitr::opts_chunk$set(widgetframe_isolate_widgets = TRUE) # default = TRUE
+
+# Only needed in bookdown format/s such as bookdown::gitbook. Otherwise don't set.
+# knitr::opts_chunk$set(widgetframe_widgets_dir = 'widgets' ) 
+```
+
+```{r packages, warning=FALSE, message=FALSE}
+install.packages("opendatatoronto", repos = "https://cran.us.r-project.org", dependencies = TRUE)
+library(opendatatoronto)
+library(dplyr)
+library(leaflet)
+```
+
+The following code is provided by the Open Toronto site to download the dataset.
+
+```{r dataset}
+# get package
+package <- show_package("a154790c-4a8a-4d09-ab6b-535ddb646770")
+
+# get all resources for this package
+resources <- list_package_resources("a154790c-4a8a-4d09-ab6b-535ddb646770")
+
+# identify datastore resources; by default, Toronto Open Data sets datastore resource format to CSV for non-geospatial and GeoJSON for geospatial resources
+datastore_resources <- filter(resources, tolower(format) %in% c('csv', 'geojson'))
+
+# load the first datastore resource as a sample
+data <- filter(datastore_resources, row_number()==1) %>% get_resource()
+```
+
+## Plotting the Data
+
+The geometry in the dataset can be used directly with Leaflet, and the longitude and latitude do not need to be separated.
+
+```{r plots}
+df <- data$geometry
+```
+
+Custom icons for the speed cameras can be used with the following code:
+
+```{r icon}
+cameraicon <- makeIcon(
+        iconUrl = "https://www.flaticon.com/svg/static/icons/svg/2164/2164608.svg",
+        iconWidth = 35, iconHeight = 35
+)
+```
+
+Finally, all the data and options can be passed to the leaflet function.
+
+```{r plotfinal}
+
+plt <- df %>%
+        leaflet() %>%
+        addTiles() %>%
+        addMarkers(icon = cameraicon, clusterOptions = markerClusterOptions(), popup = data$location)
+```
+
+```{r final, echo=FALSE, warning=FALSE}
+knitr::include_url("https://rstudio-pubs-static.s3.amazonaws.com/867843_8ceb2632490f457f9620fec73acc7e2c.html")
+```
