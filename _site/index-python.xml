@@ -10,7 +10,79 @@
 <atom:link href="https://datasandbox.netlify.app/index-python.xml" rel="self" type="application/rss+xml"/>
 <description>The Data Sandbox is a collection of Data Science projects and discussions on Data Science topics.</description>
 <generator>quarto-1.0.37</generator>
-<lastBuildDate>Mon, 16 May 2022 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 01 Aug 2022 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Quarto: The successor to R Markdown</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/index.html</link>
+  <description><![CDATA[ <section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>RMarkdown has been a staple for any Data Scientist that programs in <code>R</code>. <code>Quarto</code> builds on that, with multiple language support and additional features. Because of its language independent design, qQuarto` requires an independent installation.</p>
+<p>I have spent the past week moving my blog from <code>blogdown</code> to <code>quarto</code>. There has been some challenges, but I am pretty happy with the new look.</p>
+</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>The setup for Quarto is pretty simple. You will need to visit the quarto website to <a href="https://quarto.org/docs/get-started/">download</a> the Quarto Command Line Interface (CLI). There are step by step instructions for your selected text editor. I am most familiar with RStudio for <code>R</code> and VSCode for <code>Python</code>.</p>
+<p>For Rstudio, it’s pretty much just plug and play now. I didn’t find any additional steps required. Just write you <code>RMarkdown</code> files as usual and save it is an <code>qmd</code> file. The process for Quarto for RStudio can be described by the following process flow:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/rstudio-qmd-how-it-works.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Render qmd in RStudio</figcaption><p></p>
+</figure>
+</div>
+<p>It is not much more difficult for VSCode, all you need to do is download the Quarto extension. The process flow is similar to RStudio but uses Jupyter instead if knitr.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/qmd-how-it-works.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Render qmd for VSCode</figcaption><p></p>
+</figure>
+</div>
+<p>With the setup complete, there should be no differences between text editors.</p>
+</section><section id="code-chunk-options" class="level2"><h2 class="anchored" data-anchor-id="code-chunk-options">Code Chunk Options</h2>
+<p>The first new feature to explore the support for code chuck options within the code chunks. These options would usually live within the code chunk title line. Any supported option can be added with the <code>#|</code> tag. I don’t know how useful this feature is as would prefer the chunk options in the title. It could be useful for situations with many options as it does increase readability. <img src="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/qmd%20chunk%20options.png" class="img-fluid"></p>
+</section><section id="code-folding" class="level2"><h2 class="anchored" data-anchor-id="code-folding">Code-folding</h2>
+<p>One of the neat new features is code-folding. When this feature is enabled in the the qmd YAML, the person viewing the document can hide/unhide code chunks. This can make it easier for them to read the document. This will only hide the code and not the results.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;">glimpse</span><span class="op" style="color: #5E5E5E;">(</span><span class="va" style="color: #111111;">msleep</span><span class="op" style="color: #5E5E5E;">)</span></span></code></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>Rows: 83
+Columns: 11
+$ name         &lt;chr&gt; "Cheetah", "Owl monkey", "Mountain beaver", "Greater shor…
+$ genus        &lt;chr&gt; "Acinonyx", "Aotus", "Aplodontia", "Blarina", "Bos", "Bra…
+$ vore         &lt;chr&gt; "carni", "omni", "herbi", "omni", "herbi", "herbi", "carn…
+$ order        &lt;chr&gt; "Carnivora", "Primates", "Rodentia", "Soricomorpha", "Art…
+$ conservation &lt;chr&gt; "lc", NA, "nt", "lc", "domesticated", NA, "vu", NA, "dome…
+$ sleep_total  &lt;dbl&gt; 12.1, 17.0, 14.4, 14.9, 4.0, 14.4, 8.7, 7.0, 10.1, 3.0, 5…
+$ sleep_rem    &lt;dbl&gt; NA, 1.8, 2.4, 2.3, 0.7, 2.2, 1.4, NA, 2.9, NA, 0.6, 0.8, …
+$ sleep_cycle  &lt;dbl&gt; NA, NA, NA, 0.1333333, 0.6666667, 0.7666667, 0.3833333, N…
+$ awake        &lt;dbl&gt; 11.9, 7.0, 9.6, 9.1, 20.0, 9.6, 15.3, 17.0, 13.9, 21.0, 1…
+$ brainwt      &lt;dbl&gt; NA, 0.01550, NA, 0.00029, 0.42300, NA, NA, NA, 0.07000, 0…
+$ bodywt       &lt;dbl&gt; 50.000, 0.480, 1.350, 0.019, 600.000, 3.850, 20.490, 0.04…</code></pre>
+</div>
+</div>
+<p>This feature is enabled by making the following addition to the YAML. You would change the format from html to your required format such as pdf.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;">format</span><span class="op" style="color: #5E5E5E;">:</span> </span>
+<span>  <span class="va" style="color: #111111;">html</span><span class="op" style="color: #5E5E5E;">:</span> </span>
+<span>    <span class="va" style="color: #111111;">code</span><span class="op" style="color: #5E5E5E;">-</span><span class="va" style="color: #111111;">fold</span><span class="op" style="color: #5E5E5E;">:</span> <span class="va" style="color: #111111;">true</span></span>
+<span>    <span class="va" style="color: #111111;">code</span><span class="op" style="color: #5E5E5E;">-</span><span class="va" style="color: #111111;">tools</span><span class="op" style="color: #5E5E5E;">:</span> <span class="va" style="color: #111111;">true</span></span></code></pre></div>
+</details>
+</div>
+<p>With the addition of the <code>code-tools: true</code> parameters, the reader can decide to hide all code chunks from the top of the document.</p>
+</section><section id="code-linking" class="level2"><h2 class="anchored" data-anchor-id="code-linking">Code Linking</h2>
+<p>A reader may not be familiar with all the functions that you use in your document so it may be useful to enable code linking. With code linking, a function in a code chunk will have a hyperlink to the documentation for that function. To work in <code>R</code>, this feature requires the <code>xml2</code> and <code>downlit</code> packages.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="im" style="color: #00769E;">import</span> pandas</span></code></pre></div>
+</details>
+</div>
+
+
+<!-- -->
+
+</section> ]]></description>
+  <category>How-to</category>
+  <category>R</category>
+  <category>Rmarkdown</category>
+  <category>Python</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/index.html</guid>
+  <pubDate>Mon, 01 Aug 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/rstudio-qmd-how-it-works.png" medium="image" type="image/png" height="26" width="144"/>
+</item>
 <item>
   <title>The beauty of List comprehensions in Python</title>
   <dc:creator>Mark Edney</dc:creator>
@@ -327,13 +399,13 @@ the value is: 000.1</code></pre>
 <item>
   <title>Simple Neural Networks in Python</title>
   <dc:creator>Mark Edney</dc:creator>
-  <link>https://datasandbox.netlify.app/posts/2022-03-20-simple-neural-networks-in-python/index.html</link>
+  <link>https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html</link>
   <description><![CDATA[ 
 
 
 
 
-<p><img src="https://datasandbox.netlify.app/posts/2022-03-20-simple-neural-networks-in-python/network.jpg" class="img-fluid"> Neural Networks (NN) have become incredibly popular due to their high level of accuracy. The creation of a NN can be complicated and have a high level of customization. I wanted to explore just the simplest NN that you could create. A framework as a workhorse for developing new NN.</p>
+<p><img src="https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/network.jpg" class="img-fluid"> Neural Networks (NN) have become incredibly popular due to their high level of accuracy. The creation of a NN can be complicated and have a high level of customization. I wanted to explore just the simplest NN that you could create. A framework as a workhorse for developing new NN.</p>
 <p>The <code>SciKitlearn</code> provides the easiest solution with the Multi-Layer Perceptron series of functions. It doesn’t provide a bunch of the more advanced features of <code>TensorFlow</code>, like GPU support, but that is not what I’m looking for.</p>
 <section id="initialization" class="level2">
 <h2 class="anchored" data-anchor-id="initialization">Initialization</h2>
@@ -434,20 +506,20 @@ the value is: 000.1</code></pre>
   <category>How-to</category>
   <category>Python</category>
   <category>NN</category>
-  <guid>https://datasandbox.netlify.app/posts/2022-03-20-simple-neural-networks-in-python/index.html</guid>
+  <guid>https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html</guid>
   <pubDate>Sun, 20 Mar 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://datasandbox.netlify.app/posts/2022-03-20-simple-neural-networks-in-python/network.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/network.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Python in R Markdown</title>
   <dc:creator>Mark Edney</dc:creator>
-  <link>https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/index.html</link>
+  <link>https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/index.html</link>
   <description><![CDATA[ 
 
 
 
 
-<p><img src="https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/python.jpg" class="img-fluid"></p>
+<p><img src="https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/python.jpg" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>Photo by <a href="https://unsplash.com/@davidclode?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">David Clode</a> on <a href="https://unsplash.com/s/photos/python?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
 </blockquote>
@@ -490,7 +562,7 @@ $ Volume &lt;dbl&gt; 10.3, 10.3, 10.2, 16.4, 18.8, 19.7, 15.6, 18.2, 22.6, 19.9,
 <span id="cb4-5">sns.set_theme(color_codes<span class="op" style="color: #5E5E5E;">=</span><span class="va" style="color: #111111;">True</span>)</span>
 <span id="cb4-6">plt.show()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/index_files/figure-html/enviroment-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/index_files/figure-html/enviroment-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;">from</span> sklearn.linear_model <span class="im" style="color: #00769E;">import</span> LinearRegression</span>
 <span id="cb5-2">mdl <span class="op" style="color: #5E5E5E;">=</span> LinearRegression()</span>
@@ -518,7 +590,7 @@ $ Volume &lt;dbl&gt; 10.3, 10.3, 10.2, 16.4, 18.8, 19.7, 15.6, 18.2, 22.6, 19.9,
 <span id="cb13-2">        <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> Girth, <span class="at" style="color: #657422;">y =</span> Height, <span class="at" style="color: #657422;">colour =</span> big)) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb13-3">        <span class="fu" style="color: #4758AB;">geom_point</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/index_files/figure-html/return-3.png" class="img-fluid" width="672"></p>
+<p><img src="https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/index_files/figure-html/return-3.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
@@ -530,9 +602,9 @@ $ Volume &lt;dbl&gt; 10.3, 10.3, 10.2, 16.4, 18.8, 19.7, 15.6, 18.2, 22.6, 19.9,
   <category>R</category>
   <category>Python</category>
   <category>Rmarkdown</category>
-  <guid>https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/index.html</guid>
+  <guid>https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/index.html</guid>
   <pubDate>Thu, 03 Mar 2022 05:00:00 GMT</pubDate>
-  <media:content url="https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/python.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/python.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

@@ -1,14 +1,13 @@
 ---
-title: Professional Tables with Stargazer
+title: 'Professional Tables with Stargazer'
 author: Mark Edney
 date: '2022-02-08'
-slug: []
 categories:
   - How-to
   - R
 draft: false
-image: data.jpg
 description: 'How to create better looking tables in R'
+image: 'data.jpg'
 archives:
   - 2022/02
 ---
@@ -21,12 +20,12 @@ archives:
 
 Tables from regression models or just plain data in R are poorly organized. The have little formatting and are unfit for publishing. This point is illustrated with the CO2 dataset. This dataset looks at the CO2 uptake of six different types of grass.
 
-```{r demo}
-
-data(co2)
-mdl  <- lm(CO2$uptake ~ CO2$Plant)
+```{r data}
+co2 <- force(data(co2))
+mdl  <- lm(co2$uptake ~ co2$Plant)
 mdl
 ```
+
 
 ## Stargazer
 
@@ -34,9 +33,9 @@ The solution is to use the Stargazer library. The stargazer library contains the
 
 ```{r sg, message=FALSE}
 library(stargazer)
-mdl2 <- glm(CO2$uptake ~ CO2$Plant, family = Gamma)
+mdl2 <- glm(co2$uptake ~ co2$Plant, family = Gamma)
 stargazer(mdl, mdl2,  title = "CO2 Uptake of plants model")
-stargazer(CO2)
+stargazer(co2)
 ```
 
 The stargazer function will return a latex table by default which requires a latex compiler. This post is written in R markdown and knitted to a html without a latex compiler so I can not demonstrate it natively. You can however knit a RMD file to a pdf which will utilize a latex compiler. I've copied these images of the tables from such a pdf file.

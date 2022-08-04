@@ -258,10 +258,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-       expr    min      lq     mean  median      uq     max neval
- Data_Frame 5398.7 5698.65 7178.536 6053.65 7099.20 32509.8   100
- Data_Table  628.6  867.25 1215.210  941.35 1084.20 11624.5   100
-     Tibble 5590.5 5838.70 7282.662 6251.90 7056.05 33752.8   100</code></pre>
+       expr    min     lq     mean  median      uq     max neval
+ Data_Frame 5457.8 5916.5 8281.596 6602.00 8040.75 35931.3   100
+ Data_Table  654.2  894.3 2715.814  983.90 1222.40 43101.0   100
+     Tibble 5587.6 6108.6 7880.329 6605.75 7981.15 48245.3   100</code></pre>
 </div>
 </div>
 </section>
@@ -279,10 +279,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-       expr    min      lq      mean   median       uq     max neval
- Data_Frame 8520.3 8848.75 10745.952  9327.15 10354.45 40457.0   100
- Data_Table  284.8  315.75   506.978   461.50   485.70  4607.3   100
-     Tibble 9043.7 9576.35 11591.242 10115.65 11357.90 37850.1   100</code></pre>
+       expr    min     lq      mean   median       uq     max neval
+ Data_Frame 8465.8 8789.4 11712.951  9627.60 11767.20 48873.5   100
+ Data_Table  285.9  336.7   500.222   463.95   510.25  2196.7   100
+     Tibble 9031.1 9421.9 13459.711 10219.80 12669.95 64585.3   100</code></pre>
 </div>
 </div>
 </section>
@@ -296,10 +296,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-       expr    min      lq     mean  median     uq     max neval
- Data_Frame 2059.8 2203.15 2979.756 2353.85 2677.6 16697.4   100
- Data_Table  500.4  551.50  758.837  650.40  728.7  4188.3   100
-     Tibble 2574.2 2803.35 3414.202 3039.70 3658.3 19889.0   100</code></pre>
+       expr    min      lq     mean  median      uq     max neval
+ Data_Frame 2074.8 2186.05 3169.626 2318.60 2627.85 29837.9   100
+ Data_Table  502.3  563.00  843.560  668.55  776.45 11603.2   100
+     Tibble 2576.8 2838.50 4705.342 3051.55 3986.85 41499.7   100</code></pre>
 </div>
 </div>
 </section>
@@ -322,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="conclusions" class="level2">
 <h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
-<p>It is clear that there are significant performance improvements when using Data Tables versus Data Frames (an average decrease of time by -83%). There are also insignificant differences between Data Frames and Tibbles. Also, the syntax for Data Tables is fairly simple and straight forward and yet extremely powerful.</p>
+<p>It is clear that there are significant performance improvements when using Data Tables versus Data Frames (an average decrease of time by -67%). There are also insignificant differences between Data Frames and Tibbles. Also, the syntax for Data Tables is fairly simple and straight forward and yet extremely powerful.</p>
 <p>So, to answer the most important question, should you change to Data Tables from Data Frames? Probably, they present a significant performance gain and their structure is very flexible.</p>
 <blockquote class="blockquote">
 <p>Photo by <a href="https://unsplash.com/@tyler_clemmensen?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Tyler Clemmensen</a> on <a href="https://unsplash.com/s/photos/race-car?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>

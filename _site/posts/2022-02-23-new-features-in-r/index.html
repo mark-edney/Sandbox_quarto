@@ -284,9 +284,9 @@ Coefficients:
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: nanoseconds
          expr  min   lq mean median   uq   max neval
-      sqrt(3)    0  100  111    100  100   700   100
-      sqrt(4)    0    0  114    100  100  5100   100
- 5 %&gt;% sqrt() 2500 2600 2978   2600 2800 25200   100</code></pre>
+      sqrt(3)  100  100  239    200  200  5700   100
+      sqrt(4)    0  100  215    100  200  6800   100
+ 5 %&gt;% sqrt() 3200 3500 5110   3700 4000 43300   100</code></pre>
 </div>
 </div>
 <p>So when should we use the native vs the magrittr pipe? Well, it looks like not all the functionality of the magrittr pipe is carried over, so it should still be continued to be used. The native pipe, however, provides a good performance boost, which makes it a better option for code written in functions and libraries. I think that the major application should be to increase the readability of library and function code.</p>
