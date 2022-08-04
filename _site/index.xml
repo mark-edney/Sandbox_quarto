@@ -10,79 +10,7 @@
 <atom:link href="https://datasandbox.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>The Data Sandbox is a collection of Data Science projects and discussions on Data Science topics.</description>
 <generator>quarto-1.0.37</generator>
-<lastBuildDate>Mon, 01 Aug 2022 04:00:00 GMT</lastBuildDate>
-<item>
-  <title>Quarto: The successor to R Markdown</title>
-  <dc:creator>Mark Edney</dc:creator>
-  <link>https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/index.html</link>
-  <description><![CDATA[ <section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>RMarkdown has been a staple for any Data Scientist that programs in <code>R</code>. <code>Quarto</code> builds on that, with multiple language support and additional features. Because of its language independent design, qQuarto` requires an independent installation.</p>
-<p>I have spent the past week moving my blog from <code>blogdown</code> to <code>quarto</code>. There has been some challenges, but I am pretty happy with the new look.</p>
-</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>The setup for Quarto is pretty simple. You will need to visit the quarto website to <a href="https://quarto.org/docs/get-started/">download</a> the Quarto Command Line Interface (CLI). There are step by step instructions for your selected text editor. I am most familiar with RStudio for <code>R</code> and VSCode for <code>Python</code>.</p>
-<p>For Rstudio, it’s pretty much just plug and play now. I didn’t find any additional steps required. Just write you <code>RMarkdown</code> files as usual and save it is an <code>qmd</code> file. The process for Quarto for RStudio can be described by the following process flow:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/rstudio-qmd-how-it-works.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Render qmd in RStudio</figcaption><p></p>
-</figure>
-</div>
-<p>It is not much more difficult for VSCode, all you need to do is download the Quarto extension. The process flow is similar to RStudio but uses Jupyter instead if knitr.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/qmd-how-it-works.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Render qmd for VSCode</figcaption><p></p>
-</figure>
-</div>
-<p>With the setup complete, there should be no differences between text editors.</p>
-</section><section id="code-chunk-options" class="level2"><h2 class="anchored" data-anchor-id="code-chunk-options">Code Chunk Options</h2>
-<p>The first new feature to explore the support for code chuck options within the code chunks. These options would usually live within the code chunk title line. Any supported option can be added with the <code>#|</code> tag. I don’t know how useful this feature is as would prefer the chunk options in the title. It could be useful for situations with many options as it does increase readability. <img src="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/qmd%20chunk%20options.png" class="img-fluid"></p>
-</section><section id="code-folding" class="level2"><h2 class="anchored" data-anchor-id="code-folding">Code-folding</h2>
-<p>One of the neat new features is code-folding. When this feature is enabled in the the qmd YAML, the person viewing the document can hide/unhide code chunks. This can make it easier for them to read the document. This will only hide the code and not the results.</p>
-<div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;">glimpse</span><span class="op" style="color: #5E5E5E;">(</span><span class="va" style="color: #111111;">msleep</span><span class="op" style="color: #5E5E5E;">)</span></span></code></pre></div>
-</details><div class="cell-output cell-output-stdout">
-<pre><code>Rows: 83
-Columns: 11
-$ name         &lt;chr&gt; "Cheetah", "Owl monkey", "Mountain beaver", "Greater shor…
-$ genus        &lt;chr&gt; "Acinonyx", "Aotus", "Aplodontia", "Blarina", "Bos", "Bra…
-$ vore         &lt;chr&gt; "carni", "omni", "herbi", "omni", "herbi", "herbi", "carn…
-$ order        &lt;chr&gt; "Carnivora", "Primates", "Rodentia", "Soricomorpha", "Art…
-$ conservation &lt;chr&gt; "lc", NA, "nt", "lc", "domesticated", NA, "vu", NA, "dome…
-$ sleep_total  &lt;dbl&gt; 12.1, 17.0, 14.4, 14.9, 4.0, 14.4, 8.7, 7.0, 10.1, 3.0, 5…
-$ sleep_rem    &lt;dbl&gt; NA, 1.8, 2.4, 2.3, 0.7, 2.2, 1.4, NA, 2.9, NA, 0.6, 0.8, …
-$ sleep_cycle  &lt;dbl&gt; NA, NA, NA, 0.1333333, 0.6666667, 0.7666667, 0.3833333, N…
-$ awake        &lt;dbl&gt; 11.9, 7.0, 9.6, 9.1, 20.0, 9.6, 15.3, 17.0, 13.9, 21.0, 1…
-$ brainwt      &lt;dbl&gt; NA, 0.01550, NA, 0.00029, 0.42300, NA, NA, NA, 0.07000, 0…
-$ bodywt       &lt;dbl&gt; 50.000, 0.480, 1.350, 0.019, 600.000, 3.850, 20.490, 0.04…</code></pre>
-</div>
-</div>
-<p>This feature is enabled by making the following addition to the YAML. You would change the format from html to your required format such as pdf.</p>
-<div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;">format</span><span class="op" style="color: #5E5E5E;">:</span> </span>
-<span>  <span class="va" style="color: #111111;">html</span><span class="op" style="color: #5E5E5E;">:</span> </span>
-<span>    <span class="va" style="color: #111111;">code</span><span class="op" style="color: #5E5E5E;">-</span><span class="va" style="color: #111111;">fold</span><span class="op" style="color: #5E5E5E;">:</span> <span class="va" style="color: #111111;">true</span></span>
-<span>    <span class="va" style="color: #111111;">code</span><span class="op" style="color: #5E5E5E;">-</span><span class="va" style="color: #111111;">tools</span><span class="op" style="color: #5E5E5E;">:</span> <span class="va" style="color: #111111;">true</span></span></code></pre></div>
-</details>
-</div>
-<p>With the addition of the <code>code-tools: true</code> parameters, the reader can decide to hide all code chunks from the top of the document.</p>
-</section><section id="code-linking" class="level2"><h2 class="anchored" data-anchor-id="code-linking">Code Linking</h2>
-<p>A reader may not be familiar with all the functions that you use in your document so it may be useful to enable code linking. With code linking, a function in a code chunk will have a hyperlink to the documentation for that function. To work in <code>R</code>, this feature requires the <code>xml2</code> and <code>downlit</code> packages.</p>
-<div class="cell">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="im" style="color: #00769E;">import</span> pandas</span></code></pre></div>
-</details>
-</div>
-
-
-<!-- -->
-
-</section> ]]></description>
-  <category>How-to</category>
-  <category>R</category>
-  <category>Rmarkdown</category>
-  <category>Python</category>
-  <guid>https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/index.html</guid>
-  <pubDate>Mon, 01 Aug 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/rstudio-qmd-how-it-works.png" medium="image" type="image/png" height="26" width="144"/>
-</item>
+<lastBuildDate>Tue, 12 Jul 2022 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Network Graphs in R</title>
   <dc:creator>Mark Edney</dc:creator>
@@ -2789,6 +2717,1031 @@ The downloaded binary packages are in
   <guid>https://datasandbox.netlify.app/posts/2022-02-16-/index.html</guid>
   <pubDate>Wed, 16 Feb 2022 05:00:00 GMT</pubDate>
   <media:content url="https://datasandbox.netlify.app/posts/2022-02-16-/toronto_traffic.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Fancy Tables in R</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-02-11-fancy-tables-in-r/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://datasandbox.netlify.app/posts/2022-02-11-fancy-tables-in-r/fancy_tables.jpg" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Photo by <a href="https://unsplash.com/@nosoylasonia?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Juan Gomez</a> on <a href=""></a><a href="https://unsplash.com/s/photos/tables?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+</blockquote>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>As a continuation from my previous post exploring the use of the Stargazer library to create better looking tables, I thought I would look into the GT library. The GT library takes a different approach by creating an object class with the GT function. It is still able to create great looking tables in html or latex, but also adds support for RTF.</p>
+</section>
+<section id="gt-library-intuition" class="level2">
+<h2 class="anchored" data-anchor-id="gt-library-intuition">GT Library Intuition</h2>
+<p>The use of the GT library is pretty simple and starts with the creation of a GT object. For this example, I will use the ChickenWeight database that looks at the weights of different chickens.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(gt)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">data</span>(<span class="st" style="color: #20794D;">"ChickWeight"</span>)</span></code></pre></div>
+</div>
+<p>The dataframe or tibble is passed into the GT function, which can be passed into additional modifier functions. This is better outlined and easier understood using the piping operator from the magrittr library, which is also included in the tidyverse library. The piping operator is incredibly useful and common.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">ChickWeight <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">head</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">gt</span>()</span></code></pre></div>
+<div class="cell-output-display">
+
+<div id="vtalsfjmii" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#vtalsfjmii .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vtalsfjmii .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vtalsfjmii .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vtalsfjmii .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vtalsfjmii .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vtalsfjmii .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vtalsfjmii .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vtalsfjmii .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vtalsfjmii .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vtalsfjmii .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vtalsfjmii .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vtalsfjmii .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vtalsfjmii .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vtalsfjmii .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vtalsfjmii .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vtalsfjmii .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vtalsfjmii .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vtalsfjmii .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#vtalsfjmii .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#vtalsfjmii .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vtalsfjmii .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#vtalsfjmii .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#vtalsfjmii .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vtalsfjmii .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vtalsfjmii .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vtalsfjmii .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vtalsfjmii .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vtalsfjmii .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vtalsfjmii .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vtalsfjmii .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vtalsfjmii .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vtalsfjmii .gt_left {
+  text-align: left;
+}
+
+#vtalsfjmii .gt_center {
+  text-align: center;
+}
+
+#vtalsfjmii .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vtalsfjmii .gt_font_normal {
+  font-weight: normal;
+}
+
+#vtalsfjmii .gt_font_bold {
+  font-weight: bold;
+}
+
+#vtalsfjmii .gt_font_italic {
+  font-style: italic;
+}
+
+#vtalsfjmii .gt_super {
+  font-size: 65%;
+}
+
+#vtalsfjmii .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#vtalsfjmii .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#vtalsfjmii .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#vtalsfjmii .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#vtalsfjmii .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#vtalsfjmii .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">weight</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Time</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Chick</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Diet</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">42</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right">51</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right">59</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right">64</td>
+<td class="gt_row gt_right">6</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right">76</td>
+<td class="gt_row gt_right">8</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right">93</td>
+<td class="gt_row gt_right">10</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>The result is a simple a clean table the displays the required data. There is a set structure for the GT objects, which is outlined in the following diagram: <img src="https://datasandbox.netlify.app/posts/2022-02-11-fancy-tables-in-r/gt_parts_of_a_table.svg" class="img-fluid" alt="GT table structure"></p>
+</section>
+<section id="function-chaining" class="level2">
+<h2 class="anchored" data-anchor-id="function-chaining">Function Chaining</h2>
+<p>As previously mentioned, by chaining GT functions together, we can add elements to the table. These elements can include titles, footnotes, source notes and conditional formatting similar to what you would use in an Excel table.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">ChickWeight <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-2">        <span class="fu" style="color: #4758AB;">head</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-3">        <span class="fu" style="color: #4758AB;">gt</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-4">        <span class="fu" style="color: #4758AB;">tab_header</span>(</span>
+<span id="cb3-5">                <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Chicken Weight data"</span>, </span>
+<span id="cb3-6">                <span class="at" style="color: #657422;">subtitle =</span> <span class="st" style="color: #20794D;">"remember to weight your chickens!"</span></span>
+<span id="cb3-7">        ) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-8">        <span class="fu" style="color: #4758AB;">tab_footnote</span>(<span class="at" style="color: #657422;">footnote =</span> <span class="st" style="color: #20794D;">"measured in seconds"</span>,</span>
+<span id="cb3-9">                     <span class="at" style="color: #657422;">locations =</span> <span class="fu" style="color: #4758AB;">cells_column_labels</span>(Time)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-10">        <span class="fu" style="color: #4758AB;">tab_source_note</span>(<span class="at" style="color: #657422;">source_note =</span> <span class="st" style="color: #20794D;">"From ChickenWeight Database"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-11">        <span class="fu" style="color: #4758AB;">tab_style</span>(<span class="at" style="color: #657422;">style =</span> <span class="fu" style="color: #4758AB;">cell_fill</span>(<span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"red"</span>),</span>
+<span id="cb3-12">                  <span class="at" style="color: #657422;">locations =</span> <span class="fu" style="color: #4758AB;">cells_body</span>(</span>
+<span id="cb3-13">                          <span class="at" style="color: #657422;">columns =</span> weight,</span>
+<span id="cb3-14">                          <span class="at" style="color: #657422;">rows =</span> weight <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">50</span></span>
+<span id="cb3-15">                  )) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-16">        <span class="fu" style="color: #4758AB;">summary_rows</span>(<span class="at" style="color: #657422;">columns =</span> <span class="fu" style="color: #4758AB;">c</span>(weight,Time),</span>
+<span id="cb3-17">                           <span class="at" style="color: #657422;">fns =</span> <span class="fu" style="color: #4758AB;">list</span>(</span>
+<span id="cb3-18">                                   <span class="at" style="color: #657422;">avg =</span> <span class="sc" style="color: #5E5E5E;">~</span><span class="fu" style="color: #4758AB;">mean</span>(., <span class="at" style="color: #657422;">na.rm =</span> <span class="cn" style="color: #8f5902;">TRUE</span>),</span>
+<span id="cb3-19">                                   <span class="at" style="color: #657422;">total =</span> <span class="sc" style="color: #5E5E5E;">~</span><span class="fu" style="color: #4758AB;">sum</span>(., <span class="at" style="color: #657422;">na.rm =</span> <span class="cn" style="color: #8f5902;">TRUE</span>),</span>
+<span id="cb3-20">                                   <span class="at" style="color: #657422;">s.d. =</span> <span class="sc" style="color: #5E5E5E;">~</span><span class="fu" style="color: #4758AB;">sd</span>(., <span class="at" style="color: #657422;">na.rm =</span> <span class="cn" style="color: #8f5902;">TRUE</span>))</span>
+<span id="cb3-21">                           )</span></code></pre></div>
+<div class="cell-output-display">
+
+<div id="jtlhihdskl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#jtlhihdskl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jtlhihdskl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jtlhihdskl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jtlhihdskl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jtlhihdskl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jtlhihdskl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jtlhihdskl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jtlhihdskl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jtlhihdskl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jtlhihdskl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jtlhihdskl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jtlhihdskl .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jtlhihdskl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jtlhihdskl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jtlhihdskl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jtlhihdskl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jtlhihdskl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jtlhihdskl .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jtlhihdskl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jtlhihdskl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jtlhihdskl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jtlhihdskl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jtlhihdskl .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jtlhihdskl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jtlhihdskl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jtlhihdskl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jtlhihdskl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jtlhihdskl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jtlhihdskl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jtlhihdskl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jtlhihdskl .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jtlhihdskl .gt_left {
+  text-align: left;
+}
+
+#jtlhihdskl .gt_center {
+  text-align: center;
+}
+
+#jtlhihdskl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jtlhihdskl .gt_font_normal {
+  font-weight: normal;
+}
+
+#jtlhihdskl .gt_font_bold {
+  font-weight: bold;
+}
+
+#jtlhihdskl .gt_font_italic {
+  font-style: italic;
+}
+
+#jtlhihdskl .gt_super {
+  font-size: 65%;
+}
+
+#jtlhihdskl .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#jtlhihdskl .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#jtlhihdskl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jtlhihdskl .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#jtlhihdskl .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#jtlhihdskl .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style="">Chicken Weight data</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">remember to weight your chickens!</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">weight</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Time<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Chick</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Diet</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right gt_stub"></td>
+<td class="gt_row gt_right">42</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right gt_stub"></td>
+<td class="gt_row gt_right" style="background-color: #FF0000;">51</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right gt_stub"></td>
+<td class="gt_row gt_right" style="background-color: #FF0000;">59</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right gt_stub"></td>
+<td class="gt_row gt_right" style="background-color: #FF0000;">64</td>
+<td class="gt_row gt_right">6</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right gt_stub"></td>
+<td class="gt_row gt_right" style="background-color: #FF0000;">76</td>
+<td class="gt_row gt_right">8</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right gt_stub"></td>
+<td class="gt_row gt_right" style="background-color: #FF0000;">93</td>
+<td class="gt_row gt_right">10</td>
+<td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">1</td></tr>
+    <tr><td class="gt_row gt_right gt_stub gt_grand_summary_row gt_first_grand_summary_row">avg</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_first_grand_summary_row">64.17</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_first_grand_summary_row">5.00</td>
+<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row">—</td>
+<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row">—</td></tr>
+    <tr><td class="gt_row gt_right gt_stub gt_grand_summary_row">total</td>
+<td class="gt_row gt_right gt_grand_summary_row">385.00</td>
+<td class="gt_row gt_right gt_grand_summary_row">30.00</td>
+<td class="gt_row gt_center gt_grand_summary_row">—</td>
+<td class="gt_row gt_center gt_grand_summary_row">—</td></tr>
+    <tr><td class="gt_row gt_right gt_stub gt_grand_summary_row gt_last_summary_row">s.d.</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_last_summary_row">18.24</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_last_summary_row">3.74</td>
+<td class="gt_row gt_center gt_grand_summary_row gt_last_summary_row">—</td>
+<td class="gt_row gt_center gt_grand_summary_row gt_last_summary_row">—</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">From ChickenWeight Database</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><sup class="gt_footnote_marks">1</sup> measured in seconds</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="helper-functions" class="level2">
+<h2 class="anchored" data-anchor-id="helper-functions">Helper functions</h2>
+<p>The previous code includes smaller helper functions within the element functions. These functions (ex. cells_body) provide targeting information for locations or conditioning. There is a learning curve for these functions, I would recommend looking them up as you work on your table rather than trying to learn them all. The everything() function seems to be of particular usefulness, as it allows you to use all values, such as all columns.</p>
+</section>
+<section id="additional-notes" class="level2">
+<h2 class="anchored" data-anchor-id="additional-notes">Additional notes</h2>
+<p>The summary_rows function can create summary rows for each grouping if the grouping is defined in the function or if the data is grouped itself. You can then use the grand_summary_rows function to create a grand summary.</p>
+<p>It is always good practice to pass the na.rm = TRUE for your summary functions. Without it, you can create undesirable results.</p>
+<p>A useful resource for learning the GT library is an article on R studio found <a href="https://gt.rstudio.com/articles/intro-creating-gt-tables.html">here</a>. It goes through more in depth on the topics that I have skimmed over.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>How-to</category>
+  <category>R</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-02-11-fancy-tables-in-r/index.html</guid>
+  <pubDate>Fri, 11 Feb 2022 05:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-02-11-fancy-tables-in-r/fancy_tables.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

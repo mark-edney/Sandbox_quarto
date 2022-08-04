@@ -24,5 +24,8 @@ format:
 
 editor: source
 
+execute:
+  freeze: auto
+
 
 

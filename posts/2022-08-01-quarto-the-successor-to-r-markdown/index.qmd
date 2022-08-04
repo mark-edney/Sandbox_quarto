@@ -2,13 +2,12 @@
 title: 'Quarto: The successor to R Markdown'
 author: Mark Edney
 date: '2022-08-01'
-slug: []
 categories:
   - How-to
   - R
   - Rmarkdown
   - Python
-draft: false
+draft: true
 description: 'A review of Quarto, the potenial successor to R Markdown'
 image: ""
 archives:
