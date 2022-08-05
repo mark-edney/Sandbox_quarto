@@ -3364,51 +3364,6 @@ The downloaded binary packages are in
   <media:content url="https://datasandbox.netlify.app/posts/2022-02-11-fancy-tables-in-r/fancy_tables.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
-  <title>Professional Tables with Stargazer</title>
-  <dc:creator>Mark Edney</dc:creator>
-  <link>https://datasandbox.netlify.app/posts/2022-02-08-professional-tables/index.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p><img src="https://datasandbox.netlify.app/posts/2022-02-08-professional-tables/data.jpg" class="img-fluid"></p>
-<blockquote class="blockquote">
-<p>This post was inspired by the following <a href="https://www.youtube.com/watch?v=YQ2Dd3CSa0U&amp;list=WL&amp;index=55">youtube video</a>.</p>
-</blockquote>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Tables from regression models or just plain data in R are poorly organized. The have little formatting and are unfit for publishing. This point is illustrated with the CO2 dataset. This dataset looks at the CO2 uptake of six different types of grass.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">data</span>(co2)</span>
-<span id="cb1-2">mdl  <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">lm</span>(CO2<span class="sc" style="color: #5E5E5E;">$</span>uptake <span class="sc" style="color: #5E5E5E;">~</span> CO2<span class="sc" style="color: #5E5E5E;">$</span>Plant)</span>
-<span id="cb1-3">mdl</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = CO2$uptake ~ CO2$Plant)
-
-Coefficients:
- (Intercept)   CO2$Plant.L   CO2$Plant.Q   CO2$Plant.C   CO2$Plant^4  
-    27.21310     -22.94230      -4.61669       4.66802       2.33920  
- CO2$Plant^5   CO2$Plant^6   CO2$Plant^7   CO2$Plant^8   CO2$Plant^9  
-     4.31450      -0.03902      -2.03649      -3.27825      -9.06702  
-CO2$Plant^10  CO2$Plant^11  
-     0.54631       1.91215  </code></pre>
-</div>
-</div>
-
-
-</section>
-
- ]]></description>
-  <category>How-to</category>
-  <category>R</category>
-  <guid>https://datasandbox.netlify.app/posts/2022-02-08-professional-tables/index.html</guid>
-  <pubDate>Tue, 08 Feb 2022 05:00:00 GMT</pubDate>
-  <media:content url="https://datasandbox.netlify.app/posts/2022-02-08-professional-tables/data.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
   <title>Job posting analysis</title>
   <dc:creator>Mark Edney</dc:creator>
   <link>https://datasandbox.netlify.app/posts/2022-01-30-job-posting-analysis/index.html</link>

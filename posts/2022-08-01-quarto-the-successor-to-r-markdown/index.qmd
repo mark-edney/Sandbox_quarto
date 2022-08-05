@@ -78,6 +78,6 @@ With the addition of the `code-tools: true` parameters, the reader can decide to
 
 A reader may not be familiar with all the functions that you use in your document so it may be useful to enable code linking. With code linking, a function in a code chunk will have a hyperlink to the documentation for that function. To work in `R`, this feature requires the `xml2` and `downlit` packages. 
 
-```{python, links}
-import pandas
+```{r, links}
+lm(as.factor(order) ~ sleep_total, data = msleep[complete.cases(msleep),] )
 ```
