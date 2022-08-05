@@ -10,7 +10,146 @@
 <atom:link href="https://datasandbox.netlify.app/index-python.xml" rel="self" type="application/rss+xml"/>
 <description>The Data Sandbox is a collection of Data Science projects and discussions on Data Science topics.</description>
 <generator>quarto-1.0.37</generator>
-<lastBuildDate>Mon, 16 May 2022 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 01 Aug 2022 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Quarto: The successor to R Markdown</title>
+  <dc:creator>Mark Edney</dc:creator>
+  <link>https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/index.html</link>
+  <description><![CDATA[ <section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>RMarkdown has been a staple for any Data Scientist that programs in <code>R</code>. <code>Quarto</code> builds on that, with multiple language support and additional features. Because of its language independent design, <code>Quarto</code> requires an independent installation. <span class="citation" data-cites="quarto">(<span>“Quarto,”</span> n.d.)</span></p>
+<p>I have spent the past week moving my blog from <code>blogdown</code> to <code>quarto</code>. There have been some challenges, but I am pretty happy with the new look. Let’s start with the setup, it’s a little more work than a regular package or module.</p>
+</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>The setup for Quarto is pretty simple. You will need to visit the quarto website to <a href="https://quarto.org/docs/get-started/">download</a> the Quarto Command Line Interface (CLI). There are step-by-step instructions for your selected text editor. I am most familiar with RStudio for <code>R</code> and VSCode for <code>Python</code>.</p>
+<p>For Rstudio, it’s pretty much just plug and play now. I did install the <code>Quarto</code> package, but all the commands can be done by the command line interface. Switching from <code>RMarkdown</code> is as simple as saving them as <code>qmd</code> file. The process for Quarto for RStudio can be described by the following process flow:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/rstudio-qmd-how-it-works.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Render qmd in RStudio</figcaption><p></p>
+</figure>
+</div>
+<p>It is not much more difficult for VSCode, all you need to do is download the Quarto extension. The process flow is similar to RStudio but uses Jupyter instead of knitr.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/qmd-how-it-works.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Render qmd for VSCode</figcaption><p></p>
+</figure>
+</div>
+<p>With the setup complete, there should be no differences between text editors.</p>
+</section><section id="code-chunk-options" class="level2"><h2 class="anchored" data-anchor-id="code-chunk-options">Code Chunk Options</h2>
+<p>The first new feature to explore the support for code chuck options within the code chunks. These options would usually live within the code chunk title line. Any supported option can be added with the <code>#|</code> tag. This feature is useful for situations with many options, as it does increase readability.</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="in" style="color: #5E5E5E;">```{r}</span></span>
+<span id="cb1-2"><span class="co" style="color: #5E5E5E;">#| label: load</span></span>
+<span id="cb1-3"><span class="co" style="color: #5E5E5E;">#| include: true</span></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;">#| warning: false</span></span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;">data</span>(<span class="st" style="color: #20794D;">"msleep"</span>)</span>
+<span id="cb1-8"><span class="in" style="color: #5E5E5E;">```</span></span></code></pre></div>
+</section><section id="code-folding" class="level2"><h2 class="anchored" data-anchor-id="code-folding">Code-folding</h2>
+<p>One of the neat new features is code-folding. When this feature is enabled in the qmd YAML, the person viewing the document can hide/unhide code chunks. This can make it easier for them to read the document. Only the code will be hidden, and not the results.</p>
+<div class="cell">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;">glimpse</span><span class="op" style="color: #5E5E5E;">(</span><span class="va" style="color: #111111;">msleep</span><span class="op" style="color: #5E5E5E;">)</span></span></code></pre></div>
+</details>
+</div>
+<p>This feature is enabled by making the following addition to the YAML. You would change the format from HTML to your required format, such as PDF.</p>
+<div class="cell">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;">format</span><span class="op" style="color: #5E5E5E;">:</span> </span>
+<span>  <span class="va" style="color: #111111;">html</span><span class="op" style="color: #5E5E5E;">:</span> </span>
+<span>    <span class="va" style="color: #111111;">code</span><span class="op" style="color: #5E5E5E;">-</span><span class="va" style="color: #111111;">fold</span><span class="op" style="color: #5E5E5E;">:</span> <span class="va" style="color: #111111;">true</span></span>
+<span>    <span class="va" style="color: #111111;">code</span><span class="op" style="color: #5E5E5E;">-</span><span class="va" style="color: #111111;">tools</span><span class="op" style="color: #5E5E5E;">:</span> <span class="va" style="color: #111111;">true</span></span></code></pre></div>
+</details>
+</div>
+<p>With the addition of the <code>code-tools: true</code> parameter, the reader can decide to hide all code chunks from the top of the document.</p>
+</section><section id="figures" class="level2"><h2 class="anchored" data-anchor-id="figures">Figures</h2>
+<p>Quarto provides a bunch of additional tools for displaying figures. You can assign values for captions, sub-captions, width and height. You can even create a figure with multiple plots with separate sub-captions.</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><span class="in" style="color: #5E5E5E;">```{r}</span></span>
+<span id="cb4-2"><span class="co" style="color: #5E5E5E;">#| label: fig-sleep</span></span>
+<span id="cb4-3"><span class="co" style="color: #5E5E5E;">#| fig-cap: "Sleeping habits of animals"</span></span>
+<span id="cb4-4"><span class="co" style="color: #5E5E5E;">#| fig-subcap:</span></span>
+<span id="cb4-5"><span class="co" style="color: #5E5E5E;">#|   - "Scatter plot of body weight by total sleep"</span></span>
+<span id="cb4-6"><span class="co" style="color: #5E5E5E;">#|   - "Violin plot of REM sleep by vore"</span></span>
+<span id="cb4-7"><span class="co" style="color: #5E5E5E;">#| layout-ncol: 2</span></span>
+<span id="cb4-8"></span>
+<span id="cb4-9">msleep <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb4-10">  <span class="fu" style="color: #4758AB;">drop_na</span>(sleep_total, bodywt) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb4-11">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y=</span> sleep_total, <span class="at" style="color: #657422;">x =</span> bodywt)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb4-12">  <span class="fu" style="color: #4758AB;">geom_point</span>(<span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"blue"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb4-13">  <span class="fu" style="color: #4758AB;">theme_minimal</span>()</span>
+<span id="cb4-14"></span>
+<span id="cb4-15">msleep <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb4-16">  <span class="fu" style="color: #4758AB;">group_by</span>(vore) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb4-17">  <span class="fu" style="color: #4758AB;">drop_na</span>(sleep_rem, vore) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb4-18">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y=</span> sleep_rem, <span class="at" style="color: #657422;">x =</span> vore)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb4-19">  <span class="fu" style="color: #4758AB;">geom_violin</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">fill =</span> vore)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb4-20">  <span class="fu" style="color: #4758AB;">theme_minimal</span>()</span>
+<span id="cb4-21"><span class="in" style="color: #5E5E5E;">```</span></span></code></pre></div>
+<div id="fig-sleep" class="cell quarto-layout-panel">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-sleep-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/index_files/figure-html/fig-sleep-1.png" class="img-fluid figure-img" data-ref-parent="fig-sleep" width="672"></p>
+<p></p><figcaption class="figure-caption">(a) Scatter plot of body weight by total sleep</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-sleep-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/index_files/figure-html/fig-sleep-2.png" class="img-fluid figure-img" data-ref-parent="fig-sleep" width="672"></p>
+<p></p><figcaption class="figure-caption">(b) Violin plot of REM sleep by vore</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure 1: Sleeping habits of animals</figcaption><p></p>
+</figure>
+</div>
+<p>You can now use cross-referencing for the figure by referencing the figure. This means that in your text, you can refer to the figure number and link to the figure. This will automatically update your figure numbers and is achieved by typing the ‘@’ symbol followed by the figure label. As an example, ‘@fig-sleep’ turns into Figure&nbsp;1.</p>
+<p>There is an additional option to let the figures take up the width of the entire page, but I would not recommend using it as it extends beyond the width of the body of your page. It requires the following code:</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><span class="in" style="color: #5E5E5E;">```{r}</span></span>
+<span id="cb5-2"><span class="co" style="color: #5E5E5E;">#| column: page</span></span>
+<span id="cb5-3"><span class="in" style="color: #5E5E5E;">```</span></span></code></pre></div>
+</section><section id="code-linking" class="level2"><h2 class="anchored" data-anchor-id="code-linking">Code Linking</h2>
+<p>A reader may not be familiar with all the functions that you use in your document, so it may be useful to enable code linking. With code linking, a function in a code chunk will have a hyperlink to the documentation for that function. To work in <code>R</code>, this feature requires the <code>xml2</code> and <code>downlit</code> packages.</p>
+<div class="cell">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op" style="color: #5E5E5E;">(</span><span class="fu" style="color: #4758AB;"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op" style="color: #5E5E5E;">(</span><span class="va" style="color: #111111;">order</span><span class="op" style="color: #5E5E5E;">)</span> <span class="op" style="color: #5E5E5E;">~</span> <span class="va" style="color: #111111;">sleep_total</span>, data <span class="op" style="color: #5E5E5E;">=</span> <span class="va" style="color: #111111;">msleep</span><span class="op" style="color: #5E5E5E;">[</span><span class="fu" style="color: #4758AB;"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op" style="color: #5E5E5E;">(</span><span class="va" style="color: #111111;">msleep</span><span class="op" style="color: #5E5E5E;">)</span>,<span class="op" style="color: #5E5E5E;">]</span> <span class="op" style="color: #5E5E5E;">)</span></span></code></pre></div>
+</details>
+</div>
+</section><section id="table-of-contents" class="level2"><h2 class="anchored" data-anchor-id="table-of-contents">Table of contents</h2>
+<p>I think the best feature for <code>Quarto</code> is the floating table of contents. I can’t describe how much time and effort I’ve spent trying to get a floating table of contents in a <code>Blogdown</code> blog. It didn’t work for me, it would require getting deep into the weeds changing the CSS layout for my HUGO theme. It was not worth the effort.</p>
+<p>Adding a floating table of contents in <code>Quarto</code> is simple. Just use the following code in the document YAML:</p>
+<div class="cell">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;">toc</span><span class="op" style="color: #5E5E5E;">:</span> <span class="cn" style="color: #8f5902;">TRUE</span></span></code></pre></div>
+</details>
+</div>
+<p>One simple line of code in the YAML and your document has a floating table of contents. There is some additional customization such as the level of headers, location and title.</p>
+<div class="cell">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;">toc</span><span class="op" style="color: #5E5E5E;">:</span> <span class="va" style="color: #111111;">true</span></span>
+<span><span class="va" style="color: #111111;">toc</span><span class="op" style="color: #5E5E5E;">-</span><span class="va" style="color: #111111;">depth</span><span class="op" style="color: #5E5E5E;">:</span> <span class="fl" style="color: #AD0000;">2</span></span>
+<span><span class="va" style="color: #111111;">toc</span><span class="op" style="color: #5E5E5E;">-</span><span class="va" style="color: #111111;">location</span><span class="op" style="color: #5E5E5E;">:</span> <span class="va" style="color: #111111;">left</span></span>
+<span><span class="va" style="color: #111111;">toc</span><span class="op" style="color: #5E5E5E;">-</span><span class="va" style="color: #111111;">title</span><span class="op" style="color: #5E5E5E;">:</span> <span class="va" style="color: #111111;">Contents</span></span></code></pre></div>
+</details>
+</div>
+</section><section id="quarto-vs-blogdown" class="level2"><h2 class="anchored" data-anchor-id="quarto-vs-blogdown">Quarto vs Blogdown</h2>
+<p>With my experimentation with Quarto, I decided to move my <code>blogdown</code> blog to <code>Quarto</code>. In theory, this should be a simple switch, with just copying all post from folder to another. <code>Quarto</code> can use rmd files, but they can easily be changed over to qmd files. I decided to switch all my post to the qmd format and include some additional features. The Quarto site has extensive reference information for creating a blog. <span class="citation" data-cites="quarto">(<span>“Quarto,”</span> n.d.-)</span></p>
+<p>I did have an issue with one of my post not rendering correctly. This maybe an issue with compatibility with the <code>stargazer</code> package. In the end, I decided to just remove the post altogether as I could get it to render correctly, and I prefer the <code>gt</code> over the <code>stargazer</code> package for creating good-looking tables.</p>
+</section><section id="conclusion" class="level2"><h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>It is easy to create great looking documents using <code>quarto</code>, whether that be with code in <code>python</code> or <code>R</code>. <code>Quarto</code> supports most of the features in <code>RMarkdown</code> with some fancy new ones. My personal favourite is the floating table of contents. I have also found that rendering a <code>Quarto</code> blog is a much smoother experience than rendering a <code>blogdown</code> blog.</p>
+
+
+<!-- -->
+
+
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-quarto" class="csl-entry">
+<span>“Quarto.”</span> n.d. <a href="https://quarto.org/">https://quarto.org/</a>.
+</div>
+</div></section></div> ]]></description>
+  <category>How-to</category>
+  <category>R</category>
+  <category>Rmarkdown</category>
+  <category>Python</category>
+  <guid>https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/index.html</guid>
+  <pubDate>Mon, 01 Aug 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/images/rstudio-qmd-how-it-works.png" medium="image" type="image/png" height="26" width="144"/>
+</item>
 <item>
   <title>The beauty of List comprehensions in Python</title>
   <dc:creator>Mark Edney</dc:creator>

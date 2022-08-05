@@ -26,6 +26,7 @@ bibliography: references.bib
 link-citations: true
 ---
 
+
 ## Introduction
 
 RMarkdown has been a staple for any Data Scientist that programs in `R`. `Quarto` builds on that, with multiple language support and additional features. Because of its language independent design, `Quarto` requires an independent installation. [@quarto]
@@ -50,7 +51,9 @@ With the setup complete, there should be no differences between text editors.
 
 The first new feature to explore the support for code chuck options within the code chunks. These options would usually live within the code chunk title line. Any supported option can be added with the `#|` tag. This feature is useful for situations with many options, as it does increase readability.
 
-````{verbatim, lang="markdown"}
+
+
+````markdown
 ```{{r}}
 #| label: load
 #| include: true
@@ -59,35 +62,33 @@ The first new feature to explore the support for code chuck options within the c
 library(tidyverse)
 data("msleep")
 ```
+
 ````
 
-```{r}
-#| label: load
-#| include: false
-#| warning: false
 
-library(tidyverse)
-data("msleep")
-```
 
 ## Code-folding
 
 One of the neat new features is code-folding. When this feature is enabled in the qmd YAML, the person viewing the document can hide/unhide code chunks. This can make it easier for them to read the document. Only the code will be hidden, and not the results.
 
-```{r}
-#| label: fold
-#| eval: false
+::: {.cell}
+
+```{.r .cell-code}
 glimpse(msleep)
 ```
+:::
 
 This feature is enabled by making the following addition to the YAML. You would change the format from HTML to your required format, such as PDF.
 
-```{r YAML, eval=FALSE}
+::: {.cell}
+
+```{.r .cell-code}
 format: 
   html: 
     code-fold: true
     code-tools: true
 ```
+:::
 
 With the addition of the `code-tools: true` parameter, the reader can decide to hide all code chunks from the top of the document.
 
@@ -95,7 +96,8 @@ With the addition of the `code-tools: true` parameter, the reader can decide to 
 
 Quarto provides a bunch of additional tools for displaying figures. You can assign values for captions, sub-captions, width and height. You can even create a figure with multiple plots with separate sub-captions.
 
-````{verbatim, lang="markdown"}
+
+````markdown
 ```{r}
 #| label: fig-sleep
 #| fig-cap: "Sleeping habits of animals"
@@ -119,45 +121,43 @@ msleep %>%
 ```
 ````
 
-```{r, echo = FALSE}
-#| label: fig-sleep
-#| fig-cap: "Sleeping habits of animals"
-#| fig-subcap:
-#|   - "Scatter plot of body weight by total sleep"
-#|   - "Violin plot of REM sleep by vore"
-#| layout-ncol: 2
 
-msleep %>%
-  drop_na(sleep_total, bodywt) %>%
-  ggplot(aes(y= sleep_total, x = bodywt)) +
-  geom_point(color = "blue") +
-  theme_minimal()
+::: {#fig-sleep .cell layout-ncol="2"}
+::: {.cell-output-display}
+![Scatter plot of body weight by total sleep](index_files/figure-html/fig-sleep-1.png){#fig-sleep-1 width=672}
+:::
 
-msleep %>%
-  group_by(vore) %>%
-  drop_na(sleep_rem, vore) %>%
-  ggplot(aes(y= sleep_rem, x = vore)) +
-  geom_violin(aes(fill = vore)) +
-  theme_minimal()
-```
+::: {.cell-output-display}
+![Violin plot of REM sleep by vore](index_files/figure-html/fig-sleep-2.png){#fig-sleep-2 width=672}
+:::
+
+Sleeping habits of animals
+:::
+
 
 You can now use cross-referencing for the figure by referencing the figure. This means that in your text, you can refer to the figure number and link to the figure. This will automatically update your figure numbers and is achieved by typing the '\@' symbol followed by the figure label. As an example, '\@fig-sleep' turns into @fig-sleep.
 
 There is an additional option to let the figures take up the width of the entire page, but I would not recommend using it as it extends beyond the width of the body of your page. It requires the following code:
 
-````{verbatim, lang="markdown"}
+
+
+````markdown
 ```{r}
 #| column: page
 ```
+
 ````
 
 ## Code Linking
 
 A reader may not be familiar with all the functions that you use in your document, so it may be useful to enable code linking. With code linking, a function in a code chunk will have a hyperlink to the documentation for that function. To work in `R`, this feature requires the `xml2` and `downlit` packages.
 
-```{r links, warning=FALSE, eval=FALSE}
+::: {.cell}
+
+```{.r .cell-code}
 lm(as.factor(order) ~ sleep_total, data = msleep[complete.cases(msleep),] )
 ```
+:::
 
 ## Table of contents
 
@@ -165,18 +165,24 @@ I think the best feature for `Quarto` is the floating table of contents. I can't
 
 Adding a floating table of contents in `Quarto` is simple. Just use the following code in the document YAML:
 
-```{r toc, eval=FALSE}
+::: {.cell}
+
+```{.r .cell-code}
 toc: TRUE
 ```
+:::
 
 One simple line of code in the YAML and your document has a floating table of contents. There is some additional customization such as the level of headers, location and title.
 
-```{r toc2, eval=FALSE}
+::: {.cell}
+
+```{.r .cell-code}
 toc: true
 toc-depth: 2
 toc-location: left
 toc-title: Contents
 ```
+:::
 
 ## Quarto vs Blogdown
 
@@ -187,3 +193,4 @@ I did have an issue with one of my post not rendering correctly. This maybe an i
 ## Conclusion
 
 It is easy to create great looking documents using `quarto`, whether that be with code in `python` or `R`. `Quarto` supports most of the features in `RMarkdown` with some fancy new ones. My personal favourite is the floating table of contents. I have also found that rendering a `Quarto` blog is a much smoother experience than rendering a `blogdown` blog.
+
