@@ -16,6 +16,16 @@ website:
         href: https://twitter.com/edney_mark
       - icon: rss
         href: index.xml
+        
+  margin-header: |
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4108863678822570"
+     crossorigin="anonymous"></script>
+        
+  comments:
+    giscus:
+      repo: mark-edney/Sandbox_quarto
+      
+  google-analytics: "G-VNSWDG9ZWF"
 
 format:
   html:

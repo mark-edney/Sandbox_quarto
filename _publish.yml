@@ -1,4 +1,4 @@
 - source: project
   netlify:
     - id: e95f0793-7fc9-4b51-b0f0-1f24770b57f8
-      url: 'https://comfy-sherbet-487c8a.netlify.app'
+      url: 'https://datasandbox.netlify.app'

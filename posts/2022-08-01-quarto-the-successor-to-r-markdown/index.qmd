@@ -13,6 +13,11 @@ image: ""
 archives:
   - 2022/08
 toc: true
+toc-depth: 2
+toc-location: left
+toc-title: Contents
+toccolor: red
+  
 format: 
   html: 
     code-fold: true
@@ -78,6 +83,31 @@ With the addition of the `code-tools: true` parameters, the reader can decide to
 
 A reader may not be familiar with all the functions that you use in your document so it may be useful to enable code linking. With code linking, a function in a code chunk will have a hyperlink to the documentation for that function. To work in `R`, this feature requires the `xml2` and `downlit` packages. 
 
-```{r, links}
+```{r links, warning=FALSE}
 lm(as.factor(order) ~ sleep_total, data = msleep[complete.cases(msleep),] )
 ```
+
+## Table of contents
+
+I think the best feature for `Quarto` is the floating table of contents. I can describe how much time and effort I've spent trying to get floating table of contents in a `Blogdown` blog. It didn't work for me, it would require getting deep into the weeds changing the css layout for my HUGO theme. Not worth the effort. 
+
+Adding a floating table of contents in `Quarto` is simple. Just use the following code in the document YAML: 
+
+```{r toc, eval=FALSE}
+toc: TRUE
+```
+
+One simple line of code in the YAML and you document has a floating table of contents. There is some additional customization, such as the level of headers to include.
+
+```{r toc2, eval=FALSE}
+toc:
+  toccolor: blue
+  toc-depth: 2
+  toc-location: right
+  toc-title: "Contents"
+  
+```
+
+## Quarto vs Blogdown
+
+With my experimentation with Quarto, I decided to move my `blogdown` blog to `Quarto`. In theory, this should be a simple switch with just copying all post from folder to another. `Quarto` can use rmd files, but the can easily be changed over to qmd files. 
