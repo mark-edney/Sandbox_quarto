@@ -1,0 +1,14 @@
+{
+  "hash": "ac8a0af59d7cfe686296a1fa4ecefa3b",
+  "result": {
+    "markdown": "---\ntitle: 'Post for Quarto Blog'\nauthor: Mark Edney\ndate: \"2022-08-15\"\ncategories:\n  - How-to\n  - R\n  - Rmarkdown\ndraft: true\ndescription: 'A guide in creating a template for Quarto Blog posts.'\nimage: \"\"\narchives:\n  - 2022/08\ntoc: false\n\nformat: \n  html: \n    code-fold: false\n    code-tools: false\n    code-link: false\n    \n---\n\n\n# Introduction\n\nI have officially switched my blog from `blogdown` to `quarto` due to the new features that `quarto` adds. The move has not been painless, but most of the most important features remain the same. This feature this is currently missing in `quarto` that I cannot live without, is the 1 click creation of a new blog post. There are a few different \n\n# Whisker package\n\n\n::: {.cell}\n\n```{.r .cell-code}\nBlog_post <- function(title){\n  data <- list(title = title,\n               author = \"Mark Edney\",\n               date = Sys.Date(),\n               categories = list(\"How-to\", \"R\", \"Rmarkdown\"),\n               draft = FALSE,\n               description = \"''\",\n               image = \"''\",\n               archives = format(date, \"%Y/%m\"),\n               toc = FALSE,\n               fold = \"show\",\n               tools = TRUE,\n               link =  FALSE)\n  \n  Template <- '---\n  title: {{title}}\n  author: {{author}}\n  date: {{date}}\n  categories: [{{categories}}]\n  draft: {{draft}}\n  description: {{description}}\n  image: {{image}}\n  archives:\n    - {{archives}}\n  toc: {{toc}}\n  \n  format:\n    html: \n      code-fold: {{fold}}\n      code-tools: {{tools}}\n---\n'\n  \n  dir.create(paste0(\"./posts/\",date, \"-\", title))\n  writeLines(whisker.render(Template, data), paste0(\"./posts/\",date, \"-\", title, \"/index.qmd\"))\n}\n```\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

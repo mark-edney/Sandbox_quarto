@@ -1,0 +1,14 @@
+{
+  "hash": "d59de7ba5a548c2c4540cc963961878a",
+  "result": {
+    "markdown": "---\ntitle: 'Post for Quarto Blog'\nauthor: Mark Edney\ndate: \"\"\ncategories:\n  - How-to\n  - R\n  - Rmarkdown\n  - Python\ndraft: true\ndescription: ''\nimage: \"\"\narchives:\n  - \"\"\ntoc: false\n\nformat: \n  html: \n    code-fold: false\n    code-tools: false\n    code-link: false\n    \n---",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

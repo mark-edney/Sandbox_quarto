@@ -7,11 +7,11 @@
     "text": "Mark Edney is the sole writer for all articles. He performs his own research, and all projects are those that he has completed from a selection of different Data Science certifications. He also manages the website.\nMark is a Engineer in Training located in Toronto Ontario Canada. He has studied data science since 2019 but has programmed for years before that. He is proficient in R, Python and Matlab but has previously learned some C and C++.\nThis website is created in R with the blogdown package. All assets are stored on Github and generously hosted by Netlify. For any inquires, please refer to the contact page.\n\nBlogroll\nA collection of interesting and related blogs:\n\nr-bloggers\npython-bloggers"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "The Data Sandbox",
+    "objectID": "archive.html",
+    "href": "archive.html",
+    "title": "Archive",
     "section": "",
-    "text": "How-to\n\n\nR\n\n\nRmarkdown\n\n\nPython\n\n\n\n\nA review of Quarto, the potenial successor to R Markdown\n\n\n\n\n\n\nAug 1, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nProject\n\n\nNLP\n\n\nR\n\n\nGGPlot\n\n\n\n\nA look at the diffrent options for exploring network graphs in R.\n\n\n\n\n\n\nJul 12, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nProject\n\n\nNLP\n\n\nR\n\n\n\n\nA tutorial of the Spacyr packaged for the realationship extraction through the stormlight archieve book series.\n\n\n\n\n\n\nJul 4, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nProject\n\n\nNLP\n\n\nR\n\n\n\n\nA tutorial on the Rvest package in R\n\n\n\n\n\n\nJun 22, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProject\n\n\nR\n\n\nNLP\n\n\nShiny App\n\n\n\n\nThe second part of the creation of a test prediction shiny app.\n\n\n\n\n\n\nJun 8, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProject\n\n\nShiny App\n\n\nNLP\n\n\nR\n\n\n\n\nA predictive Text Shiny Application\n\n\n\n\n\n\nMay 31, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nPython\n\n\n\n\nList Comprehensions are an elegent and useful tool in Python, that every Python coder should know about.\n\n\n\n\n\n\nMay 16, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nPython\n\n\n\n\nUsing F string to format the output from Python\n\n\n\n\n\n\nMay 9, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nGeneral\n\n\nPython\n\n\nR\n\n\n\n\nA look into the Hacker Rank website as a means to increase ones programming skills.\n\n\n\n\n\n\nMay 1, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nGGPlot\n\n\nLeaflet\n\n\nR\n\n\nShiny App\n\n\n\n\nAn outline to creating great looking dashboards with Shiny Dashboards\n\n\n\n\n\n\nApr 20, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nPython\n\n\n\n\nA simple script for merging PDFs.\n\n\n\n\n\n\nApr 14, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nR\n\n\n\n\nA look into the claim performance of Data Tables in the R language.\n\n\n\n\n\n\nApr 13, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nGeneral\n\n\nR\n\n\n\n\nA collection of R blogs\n\n\n\n\n\n\nApr 11, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nPython\n\n\nNN\n\n\n\n\nAn outline for creating a simple Neural Network in Python\n\n\n\n\n\n\nMar 20, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nR\n\n\nShiny App\n\n\nGGPlot\n\n\nRmarkdown\n\n\nLeaflet\n\n\n\n\nAn investigation of the crosstalk library in R with Toronto Apartment data\n\n\n\n\n\n\nMar 18, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nR\n\n\nShiny App\n\n\nGGPlot\n\n\nRmarkdown\n\n\nLeaflet\n\n\n\n\nA demostration of the Flexdashboard package\n\n\n\n\n\n\nMar 10, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nR\n\n\nPython\n\n\nRmarkdown\n\n\n\n\nAn R package for writting Python code in R Markdown\n\n\n\n\n\n\nMar 3, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProject\n\n\nShiny App\n\n\nR\n\n\n\n\nAnalysis of a bike sharing app in Toronto\n\n\n\n\n\n\nFeb 27, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nGeneral\n\n\nR\n\n\n\n\nA look at the new features introduced in the 4.0 version of R\n\n\n\n\n\n\nFeb 23, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProject\n\n\nR\n\n\nLeaflet\n\n\n\n\nCreating a Leaflet map of all the speed cameras in Toronto\n\n\n\n\n\n\nFeb 16, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nHow-to\n\n\nR\n\n\n\n\nCreating fancy tables with the GT library\n\n\n\n\n\n\nFeb 11, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProject\n\n\nR\n\n\nShiny App\n\n\n\n\nA project used to study the occurance of keywords in a job posting.\n\n\n\n\n\n\nFeb 6, 2022\n\n\nMark Edney\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProject\n\n\nGGPlot\n\n\nML\n\n\nR\n\n\n\n\nAn analysis of Data collected by Fitness Trackers\n\n\n\n\n\n\nJan 29, 2022\n\n\nMark Edney\n\n\n\n\n\n\nNo matching items"
+    "text": "Aug 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJul 4, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJun 22, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJun 8, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMay 16, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMay 9, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApr 14, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApr 13, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApr 11, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMar 31, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMar 20, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMar 18, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMar 10, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMar 3, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 23, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 16, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 11, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJan 29, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2022-01-29-fitness-tracker-modeling-ml/index.html#initialization",
@@ -168,6 +168,195 @@
     "text": "Other minor changes\n\nThe default has been changed for ‘stringsAsFactors = FALSE’. Previously, when using the data.frame() or the read.table() the default option would turn strings into factors. This was an annoying feature that would always create headaches.\nIntroduction of an experimental implementation of hash tables. This development should be watched for people keen on program performance.\nc() can now combine factors to create a new factor. I am not familiar with the original behaviour, but this seems intuitive."
   },
   {
+    "objectID": "posts/2022-02-27-bike-shares-in-toronto/index.html#bike-rental-shiny-app",
+    "href": "posts/2022-02-27-bike-shares-in-toronto/index.html#bike-rental-shiny-app",
+    "title": "Bike shares in Toronto",
+    "section": "Bike Rental Shiny App",
+    "text": "Bike Rental Shiny App\nThis application use the data collected from the Toronto Open Data to generate a histogram of the usage of rental bikes in Toronto during the month of June in 2020.\n\ninstall.packages(\"opendatatoronto\", \n                 repos = \"https://cran.us.r-project.org\",\n                 dependencies = TRUE)\nlibrary(opendatatoronto)\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(shiny)"
+  },
+  {
+    "objectID": "posts/2022-02-27-bike-shares-in-toronto/index.html#ui",
+    "href": "posts/2022-02-27-bike-shares-in-toronto/index.html#ui",
+    "title": "Bike shares in Toronto",
+    "section": "UI",
+    "text": "UI\nThere are two user inputs on the UI side:\n\nA slider that limits the maximum and minimum of the displayed values\nA checkbox that excludes users with a annual bike pass\n\n\n        sidebarPanel(\n            sliderInput(\"dur\",\n                        \"Trip Duration:\",\n                        min = 0,\n                        max = 500,\n                        value = c(0,500)),\n            checkboxInput(\"freq\",\n                        \"Exclude annual users:\",\n                        value = FALSE))"
+  },
+  {
+    "objectID": "posts/2022-02-27-bike-shares-in-toronto/index.html#server",
+    "href": "posts/2022-02-27-bike-shares-in-toronto/index.html#server",
+    "title": "Bike shares in Toronto",
+    "section": "Server",
+    "text": "Server\nThe following code is used for the server side logic, this includes downloading the data from the ‘opendatatoronto’ library.\n\n # get package\n    package <- show_package(\"7e876c24-177c-4605-9cef-e50dd74c617f\")\n    \n    # get all resources for this package\n    resources <- list_package_resources(\"7e876c24-177c-4605-9cef-e50dd74c617f\")\n    # identify datastore resources; by default, Toronto Open Data sets datastore resource format to CSV for non-geospatial and GeoJSON for geospatial resources\n    datastore_resources <- filter(resources, tolower(format) %in% c('zip', 'geojson'))\n    # load the first datastore resource as a sample\n    data <- filter(datastore_resources, name == \"Bike share ridership 2020\") %>% get_resource()\n    data2 <-  data$`2020-06.csv`\n    data2[grepl(\"Time\",names(data2))] <- \n        lapply(data2[grepl(\"Time\",names(data2))], parse_date_time, orders = \"mdy HM\")\n    data2$Dur <- as.numeric(data2$End.Time - data2$Start.Time,units=\"mins\")"
+  },
+  {
+    "objectID": "posts/2022-02-27-bike-shares-in-toronto/index.html#application",
+    "href": "posts/2022-02-27-bike-shares-in-toronto/index.html#application",
+    "title": "Bike shares in Toronto",
+    "section": "Application",
+    "text": "Application\nThe final application takes a while to load as the data needs to be downloaded and sorted through. In future iterations, I would save the data locally as an RDS file."
+  },
+  {
+    "objectID": "posts/2022-03-03-python-in-r-markdown/index.html",
+    "href": "posts/2022-03-03-python-in-r-markdown/index.html",
+    "title": "Python in R Markdown",
+    "section": "",
+    "text": "The main advantage of using the R Markdown format is the utility of running R code within the text. This is clearly more advantageous than just writing code in a Markdown file. R Markdown is however limited to R code, unable to run Python scripts. The R library reticulate looks to add this capability."
+  },
+  {
+    "objectID": "posts/2022-03-03-python-in-r-markdown/index.html#initial-setup",
+    "href": "posts/2022-03-03-python-in-r-markdown/index.html#initial-setup",
+    "title": "Python in R Markdown",
+    "section": "Initial Setup",
+    "text": "Initial Setup\nThe initial setup requires the installation of the reticulate library, after installation you shouldn’t need to call it, but I do in the preceding code. I have loaded the trees dataset as a test dataset and the tidyverse library just to explore the data a bit.\n\nlibrary(reticulate)\nlibrary(tidyverse)\ndata(trees)\nglimpse(trees)\n\nRows: 31\nColumns: 3\n$ Girth  <dbl> 8.3, 8.6, 8.8, 10.5, 10.7, 10.8, 11.0, 11.0, 11.1, 11.2, 11.3, …\n$ Height <dbl> 70, 65, 63, 72, 81, 83, 66, 75, 80, 75, 79, 76, 76, 69, 75, 74,…\n$ Volume <dbl> 10.3, 10.3, 10.2, 16.4, 18.8, 19.7, 15.6, 18.2, 22.6, 19.9, 24.…\n\n\nNow, R Studio will use your local version of Python when you write any code in a code chuck labelled with the “{Python}” header. If you don’t have any local version, R Studio will ask if you would like to install Miniconda. From here, you will need to start downloading the required Python modules.\nModules can be downloaded with the pip python package installer from the terminal or command line. The easiest method in R Studio is within the terminal window next to the console window. The command used is pip install \"module name\". Some modules can be tricky and won’t work if not installed after other modules.\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns"
+  },
+  {
+    "objectID": "posts/2022-03-03-python-in-r-markdown/index.html#multiple-environments",
+    "href": "posts/2022-03-03-python-in-r-markdown/index.html#multiple-environments",
+    "title": "Python in R Markdown",
+    "section": "Multiple Environments",
+    "text": "Multiple Environments\nAfter the setup, you should see some additional options in the environment in R Studio. You should see that you have the option to switch between the R and Python environments.\nData is transitioned from the R environment to the Python environment with the r variable. This method should pretty similar to the Shiny Apt’s use of input\\output. It is not only data that can move between environments, but functions too.\nThe following code takes data from the R environment and creates a plot in Seaborn. The mean values of the columns are calculated in python to be imported into the R environment. A simple linear model is created with the SKlearn module.\n\ndata = r.trees\nmeans = np.mean(data, axis = 0)\ndata[\"big\"] = data.Height > means.Height \nsns.scatterplot(data = data, x= \"Girth\", y= \"Height\", hue = \"big\")\nsns.set_theme(color_codes=True)\nplt.show()\n\n\n\nfrom sklearn.linear_model import LinearRegression\nmdl = LinearRegression()\nmdl.fit(data[[\"Girth\"]], data[[\"Height\"]])\n\nLinearRegression()\n\nprint(mdl.coef_)\n\n[[1.05436881]]\n\n\nData is transitioned from Python to, R similarly with the variable py. Information on models can be passed but not the models themselves. This is important if you are more comfortable creating models in Python.\n\nprint(py$means)\n\n   Girth   Height   Volume \n13.24839 76.00000 30.17097 \n\nprint(py$mdl$intercept_)\n\n[1] 62.03131\n\npy$data %>%\n        ggplot(aes(x = Girth, y = Height, colour = big)) +\n        geom_point()"
+  },
+  {
+    "objectID": "posts/2022-03-10-creating-dashboard-in-r/index.html",
+    "href": "posts/2022-03-10-creating-dashboard-in-r/index.html",
+    "title": "Creating Dashboards in R",
+    "section": "",
+    "text": "Dashboards are a great way to demonstrate knowledge and engage decision makers. Their utility has made PowerBI and Tableau household names. And while these solutions do support R and Python scripts and visualizations, the Flexdashboard package seeks to compete. The Flexdashboard packages does this all in R with the simplicity of writing a R Markdown file."
+  },
+  {
+    "objectID": "posts/2022-03-10-creating-dashboard-in-r/index.html#initial-setup",
+    "href": "posts/2022-03-10-creating-dashboard-in-r/index.html#initial-setup",
+    "title": "Creating Dashboards in R",
+    "section": "Initial Setup",
+    "text": "Initial Setup\nThe setup is simple, you just need to download and load the Flexdashboard package. With the package installed, the easiest way to start is by creating a new R Markdown file using the Flexdashboard template. Loading the Shiny package is useful if you would like to use interactive plots, but it is not necessary.\nThe dashboard can be laid out by either columns or by rows, it doesn’t really make a difference. Just change the text of columns with rows in the following walk-through. A column is set up with “## Column” as the header. The size of the plot region can then be modified with “{data-width=”500”}” in the same header line. The next line should be the plot/area title, which is included with “### Plot Title” header. All that is left is to include a code chunk with your plot.\n\nlibrary(flexdashboard)\nlibrary(shiny)"
+  },
+  {
+    "objectID": "posts/2022-03-10-creating-dashboard-in-r/index.html#sample-data",
+    "href": "posts/2022-03-10-creating-dashboard-in-r/index.html#sample-data",
+    "title": "Creating Dashboards in R",
+    "section": "Sample Data",
+    "text": "Sample Data\nI decided to demonstrate different dashboard features with a data set from Open Canada about charitable donations. More information can be found here\n\ndownload.file(\"https://www150.statcan.gc.ca/n1/tbl/csv/45100007-eng.zip\", \"donordata.zip\")"
+  },
+  {
+    "objectID": "posts/2022-03-10-creating-dashboard-in-r/index.html#sample-dashboard-1",
+    "href": "posts/2022-03-10-creating-dashboard-in-r/index.html#sample-dashboard-1",
+    "title": "Creating Dashboards in R",
+    "section": "Sample Dashboard 1",
+    "text": "Sample Dashboard 1\nThe first dashboard was set up with the default columns layout. It includes an interactive bar chart, an interactive box plot and a pie chart. All the plot were created with GGplot2, the two plot were made interactive with the GGplotly function from the Plotly package. I created a pie chart to demonstrate the use of regular ggplots and because I recently read a complaint about GGplot2 for the creation of Pie charts on Reddit. In my opinion, Pie charts are not very good very conveying information."
+  },
+  {
+    "objectID": "posts/2022-03-10-creating-dashboard-in-r/index.html#sample-dashboard-2",
+    "href": "posts/2022-03-10-creating-dashboard-in-r/index.html#sample-dashboard-2",
+    "title": "Creating Dashboards in R",
+    "section": "Sample Dashboard 2",
+    "text": "Sample Dashboard 2\nFor the second dashboard, I used the row layout. The process is that same with no additional complications. The dashboard features an interactive Leaflet plot, an interactive histogram and data table using the GT package. The table was transformed with Pivot_Wider function to better fill the space."
+  },
+  {
+    "objectID": "posts/2022-03-10-creating-dashboard-in-r/index.html#conclusions",
+    "href": "posts/2022-03-10-creating-dashboard-in-r/index.html#conclusions",
+    "title": "Creating Dashboards in R",
+    "section": "Conclusions",
+    "text": "Conclusions\nThe Flexdashboard package can be used to create nice looking dashboards with a great level of control. The plots can also include interactive elements. When compared to PowerBi or Tableau, there remains one major deficiency. These other dashboards contain a smart interactive filter which ties all the plots together. If you select a specific element in one plot for filtering, all other plots have the same filter applied to them. This is a major boon for understanding data and not a simple feature to develop in Flexdashboard. It remains an interesting package, but I would still rely on PowerBI or Tableau to create dashboards.\n\nPhoto by Luke Chesser on Unsplash"
+  },
+  {
+    "objectID": "posts/2022-03-18-making-the-connection-with-crosstalk/index.html",
+    "href": "posts/2022-03-18-making-the-connection-with-crosstalk/index.html",
+    "title": "Making the Connection with Crosstalk",
+    "section": "",
+    "text": "I recently wrote a post about creating dashboards in R which was based on the Flexdashboard library. My largest criticism was the lack of communication between visualizations on the same dashboard. This was before I learned about the Crosstalk package which adds this feature to html widgets, such as the Flexdashboard, to at least a limited degree."
+  },
+  {
+    "objectID": "posts/2022-03-18-making-the-connection-with-crosstalk/index.html#initialization",
+    "href": "posts/2022-03-18-making-the-connection-with-crosstalk/index.html#initialization",
+    "title": "Making the Connection with Crosstalk",
+    "section": "Initialization",
+    "text": "Initialization\nThe Crosstalk package is available on CRAN and is loaded along with other important packages for this demonstration.\n\ninstall.packages(\"crosstalk\")\nlibrary(crosstalk)\nlibrary(tidyverse)\nlibrary(flexdashboard)\nlibrary(plotly)\n\nI have decided to use a Toronto Open dataset about city audits for apartment buildings. I limited the features to only the ones that I feel will be interesting to look at. More information about the data set can be found here.\n\ndownload.file(\"https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/4ef82789-e038-44ef-a478-a8f3590c3eb1/resource/979fb513-5186-41e9-bb23-7b5cc6b89915/download/Apartment%20Building%20Evaluation.csv\", \"data.csv\")\ndf <- read_csv(\"data.csv\") %>%\n        select(lng = LONGITUDE, \n               lat = LATITUDE, \n               SCORE, \n               YEAR_BUILT, \n               SITE_ADDRESS, \n               PROPERTY_TYPE) %>% \n        slice_sample(n = 200)\n\nThe key to the crosstalk library is the SharedData functions. An object is created when a Data Frame is passed to the SharedData$new function. This is what enables communication between plots.\n\nshared_df <- SharedData$new(df)"
+  },
+  {
+    "objectID": "posts/2022-03-18-making-the-connection-with-crosstalk/index.html#dashboard-creation",
+    "href": "posts/2022-03-18-making-the-connection-with-crosstalk/index.html#dashboard-creation",
+    "title": "Making the Connection with Crosstalk",
+    "section": "Dashboard Creation",
+    "text": "Dashboard Creation\nThe dashboard is created pretty much as previous mentioned in my dashboard post, with the exception that the shared Data Frame object is passed rather than the Data Frame.\nThe dashboard can include filters that are very similar to the Shiny Apt filters, with the filter_* family of functions.\n\nfilter_slider(\"Score\", \"SCORE\", shared_df, ~SCORE, round = TRUE)\nfilter_checkbox(\"Property Type\", \"PROPERTY_TYPE\", shared_df, ~PROPERTY_TYPE, inline = TRUE)"
+  },
+  {
+    "objectID": "posts/2022-03-18-making-the-connection-with-crosstalk/index.html#conclusion",
+    "href": "posts/2022-03-18-making-the-connection-with-crosstalk/index.html#conclusion",
+    "title": "Making the Connection with Crosstalk",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe Crosstalk package does add some significant connectivity to Flex Dashboards. It is relatively simple to use with some basic functions. It does have the issue of not working with aggregating data. The utility of finding the mean value of a selection is something Tableu and PowerBI are still superior at. I think that it is still a welcome improvement."
+  },
+  {
+    "objectID": "posts/2022-03-18-making-the-connection-with-crosstalk/index.html#final-dashboard",
+    "href": "posts/2022-03-18-making-the-connection-with-crosstalk/index.html#final-dashboard",
+    "title": "Making the Connection with Crosstalk",
+    "section": "Final Dashboard",
+    "text": "Final Dashboard\n\n\n\n\n\nPhoto by Jason Goodmanon Unsplash"
+  },
+  {
+    "objectID": "posts/2022-03-20-simple-neural-networks-in-python/index.html",
+    "href": "posts/2022-03-20-simple-neural-networks-in-python/index.html",
+    "title": "Simple Neural Networks in Python",
+    "section": "",
+    "text": "Neural Networks (NN) have become incredibly popular due to their high level of accuracy. The creation of a NN can be complicated and have a high level of customization. I wanted to explore just the simplest NN that you could create. A framework as a workhorse for developing new NN.\nThe SciKitlearn provides the easiest solution with the Multi-Layer Perceptron series of functions. It doesn’t provide a bunch of the more advanced features of TensorFlow, like GPU support, but that is not what I’m looking for."
+  },
+  {
+    "objectID": "posts/2022-03-20-simple-neural-networks-in-python/index.html#initialization",
+    "href": "posts/2022-03-20-simple-neural-networks-in-python/index.html#initialization",
+    "title": "Simple Neural Networks in Python",
+    "section": "Initialization",
+    "text": "Initialization\nFor the demonstration, I decided to use a data set on faults found in steel plates from the OpenML website. The data set includes 27 features with 7 binary predictors.\n\nimport pandas as pd\nimport numpy as np\nfrom sklearn.model_selection import train_test_split\n\ndf = pd.read_csv('https://www.openml.org/data/get_csv/1592296/php9xWOpn')\n\npredictors = ['V28', 'V29', 'V30', 'V31', 'V32', 'V33', 'Class']\ndf['Class'] -= 1 \n\nSince there are multiple binary predictors, I needed to create a single class variable to represent each class. The Class variable doesn’t currently represent this, it represents all faults that don’t fit in the categories of V28 to V33. The single variable class was created with the np.argmax function which returns the index of the highest value between all the predictors.\n\ny = np.argmax(df[predictors].values, axis =1)\nX = df.drop(predictors, axis = 1)\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)"
+  },
+  {
+    "objectID": "posts/2022-03-20-simple-neural-networks-in-python/index.html#modelling",
+    "href": "posts/2022-03-20-simple-neural-networks-in-python/index.html#modelling",
+    "title": "Simple Neural Networks in Python",
+    "section": "Modelling",
+    "text": "Modelling\nThis is the most basic model that I would like to evaluate. I’ve used the GridSearch function, so all combinations of parameters are tested. The only parameter I wanted to examine was the size of the hidden layers. Each hidden layer provided is a tuple, where each number represents the number of nodes in a singled layer. Multiple numbers represent additional layers.\n\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.model_selection import GridSearchCV\n\nparameters = {'hidden_layer_sizes':[(1),(100), (100,100), (100,100,100), \n(100,100,100,100), \n(100,100,100,100,100), \n(100,100,100,100,100,100), \n(100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100,100,100)]}\nmodel = MLPClassifier(random_state = 1,max_iter = 10000, \nsolver = 'adam', learning_rate = 'adaptive')\n\ngrid = GridSearchCV(estimator = model, param_grid = parameters)\ngrid.fit(X_train, y_train)\nprint(grid.best_score_)\n\n0.4054982817869416\n\n\nThe performance of the best model in the grid is not impressive. It took me awhile to realize that I had forgotten to scale the features. I included this error to show the importance of scaling on model performance."
+  },
+  {
+    "objectID": "posts/2022-03-20-simple-neural-networks-in-python/index.html#feature-scaling",
+    "href": "posts/2022-03-20-simple-neural-networks-in-python/index.html#feature-scaling",
+    "title": "Simple Neural Networks in Python",
+    "section": "Feature Scaling",
+    "text": "Feature Scaling\nThe features are simply scaled with the StandardScaler function. The same model is used on the scaled features.\n\nfrom sklearn.preprocessing import StandardScaler\n\nsc = StandardScaler()\nscaler = sc.fit(X_train)\nX_train_sc = scaler.transform(X_train)\nX_test_sc = scaler.transform(X_test)\n\nparameters = {'hidden_layer_sizes':[(1),(100), (100,100), (100,100,100), \n(100,100,100,100), \n(100,100,100,100,100), \n(100,100,100,100,100,100), \n(100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100,100,100)]}\nmodel = MLPClassifier(random_state = 1,max_iter = 10000, \nsolver = 'adam', learning_rate = 'adaptive')\n\ngrid = GridSearchCV(estimator = model, param_grid = parameters, cv=3)\ngrid.fit(X_train_sc, y_train)\ngrid.best_score_\n\n0.7553264604810996\n\n\nThe performance of the scaled model is much more impressive. After the GridSearch function finds the parameters for the best model, it retrains the model on the entire dataset. This is because the function utilize cross validation, so some data was withheld for comparing the different models on test data."
+  },
+  {
+    "objectID": "posts/2022-03-20-simple-neural-networks-in-python/index.html#conclusion",
+    "href": "posts/2022-03-20-simple-neural-networks-in-python/index.html#conclusion",
+    "title": "Simple Neural Networks in Python",
+    "section": "Conclusion",
+    "text": "Conclusion\nWith our model constructed, we can now test its performance on the original test set. It is important to remember to use the scaled test features, as that is what the model is expecting.\n\ngrid.score(X_test_sc, y_test)\n\n0.7304526748971193\n\n\nThe results are pretty satisfactory. A decent level of accuracy without a lot of complicated code. Default values were used, whenever they were appropriate. Additional steps could be taken, but this remains a good foundation for future exploratory analysis.\n\nPhoto by Alina Grubnyak on Unsplash"
+  },
+  {
+    "objectID": "posts/2022-03-31-underrated-cran-packages/index.html",
+    "href": "posts/2022-03-31-underrated-cran-packages/index.html",
+    "title": "Underrated CRAN Packages",
+    "section": "",
+    "text": "I sit here looking for inspiration, nothing interesting to write about. Perhaps there are some popular R packages on CRAN that I don’t know about? You can explore the data on downloads from CRAN with the cranlogs package."
+  },
+  {
+    "objectID": "posts/2022-03-31-underrated-cran-packages/index.html#top-cran-downloads",
+    "href": "posts/2022-03-31-underrated-cran-packages/index.html#top-cran-downloads",
+    "title": "Underrated CRAN Packages",
+    "section": "Top CRAN downloads",
+    "text": "Top CRAN downloads\nWith the following code, we can get the most popular packages from CRAN. The CRAN directory doesn’t represent all R packages, but a good amount of them.\n\nlibrary(tidyverse)\nlibrary(cranlogs)\ntop100 <- cran_top_downloads(when = 'last-month', count = 100)\ntop100 %>% head()\n\n  rank  package   count       from         to\n1    1  ggplot2 2502873 2022-07-17 2022-08-15\n2    2    rlang 2039913 2022-07-17 2022-08-15\n3    3 devtools 1844834 2022-07-17 2022-08-15\n4    4       sf 1756905 2022-07-17 2022-08-15\n5    5      cli 1672799 2022-07-17 2022-08-15\n6    6     glue 1624788 2022-07-17 2022-08-15\n\n\nFrom this list, we can see that the tidyverse represents a large amount of the top downloads with ggplot2, rlang and dplyr. The list includes the sf package for geospacial data, the glue package for string manipulation and the cli package which is used to create a command line interface for packages. Most of these packages I already have a good understanding of, so I need to narrow down the search."
+  },
+  {
+    "objectID": "posts/2022-03-31-underrated-cran-packages/index.html#packages-installed",
+    "href": "posts/2022-03-31-underrated-cran-packages/index.html#packages-installed",
+    "title": "Underrated CRAN Packages",
+    "section": "Packages installed",
+    "text": "Packages installed\nYou can get a list of your installed packages with the installed_packages function. You can then filter the top 100 list and remove anything you already have installed to find new packages.\n\nmine <- installed.packages() %>%\n        data.frame() %>%\n        select(Package)\nnew <- top100 %>%\n        filter(!package %in% mine$Package)\nnew\n\n   rank     package   count       from         to\n1     3    devtools 1844834 2022-07-17 2022-08-15\n2     7        ragg 1589393 2022-07-17 2022-08-15\n3     8 textshaping 1583922 2022-07-17 2022-08-15\n4    10       rgeos 1524077 2022-07-17 2022-08-15\n5    11         rgl 1499311 2022-07-17 2022-08-15\n6    18     pkgdown 1162782 2022-07-17 2022-08-15\n7    19  enrichwith 1158675 2022-07-17 2022-08-15\n8    20      brglm2 1154128 2022-07-17 2022-08-15\n9    31         zoo  873095 2022-07-17 2022-08-15\n10   50       Hmisc  706994 2022-07-17 2022-08-15\n11   60     rstatix  648757 2022-07-17 2022-08-15\n12   62      nloptr  637641 2022-07-17 2022-08-15\n13   63        lme4  623554 2022-07-17 2022-08-15\n14   68    corrplot  601404 2022-07-17 2022-08-15\n15   72       rJava  577002 2022-07-17 2022-08-15\n16   75      ggpubr  544839 2022-07-17 2022-08-15\n17   88     cowplot  493972 2022-07-17 2022-08-15\n18   94         car  461659 2022-07-17 2022-08-15\n\n\nFrom some quick research, I have found the following about the new packages:\n\nragg - a 2D library as an alternative to the RStudio default\nrgl - functions for 3D interactive graphics\nrgeos - a geometry package, but is currently planned to be retired at the end of 2023 for the sf package\nzoo - a library to deal with time series\npkgdown - a library fOR building a blog website, I use blogdown\nnloptr - a library for solving non-linear optimization problems\nHmisc - an assortment of different data analysis tools\nlme4 - for fitting linear and generalized linear mixed-effects models\nRcppEigen - integration of the eigen library in R for linear algebra"
+  },
+  {
+    "objectID": "posts/2022-03-31-underrated-cran-packages/index.html#take-away",
+    "href": "posts/2022-03-31-underrated-cran-packages/index.html#take-away",
+    "title": "Underrated CRAN Packages",
+    "section": "Take-away",
+    "text": "Take-away\nHopefully your take-way is a simple method to explore R library that you have never heard about. I know that a few of the libraries seem interesting and worth further exploring.\nWhile we are at it, might as well find the daily values for the new packages and plot them for the last month.\n\nnew$package %>%\n        cran_downloads(when = \"last-month\") %>%\n        ggplot(aes(x = date, y = count, color = package)) +\n        geom_line()"
+  },
+  {
     "objectID": "posts/2022-04-08-benchmarking-data-tables/index.html",
     "href": "posts/2022-04-08-benchmarking-data-tables/index.html",
     "title": "Benchmarking Data Tables",
@@ -292,216 +481,6 @@
     "title": "Dashboards in R with Shiny Dashboard",
     "section": "Finalized Dashboard",
     "text": "Finalized Dashboard\nThe finalized dashboard looks pretty good. The sidebar adds a good level of control to the user and makes the data better organized. I also enjoy the default styling, but I’m sure it can be changed.\nWhen compared to the dashboard created with flexdashboard, it is much nicer looking. The flex dashboard, however, has the advantage of being much easier to create with r markdown. It is also much more flexible as it produces an HTML file which is easy to manage. The shiny dashboard needs to be hosted, which makes it slightly clunky.\nSpeaking of the clunky nature of Shiny Apps, you also need to be conscious of what needs to be reactive and what doesn’t. It is very easy to slow down a Shiny Dashboard with a bunch of unnecessary calculations. The writing of the application itself is also quite clunky. It doesn’t compare to the ease of writing in R markdown.\nSo which dashboard do I prefer? Well I think for a quick solution, flex dashboard is great but the amount of control and styling of a shiny dashboard is just better. I do think that there is a place for both, but if I had to choose, I would go for a Shiny Dashboard."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-02-27-bike-shares-in-toronto/index.html#bike-rental-shiny-app",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-02-27-bike-shares-in-toronto/index.html#bike-rental-shiny-app",
-    "title": "Bike shares in Toronto",
-    "section": "Bike Rental Shiny App",
-    "text": "Bike Rental Shiny App\nThis application use the data collected from the Toronto Open Data to generate a histogram of the usage of rental bikes in Toronto during the month of June in 2020.\n\ninstall.packages(\"opendatatoronto\", \n                 repos = \"https://cran.us.r-project.org\",\n                 dependencies = TRUE)\nlibrary(opendatatoronto)\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(shiny)"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-02-27-bike-shares-in-toronto/index.html#ui",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-02-27-bike-shares-in-toronto/index.html#ui",
-    "title": "Bike shares in Toronto",
-    "section": "UI",
-    "text": "UI\nThere are two user inputs on the UI side:\n\nA slider that limits the maximum and minimum of the displayed values\nA checkbox that excludes users with a annual bike pass\n\n\n        sidebarPanel(\n            sliderInput(\"dur\",\n                        \"Trip Duration:\",\n                        min = 0,\n                        max = 500,\n                        value = c(0,500)),\n            checkboxInput(\"freq\",\n                        \"Exclude annual users:\",\n                        value = FALSE))"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-02-27-bike-shares-in-toronto/index.html#server",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-02-27-bike-shares-in-toronto/index.html#server",
-    "title": "Bike shares in Toronto",
-    "section": "Server",
-    "text": "Server\nThe following code is used for the server side logic, this includes downloading the data from the ‘opendatatoronto’ library.\n\n # get package\n    package <- show_package(\"7e876c24-177c-4605-9cef-e50dd74c617f\")\n    \n    # get all resources for this package\n    resources <- list_package_resources(\"7e876c24-177c-4605-9cef-e50dd74c617f\")\n    # identify datastore resources; by default, Toronto Open Data sets datastore resource format to CSV for non-geospatial and GeoJSON for geospatial resources\n    datastore_resources <- filter(resources, tolower(format) %in% c('zip', 'geojson'))\n    # load the first datastore resource as a sample\n    data <- filter(datastore_resources, name == \"Bike share ridership 2020\") %>% get_resource()\n    data2 <-  data$`2020-06.csv`\n    data2[grepl(\"Time\",names(data2))] <- \n        lapply(data2[grepl(\"Time\",names(data2))], parse_date_time, orders = \"mdy HM\")\n    data2$Dur <- as.numeric(data2$End.Time - data2$Start.Time,units=\"mins\")"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-02-27-bike-shares-in-toronto/index.html#application",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-02-27-bike-shares-in-toronto/index.html#application",
-    "title": "Bike shares in Toronto",
-    "section": "Application",
-    "text": "Application\nThe final application takes a while to load as the data needs to be downloaded and sorted through. In future iterations, I would save the data locally as an RDS file."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/index.html",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/index.html",
-    "title": "Python in R Markdown",
-    "section": "",
-    "text": "The main advantage of using the R Markdown format is the utility of running R code within the text. This is clearly more advantageous than just writing code in a Markdown file. R Markdown is however limited to R code, unable to run Python scripts. The R library reticulate looks to add this capability."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/index.html#initial-setup",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/index.html#initial-setup",
-    "title": "Python in R Markdown",
-    "section": "Initial Setup",
-    "text": "Initial Setup\nThe initial setup requires the installation of the reticulate library, after installation you shouldn’t need to call it, but I do in the preceding code. I have loaded the trees dataset as a test dataset and the tidyverse library just to explore the data a bit.\n\nlibrary(reticulate)\nlibrary(tidyverse)\ndata(trees)\nglimpse(trees)\n\nRows: 31\nColumns: 3\n$ Girth  <dbl> 8.3, 8.6, 8.8, 10.5, 10.7, 10.8, 11.0, 11.0, 11.1, 11.2, 11.3, …\n$ Height <dbl> 70, 65, 63, 72, 81, 83, 66, 75, 80, 75, 79, 76, 76, 69, 75, 74,…\n$ Volume <dbl> 10.3, 10.3, 10.2, 16.4, 18.8, 19.7, 15.6, 18.2, 22.6, 19.9, 24.…\n\n\nNow, R Studio will use your local version of Python when you write any code in a code chuck labelled with the “{Python}” header. If you don’t have any local version, R Studio will ask if you would like to install Miniconda. From here, you will need to start downloading the required Python modules.\nModules can be downloaded with the pip python package installer from the terminal or command line. The easiest method in R Studio is within the terminal window next to the console window. The command used is pip install \"module name\". Some modules can be tricky and won’t work if not installed after other modules.\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/index.html#multiple-environments",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-03-python-in-r-markdown/index.html#multiple-environments",
-    "title": "Python in R Markdown",
-    "section": "Multiple Environments",
-    "text": "Multiple Environments\nAfter the setup, you should see some additional options in the environment in R Studio. You should see that you have the option to switch between the R and Python environments.\nData is transitioned from the R environment to the Python environment with the r variable. This method should pretty similar to the Shiny Apt’s use of input\\output. It is not only data that can move between environments, but functions too.\nThe following code takes data from the R environment and creates a plot in Seaborn. The mean values of the columns are calculated in python to be imported into the R environment. A simple linear model is created with the SKlearn module.\n\ndata = r.trees\nmeans = np.mean(data, axis = 0)\ndata[\"big\"] = data.Height > means.Height \nsns.scatterplot(data = data, x= \"Girth\", y= \"Height\", hue = \"big\")\nsns.set_theme(color_codes=True)\nplt.show()\n\n\n\nfrom sklearn.linear_model import LinearRegression\nmdl = LinearRegression()\nmdl.fit(data[[\"Girth\"]], data[[\"Height\"]])\n\nLinearRegression()\n\nprint(mdl.coef_)\n\n[[1.05436881]]\n\n\nData is transitioned from Python to, R similarly with the variable py. Information on models can be passed but not the models themselves. This is important if you are more comfortable creating models in Python.\n\nprint(py$means)\n\n   Girth   Height   Volume \n13.24839 76.00000 30.17097 \n\nprint(py$mdl$intercept_)\n\n[1] 62.03131\n\npy$data %>%\n        ggplot(aes(x = Girth, y = Height, colour = big)) +\n        geom_point()"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html",
-    "title": "Creating Dashboards in R",
-    "section": "",
-    "text": "Dashboards are a great way to demonstrate knowledge and engage decision makers. Their utility has made PowerBI and Tableau household names. And while these solutions do support R and Python scripts and visualizations, the Flexdashboard package seeks to compete. The Flexdashboard packages does this all in R with the simplicity of writing a R Markdown file."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html#initial-setup",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html#initial-setup",
-    "title": "Creating Dashboards in R",
-    "section": "Initial Setup",
-    "text": "Initial Setup\nThe setup is simple, you just need to download and load the Flexdashboard package. With the package installed, the easiest way to start is by creating a new R Markdown file using the Flexdashboard template. Loading the Shiny package is useful if you would like to use interactive plots, but it is not necessary.\nThe dashboard can be laid out by either columns or by rows, it doesn’t really make a difference. Just change the text of columns with rows in the following walk-through. A column is set up with “## Column” as the header. The size of the plot region can then be modified with “{data-width=”500”}” in the same header line. The next line should be the plot/area title, which is included with “### Plot Title” header. All that is left is to include a code chunk with your plot.\n\nlibrary(flexdashboard)\nlibrary(shiny)"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html#sample-data",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html#sample-data",
-    "title": "Creating Dashboards in R",
-    "section": "Sample Data",
-    "text": "Sample Data\nI decided to demonstrate different dashboard features with a data set from Open Canada about charitable donations. More information can be found here\n\ndownload.file(\"https://www150.statcan.gc.ca/n1/tbl/csv/45100007-eng.zip\", \"donordata.zip\")"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html#sample-dashboard-1",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html#sample-dashboard-1",
-    "title": "Creating Dashboards in R",
-    "section": "Sample Dashboard 1",
-    "text": "Sample Dashboard 1\nThe first dashboard was set up with the default columns layout. It includes an interactive bar chart, an interactive box plot and a pie chart. All the plot were created with GGplot2, the two plot were made interactive with the GGplotly function from the Plotly package. I created a pie chart to demonstrate the use of regular ggplots and because I recently read a complaint about GGplot2 for the creation of Pie charts on Reddit. In my opinion, Pie charts are not very good very conveying information."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html#sample-dashboard-2",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html#sample-dashboard-2",
-    "title": "Creating Dashboards in R",
-    "section": "Sample Dashboard 2",
-    "text": "Sample Dashboard 2\nFor the second dashboard, I used the row layout. The process is that same with no additional complications. The dashboard features an interactive Leaflet plot, an interactive histogram and data table using the GT package. The table was transformed with Pivot_Wider function to better fill the space."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html#conclusions",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-10-creating-dashboard-in-r/index.html#conclusions",
-    "title": "Creating Dashboards in R",
-    "section": "Conclusions",
-    "text": "Conclusions\nThe Flexdashboard package can be used to create nice looking dashboards with a great level of control. The plots can also include interactive elements. When compared to PowerBi or Tableau, there remains one major deficiency. These other dashboards contain a smart interactive filter which ties all the plots together. If you select a specific element in one plot for filtering, all other plots have the same filter applied to them. This is a major boon for understanding data and not a simple feature to develop in Flexdashboard. It remains an interesting package, but I would still rely on PowerBI or Tableau to create dashboards.\n\nPhoto by Luke Chesser on Unsplash"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#description",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#description",
-    "title": "Text Prediction Shiny App pt 1",
-    "section": "Description",
-    "text": "Description\nThe goal of this project was to create an N-gram based model to predict the word to follow the user’s input. This project was to complete the Capstone project for the Johns Hopkins University Data science program on Coursera. The data for this project was provided by Swiftkey.\nThis project will be broken down to multiple parts as the entire project is quite large. The first part will deal with the creation of the corpus. This corpus will require additional filtering to remove words that are not English, contractions and words that are considered profanity."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#initialization",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#initialization",
-    "title": "Text Prediction Shiny App pt 1",
-    "section": "Initialization",
-    "text": "Initialization\nThe initial step that loads the required libraries and downloads the data sets if not all read on file.\n\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(pryr)\n\n#downloads the corpus files, profanity filter and English dictionary\n\nurl <- \"https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip\"\nurl2 <- \"https://www.freewebheaders.com/download/files/facebook-bad-words-list_comma-separated-text-file_2021_01_18.zip\"\nurl3 <- \"https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt\"\nurl4 <- \"https://raw.githubusercontent.com/mark-edney/Capestone/1c143b40dd71f0564c3248df2a8638d08af10440/data/contractions.txt\"\n\n# I have added this if statement for testing, if the files are found than they will not be downloaded again\nif(dir.exists(\"~/R/Capestone/data/\") == FALSE){\n       dir.create(\"~/R/Capestone/data/\")}\n\nif(file.exists(\"~/R/Capestone/data/data.zip\") == FALSE|\n   file.exists(\"~/R/Capestone/data/prof.zip\")==FALSE|\n   file.exists(\"~/R/Capestone/data/diction.txt\")==FALSE|\n    file.exists(\"~/R/Capestone/data/contractions.txt\")==FALSE){\n        download.file(url,destfile = \"~/R/Capestone/data/data.zip\")\n        download.file(url2,destfile = \"~/R/Capestone/data/prof.zip\")\n        download.file(url3,destfile = \"~/R/Capestone/data/diction.txt\")\n        download.file(url4,destfile = \"~/R/Capestone/data/contractions.txt\")\n        setwd(\"~/R/Capestone/data/\")\n        unzip(\"~/R/Capestone/data/prof.zip\")\n        unzip(\"~/R/Capestone/data/data.zip\")\n        setwd(\"~/R/Capestone\")\n}"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#creating-a-corpus",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#creating-a-corpus",
-    "title": "Text Prediction Shiny App pt 1",
-    "section": "Creating a Corpus",
-    "text": "Creating a Corpus\nThe project requires a Corpus, or a large body of text, to create models. At this stage, the files are opened and joined. The Corpus is so large and requires so much ram that a sample of 10% is taken.\n\nblog <- read_lines(\"~/R/Capestone/data/final/en_US/en_US.blogs.txt\")\nnews <- read_lines(\"~/R/Capestone/data/final/en_US/en_US.news.txt\")\ntwitter <- read_lines(\"~/R/Capestone/data/final/en_US/en_US.twitter.txt\")\nblog <- tibble(text = blog) \nnews <- tibble(text = news)\ntwitter <- tibble(text = twitter)\n\nset.seed(90210)\ncorpus <- bind_rows(blog,twitter,news) %>% \n        slice_sample(prop = 0.10) %>%\n        mutate(line = row_number())"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#corpus-filtering",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#corpus-filtering",
-    "title": "Text Prediction Shiny App pt 1",
-    "section": "Corpus filtering",
-    "text": "Corpus filtering\nHere, the corpus filter is created to remove profanity and any word that is not in the English dictionary.\n\nprof <- read_lines(\"~/R/Capestone/data/facebook-bad-words-list_comma-separated-text-file_2021_01_18.txt\")[15]\nprof <- prof %>% \n        str_split(\", \") %>% \n        flatten() %>% \n        unlist()\nprof <- tibble(\"word\" = prof)\n\nenglish <- read_lines(\"~/R/Capestone/data/diction.txt\")\nenglish <- tibble(\"word\" = english[!english==\"\"])\n\ncontract <- read_lines(\"~/R/Capestone/data/contractions.txt\")\ncontract <- tibble(\"word\" = contract) %>% unnest_tokens(word,word)"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#vocabulary",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#vocabulary",
-    "title": "Text Prediction Shiny App pt 1",
-    "section": "Vocabulary",
-    "text": "Vocabulary\nA vocabulary of words is created from the unique words with the applied filters.\n\n#clean up ram\nrm(blog,news,twitter)\nvoc <- bind_rows(english, contract) %>% anti_join(prof)\n\nunigram <- corpus %>% unnest_tokens(ngram, text, token = \"ngrams\", n = 1) %>%\n        semi_join(voc, by = c(\"ngram\"=\"word\")) \n#decreases the voc size\nvoc <- tibble(word = unique(unigram$ngram))"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#corpus-exploration",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#corpus-exploration",
-    "title": "Text Prediction Shiny App pt 1",
-    "section": "Corpus Exploration",
-    "text": "Corpus Exploration\nNow that the corpus is created, we can do some exploration into the text. There are some lines of text that have some odd behaviour, but on the whole it mostly makes sense.\n\ncorpus %>% \n        head()\n\n# A tibble: 6 × 2\n  text                                                                      line\n  <chr>                                                                    <int>\n1 no we don't just kidding yes we do d                                         1\n2 it sounds like a man walking on snow but it's my heartbeat cara on how …     2\n3 they thought about it but you're too short                                   3\n4 indeed dear to my heart want to go see                                       4\n5 i know its a tough world out there the secret to succeeding isn't stepp…     5\n6 we're wishing for the cure too good luck                                     6"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#vocabulary-exploration",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-11-text-prediction-app/index.html#vocabulary-exploration",
-    "title": "Text Prediction Shiny App pt 1",
-    "section": "Vocabulary Exploration",
-    "text": "Vocabulary Exploration\nBy using the arrange function, we can sort the unigrams by their counts. This provides some insight on which words come up the most frequently. It is not surprisingly that the most common word is “the”. These frequencies will play an important role in the test prediction, so it is important to consider them. It is very common to filter out “Stop Words” as they likely add little value to predictions.\n\nunigram %>%\n        arrange(desc(n)) %>%\n        head()\n\n# A tibble: 6 × 2\n  ngram      n\n  <chr>  <int>\n1 the   476750\n2 to    277081\n3 and   242032\n4 a     238301\n5 of    201539\n6 in    165645\n\n\n\nPhoto by Sandy Millar on Unsplash"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-18-making-the-connection-with-crosstalk/index.html",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-18-making-the-connection-with-crosstalk/index.html",
-    "title": "Making the Connection with Crosstalk",
-    "section": "",
-    "text": "I recently wrote a post about creating dashboards in R which was based on the Flexdashboard library. My largest criticism was the lack of communication between visualizations on the same dashboard. This was before I learned about the Crosstalk package which adds this feature to html widgets, such as the Flexdashboard, to at least a limited degree."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-18-making-the-connection-with-crosstalk/index.html#initialization",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-18-making-the-connection-with-crosstalk/index.html#initialization",
-    "title": "Making the Connection with Crosstalk",
-    "section": "Initialization",
-    "text": "Initialization\nThe Crosstalk package is available on CRAN and is loaded along with other important packages for this demonstration.\n\ninstall.packages(\"crosstalk\")\nlibrary(crosstalk)\nlibrary(tidyverse)\nlibrary(flexdashboard)\nlibrary(plotly)\n\nI have decided to use a Toronto Open dataset about city audits for apartment buildings. I limited the features to only the ones that I feel will be interesting to look at. More information about the data set can be found here.\n\ndownload.file(\"https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/4ef82789-e038-44ef-a478-a8f3590c3eb1/resource/979fb513-5186-41e9-bb23-7b5cc6b89915/download/Apartment%20Building%20Evaluation.csv\", \"data.csv\")\ndf <- read_csv(\"data.csv\") %>%\n        select(lng = LONGITUDE, \n               lat = LATITUDE, \n               SCORE, \n               YEAR_BUILT, \n               SITE_ADDRESS, \n               PROPERTY_TYPE) %>% \n        slice_sample(n = 200)\n\nThe key to the crosstalk library is the SharedData functions. An object is created when a Data Frame is passed to the SharedData$new function. This is what enables communication between plots.\n\nshared_df <- SharedData$new(df)"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-18-making-the-connection-with-crosstalk/index.html#dashboard-creation",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-18-making-the-connection-with-crosstalk/index.html#dashboard-creation",
-    "title": "Making the Connection with Crosstalk",
-    "section": "Dashboard Creation",
-    "text": "Dashboard Creation\nThe dashboard is created pretty much as previous mentioned in my dashboard post, with the exception that the shared Data Frame object is passed rather than the Data Frame.\nThe dashboard can include filters that are very similar to the Shiny Apt filters, with the filter_* family of functions.\n\nfilter_slider(\"Score\", \"SCORE\", shared_df, ~SCORE, round = TRUE)\nfilter_checkbox(\"Property Type\", \"PROPERTY_TYPE\", shared_df, ~PROPERTY_TYPE, inline = TRUE)"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-18-making-the-connection-with-crosstalk/index.html#conclusion",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-18-making-the-connection-with-crosstalk/index.html#conclusion",
-    "title": "Making the Connection with Crosstalk",
-    "section": "Conclusion",
-    "text": "Conclusion\nThe Crosstalk package does add some significant connectivity to Flex Dashboards. It is relatively simple to use with some basic functions. It does have the issue of not working with aggregating data. The utility of finding the mean value of a selection is something Tableu and PowerBI are still superior at. I think that it is still a welcome improvement."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-18-making-the-connection-with-crosstalk/index.html#final-dashboard",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-18-making-the-connection-with-crosstalk/index.html#final-dashboard",
-    "title": "Making the Connection with Crosstalk",
-    "section": "Final Dashboard",
-    "text": "Final Dashboard\n\n\n\n\n\nPhoto by Jason Goodmanon Unsplash"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html",
-    "title": "Simple Neural Networks in Python",
-    "section": "",
-    "text": "Neural Networks (NN) have become incredibly popular due to their high level of accuracy. The creation of a NN can be complicated and have a high level of customization. I wanted to explore just the simplest NN that you could create. A framework as a workhorse for developing new NN.\nThe SciKitlearn provides the easiest solution with the Multi-Layer Perceptron series of functions. It doesn’t provide a bunch of the more advanced features of TensorFlow, like GPU support, but that is not what I’m looking for."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html#initialization",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html#initialization",
-    "title": "Simple Neural Networks in Python",
-    "section": "Initialization",
-    "text": "Initialization\nFor the demonstration, I decided to use a data set on faults found in steel plates from the OpenML website. The data set includes 27 features with 7 binary predictors.\n\nimport pandas as pd\nimport numpy as np\nfrom sklearn.model_selection import train_test_split\n\ndf = pd.read_csv('https://www.openml.org/data/get_csv/1592296/php9xWOpn')\n\npredictors = ['V28', 'V29', 'V30', 'V31', 'V32', 'V33', 'Class']\ndf['Class'] -= 1 \n\nSince there are multiple binary predictors, I needed to create a single class variable to represent each class. The Class variable doesn’t currently represent this, it represents all faults that don’t fit in the categories of V28 to V33. The single variable class was created with the np.argmax function which returns the index of the highest value between all the predictors.\n\ny = np.argmax(df[predictors].values, axis =1)\nX = df.drop(predictors, axis = 1)\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)"
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html#modelling",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html#modelling",
-    "title": "Simple Neural Networks in Python",
-    "section": "Modelling",
-    "text": "Modelling\nThis is the most basic model that I would like to evaluate. I’ve used the GridSearch function, so all combinations of parameters are tested. The only parameter I wanted to examine was the size of the hidden layers. Each hidden layer provided is a tuple, where each number represents the number of nodes in a singled layer. Multiple numbers represent additional layers.\n\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.model_selection import GridSearchCV\n\nparameters = {'hidden_layer_sizes':[(1),(100), (100,100), (100,100,100), \n(100,100,100,100), \n(100,100,100,100,100), \n(100,100,100,100,100,100), \n(100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100,100,100)]}\nmodel = MLPClassifier(random_state = 1,max_iter = 10000, \nsolver = 'adam', learning_rate = 'adaptive')\n\ngrid = GridSearchCV(estimator = model, param_grid = parameters)\ngrid.fit(X_train, y_train)\nprint(grid.best_score_)\n\n0.4054982817869416\n\n\nThe performance of the best model in the grid is not impressive. It took me awhile to realize that I had forgotten to scale the features. I included this error to show the importance of scaling on model performance."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html#feature-scaling",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html#feature-scaling",
-    "title": "Simple Neural Networks in Python",
-    "section": "Feature Scaling",
-    "text": "Feature Scaling\nThe features are simply scaled with the StandardScaler function. The same model is used on the scaled features.\n\nfrom sklearn.preprocessing import StandardScaler\n\nsc = StandardScaler()\nscaler = sc.fit(X_train)\nX_train_sc = scaler.transform(X_train)\nX_test_sc = scaler.transform(X_test)\n\nparameters = {'hidden_layer_sizes':[(1),(100), (100,100), (100,100,100), \n(100,100,100,100), \n(100,100,100,100,100), \n(100,100,100,100,100,100), \n(100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100,100),\n(100,100,100,100,100,100,100,100,100,100)]}\nmodel = MLPClassifier(random_state = 1,max_iter = 10000, \nsolver = 'adam', learning_rate = 'adaptive')\n\ngrid = GridSearchCV(estimator = model, param_grid = parameters, cv=3)\ngrid.fit(X_train_sc, y_train)\ngrid.best_score_\n\n0.7553264604810996\n\n\nThe performance of the scaled model is much more impressive. After the GridSearch function finds the parameters for the best model, it retrains the model on the entire dataset. This is because the function utilize cross validation, so some data was withheld for comparing the different models on test data."
-  },
-  {
-    "objectID": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html#conclusion",
-    "href": "posts/2022-05-01-level-up-your-progamming-skills/2022-03-20-simple-neural-networks-in-python/index.html#conclusion",
-    "title": "Simple Neural Networks in Python",
-    "section": "Conclusion",
-    "text": "Conclusion\nWith our model constructed, we can now test its performance on the original test set. It is important to remember to use the scaled test features, as that is what the model is expecting.\n\ngrid.score(X_test_sc, y_test)\n\n0.7304526748971193\n\n\nThe results are pretty satisfactory. A decent level of accuracy without a lot of complicated code. Default values were used, whenever they were appropriate. Additional steps could be taken, but this remains a good foundation for future exploratory analysis.\n\nPhoto by Alina Grubnyak on Unsplash"
   },
   {
     "objectID": "posts/2022-05-01-level-up-your-progamming-skills/index.en.html",

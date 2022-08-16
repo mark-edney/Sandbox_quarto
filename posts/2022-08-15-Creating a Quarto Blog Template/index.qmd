@@ -1,0 +1,74 @@
+---
+title: 'Post for Quarto Blog'
+author: Mark Edney
+date: "2022-08-15"
+categories:
+  - How-to
+  - R
+  - Rmarkdown
+draft: true
+description: 'A guide in creating a template for Quarto Blog posts.'
+image: ""
+archives:
+  - 2022/08
+toc: false
+
+format: 
+  html: 
+    code-fold: false
+    code-tools: false
+    code-link: false
+    
+---
+
+# Introduction
+
+I have officially switched my blog from `blogdown` to `quarto` due to the new features that `quarto` adds. The move has not been painless, but most of the most important features remain the same. This feature this is currently missing in `quarto` that I cannot live without, is the 1 click creation of a new blog post. There are a few different 
+
+# Whisker package
+
+```{r, data}
+
+Blog_post <- function(title){
+  data <- list(title = title,
+               author = "Mark Edney",
+               date = Sys.Date(),
+               categories = list("How-to", "R", "Rmarkdown"),
+               draft = FALSE,
+               description = "''",
+               image = "''",
+               archives = format(date, "%Y/%m"),
+               toc = 'false',
+               fold = "show",
+               tools = 'true',
+               link =  'false')
+  
+  Template <- '---
+title: {{title}}
+author: {{author}}
+date: {{date}}
+categories: [{{categories}}]
+draft: {{draft}}
+description: {{description}}
+image: {{image}}
+archives:
+  - {{archives}}
+toc: {{toc}}
+
+format:
+  html: 
+    code-fold: {{fold}}
+    code-tools: {{tools}}
+---
+
+# Introduction
+
+# Conclusion
+
+'
+  
+  dir.create(paste0("./posts/",data$date, "-", title))
+  writeLines(whisker.render(Template, data), paste0("./posts/",data$date, "-", title, "/index.qmd"))
+}
+
+```
