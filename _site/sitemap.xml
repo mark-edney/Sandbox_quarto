@@ -2,102 +2,102 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://datasandbox.netlify.app/about.html</loc>
-    <lastmod>2022-08-16T15:16:48.983Z</lastmod>
+    <lastmod>2022-08-16T15:55:38.099Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/archive.html</loc>
-    <lastmod>2022-08-16T15:16:50.915Z</lastmod>
+    <lastmod>2022-08-16T15:55:40.343Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-01-29-fitness-tracker-modeling-ml/index.html</loc>
-    <lastmod>2022-08-16T15:16:55.154Z</lastmod>
+    <lastmod>2022-08-16T15:55:43.326Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-01-30-job-posting-analysis/index.html</loc>
-    <lastmod>2022-08-16T15:17:03.265Z</lastmod>
+    <lastmod>2022-08-16T15:55:45.843Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-02-11-fancy-tables-in-r/index.html</loc>
-    <lastmod>2022-08-16T15:17:09.873Z</lastmod>
+    <lastmod>2022-08-16T15:55:48.217Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-02-16-/index.html</loc>
-    <lastmod>2022-08-16T15:17:25.821Z</lastmod>
+    <lastmod>2022-08-16T15:55:50.383Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-02-23-new-features-in-r/index.html</loc>
-    <lastmod>2022-08-16T15:17:32.644Z</lastmod>
+    <lastmod>2022-08-16T15:55:52.397Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-02-27-bike-shares-in-toronto/index.html</loc>
-    <lastmod>2022-08-16T15:17:36.505Z</lastmod>
+    <lastmod>2022-08-16T15:55:54.350Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-03-03-python-in-r-markdown/index.html</loc>
-    <lastmod>2022-08-16T15:17:52.045Z</lastmod>
+    <lastmod>2022-08-16T15:55:57.859Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-03-10-creating-dashboard-in-r/index.html</loc>
-    <lastmod>2022-08-16T15:17:56.190Z</lastmod>
+    <lastmod>2022-08-16T15:56:00.006Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-03-18-making-the-connection-with-crosstalk/index.html</loc>
-    <lastmod>2022-08-16T15:17:59.830Z</lastmod>
+    <lastmod>2022-08-16T15:56:02.100Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-03-20-simple-neural-networks-in-python/index.html</loc>
-    <lastmod>2022-08-16T15:21:15.819Z</lastmod>
+    <lastmod>2022-08-16T15:56:08.033Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-03-31-underrated-cran-packages/index.html</loc>
-    <lastmod>2022-08-16T15:21:17.487Z</lastmod>
+    <lastmod>2022-08-16T15:56:10.142Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-04-08-benchmarking-data-tables/index.html</loc>
-    <lastmod>2022-08-16T15:21:29.012Z</lastmod>
+    <lastmod>2022-08-16T15:56:12.144Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-04-11-r-bloggers-site/index.html</loc>
-    <lastmod>2022-08-16T15:21:30.210Z</lastmod>
+    <lastmod>2022-08-16T15:56:13.762Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-04-14-merging-pdfs-with-python/index.html</loc>
-    <lastmod>2022-08-16T15:21:38.629Z</lastmod>
+    <lastmod>2022-08-16T15:56:16.292Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-04-20-dashboards-in-r-with-shiny-dashboard/index.en.html</loc>
-    <lastmod>2022-08-16T15:21:52.306Z</lastmod>
+    <lastmod>2022-08-16T15:56:18.853Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-05-01-level-up-your-progamming-skills/index.en.html</loc>
-    <lastmod>2022-08-16T15:21:55.431Z</lastmod>
+    <lastmod>2022-08-16T15:56:20.493Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-05-09-formatting-our-outout-with-python-s-f-strings/index.html</loc>
-    <lastmod>2022-08-16T15:22:05.130Z</lastmod>
+    <lastmod>2022-08-16T15:56:23.318Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-05-16-the-beauty-of-list-comprehensions-in-python/index.html</loc>
-    <lastmod>2022-08-16T15:22:13.292Z</lastmod>
+    <lastmod>2022-08-16T15:56:25.956Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-06-08-text-prediction-shiny-app-pt-2/index.html</loc>
-    <lastmod>2022-08-16T15:22:37.340Z</lastmod>
+    <lastmod>2022-08-16T15:56:29.218Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-06-22-webscraping-in-r-with-rvest/index.html</loc>
-    <lastmod>2022-08-16T15:22:43.909Z</lastmod>
+    <lastmod>2022-08-16T15:56:31.525Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-07-04-relationship-analysis-with-spacyr/index.html</loc>
-    <lastmod>2022-08-16T15:51:51.959Z</lastmod>
+    <lastmod>2022-08-16T15:56:33.728Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-07-12-network-graphs-in-r/index.en.html</loc>
-    <lastmod>2022-08-16T15:52:09.385Z</lastmod>
+    <lastmod>2022-08-16T15:56:35.777Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/index.html</loc>
-    <lastmod>2022-08-16T15:52:21.511Z</lastmod>
+    <lastmod>2022-08-16T15:56:39.938Z</lastmod>
   </url>
 </urlset>
