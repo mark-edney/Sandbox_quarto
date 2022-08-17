@@ -1,16 +1,69 @@
 ---
-title: 'Post for Quarto Blog'
+title: 'Creating Posts for Quarto Blog'
 author: Mark Edney
 date: "2022-08-15"
 categories:
   - How-to
   - R
   - Rmarkdown
+  - Quarto
+  - Shiny App
 draft: true
 description: 'A guide in creating a template for Quarto Blog posts.'
 image: ""
 archives:
   - 2022/08
+toc: true
+
+format: 
+  html: 
+    code-fold: show
+    code-tools: true
+    code-link: false
+---
+
+![](images/kaleidico-7lryofJ0H9s-unsplash(1).jpg){fig-align="center"}
+
+# Introduction
+
+I have officially switched my blog from `blogdown` to `quarto` due to the new features that `quarto` adds. The move has not been painless, but most of the most important features remain the same. The feature this is currently missing in `quarto` that I cannot live without, is the 1 click creation of a new blog post. There are a few different ways to automate the creation of blog posts, here are a few that I've found.
+
+# Rmd Template
+
+It is fairly simple to create a new rmd template for the `markdown` package. These templates are available when you click File -\> New File -\> R Markdown... under the tab 'from template'. There are many different templates available under the `rmarkdown` package but you might have more templates from other packages. Unfortunately, this feature is not yet available in `quarto` for qmd files.
+
+So, currently there is no way to create a qmd template, but there isn't a major difference between qmd and rmd files. An easy solution would be to create a rmd template with built-in `quarto` commands and when you use it to create a blog post you just save it as qmd file. This will still require going through the steps of creating a rmd template.
+
+Creating a rmd template is pretty simple, it just requires creating two files and a folder. This is even easier if you use the `usethis` package with its `use_rmarkdown_template` function as it will automatically create the structure.
+
+Within the main template folder, you will have a 'skeleton' folder and a 'template.yaml' file. The YAML file will contain the name and description of the template. It also includes the parameter `create_dri` which will create a file in a nested folder if the option is true. The strucutre of the file is the following:
+
+```{r yaml}
+#| eval: false
+name: Quarto Blog Post
+description: >
+  Template for Quatro Blog post. 
+create_dir: true
+```
+
+Within the 'skeleton' folder you will find a 'skeleton.rmd' files. This is the actual template structure. This file should have all the YAML, including qmd features, and the basic structure of your blog post. The following is a sample that I have created:
+
+```{r skeleton}
+#| eval: false
+---
+title: 'Post for Quarto Blog'
+author: Mark Edney
+date: ""
+categories:
+  - How-to
+  - R
+  - Rmarkdown
+  - Python
+draft: true
+description: ''
+image: ""
+archives:
+  - ""
 toc: false
 
 format: 
@@ -18,23 +71,30 @@ format:
     code-fold: false
     code-tools: false
     code-link: false
-    
 ---
+```
 
-# Introduction
+With the template setup, all you need to do is add it to a package. You can add it to any package but I would recommend adding it to the `rmarkdown` package with the rest of its templates. The directory for this package in windows can be found somewhere like this: 'C:\Users\~login\AppData\Local\R\win-library\~R version\rmarkdown\rmarkdown\templates' With the folder moved over, you should be able to see your template listed when you create a rmd file after you restart R Studio.
 
-I have officially switched my blog from `blogdown` to `quarto` due to the new features that `quarto` adds. The move has not been painless, but most of the most important features remain the same. This feature this is currently missing in `quarto` that I cannot live without, is the 1 click creation of a new blog post. There are a few different 
+This is a pretty easy way to create a `quarto` blog post, but there is additional steps required. You will need to manually type the date, saved the file as a qmd, and create whatever folder structure you like for you `quarto` blog. So lets explore more options to make it even easier.
 
 # Whisker package
 
-```{r, data}
+There are a few different packages available to create template files like the `brew` and `whisker` packages. I decided to try the `whisker` package as it seemed to be the easiest to learn. In the `whisker`, you create a template and refer to your parameters in the '{{}}' set of brackets.
 
-Blog_post <- function(title){
-  data <- list(title = title,
-               author = "Mark Edney",
+I decided to create a function that will accept the user input for the blog and apply it to the template. The function will then create the proper directory layout that I use for my blog posts.
+
+## Data
+
+The first step is the creation of the data that will be passed to create the blog post. This data can be in the form of a DataFrame or a list. This list will contain all the dynamic parameters including the user input. The only values that I wanted to get user input from was the title. This value is set to variable names which will be passed into the function later. You can also include calculated parameters, such as `sys.date()` to get the current date.
+
+```{r, whiskerdata}
+#| eval: false
+data <- list(title = title,
+               author = 'Mark Edney',
                date = Sys.Date(),
                categories = list("How-to", "R", "Rmarkdown"),
-               draft = FALSE,
+               draft = 'true',
                description = "''",
                image = "''",
                archives = format(date, "%Y/%m"),
@@ -42,8 +102,15 @@ Blog_post <- function(title){
                fold = "show",
                tools = 'true',
                link =  'false')
-  
-  Template <- '---
+```
+
+## Template
+
+The creation of the template is pretty easy, you create a character with the desired structure. Again, you include the parameters in the template with the '{{}}' brackets. I also included markdown for an Introduction and Conclusion as they should probally be included in every new post.
+
+```{r, template}
+#| eval: false
+Template <- '---
 title: {{title}}
 author: {{author}}
 date: {{date}}
@@ -64,11 +131,178 @@ format:
 # Introduction
 
 # Conclusion
-
 '
+```
+
+## Combining Function
+
+Finally, we create a single function that will tie everything together. By using the `dir.create` and `paste0` functions with the date from the data list, we create a new folder that has the date and the blog post title in its structure. We can than create the blog post with the `whisker::render` and `writeLines` functions. The same folder name is required to create the post in the folder.
+
+```{r, data}
+#| eval: false
+Blog_post <- function(title){
+  data <- list(...
   
+  Template <- '---
+title: {{title}}...
+
   dir.create(paste0("./posts/",data$date, "-", title))
-  writeLines(whisker.render(Template, data), paste0("./posts/",data$date, "-", title, "/index.qmd"))
+  writeLines(whisker.render(Template, data),
+  paste0("./posts/",data$date, "-", title, "/index.qmd"))
+}
+```
+
+The function can be run by its own, saved to a r script file or you can add it to your `.Rprofile` file so that it will be loaded everytime you start R Studio. Then to create a post, you would use `Blog_post` and pass the blog title. If your in the root file for your quarto blog, you shouldn't have an issue. If you are not you might get an error saying you could not find the directory.
+
+So creating a function is a pretty code solution and `whisker` is simple and easy to use. The one pain point for me is that the function needs to be loaded in the system by running an open r script file, using the `source` function and passing the r script name, or by including the function in the `.Rprofile`. None of these seem very intuitive to me, so I decided to proceed with the creation of a Addin.
+
+# Addins
+
+Addins are a special feature of RStudio with its only icon on the tool bar. This icon allows the user to run set of R code from the toolbar. In order to create an Addin, you first need to create a package that includes all of the code. 
+
+## Package creation
+
+The easiest way to create a package is from the template when you create a new project. This will create the basic structure needed for a package. You need to edit the description file to include information on the package. Here is the description for the package I have created:
+
+```{r , eval=FALSE}
+Package: Qpostr
+Type: Package
+Title: Create a Quarto Blog Post
+Version: 0.1.0
+Author: Mark Edney
+Maintainer: Mark Edney <m2edney@gmail.com>
+Description: This packake is used to create a addin for creating a new Quarto blog post. This post is created using a default template using the whisker pakage. A Shiny gadget is utilized to get user input prior to the creataion of the blog post. 
+License: Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License
+Encoding: UTF-8
+LazyData: true
+```
+
+Under the man folder, you need to create a Rd file for each function that will be included in your package. These Rd files will represent the help information when you use the help search for your function. This file will require the function name, any alias if it has one, a title for the help page, an example of it usage and a description. Here is a sample for the function that I have created. 
+
+```{r , eval=FALSE}
+\name{QGadget}
+\alias{}
+\title{Create a Qaurto Blog Post}
+\usage{
+Qgadget()
+}
+\description{
+Creates a Quarto Blog Post in the posts directory from a template. Opens a Shiny Gadget to get user input before creating the post. Gadget is required for creating the addin.
 }
 
+```
+
+
+To actually create the addin, we need some additional folders. From the main project directory, we need to create a 'inst' folder and an 'rstudio' folder in that. In the new rstudio folder, we need to create a file called 'addins.dcf'. This file will contain about the addin. Here is a sample of mine:
+
+```{r, eval=FALSE}
+Name: Quarto Blog Post
+Description: Creates a new Quarto Blog post from template
+Binding: QGadget
+Interactive: true
+```
+
+In this file, the binding refers to the function name that will be connected to the addin. The interactive feature determines where you like the code to just run or if you like the user to interact first. We keep all the r scripts in the 'R' folder from the project main directory. If you are satisfied with the addin being non-interactive, you can stop there and build the package from the build tab. This is a tab  near the environment and history tabs. Since I am not satisfied with a non-interactive addin, we need to create a Shiny Gadget and run that as the function.
+
+## Shiny Gadgets
+
+A shiny gadget is very similar to a shiny app with the UI and Server functions both in the same file. In a R script file, within the R folder under the project directory, we define a function which will usef functions from the `shiny` and `miniUI` libraries. 
+
+```{r ,eval=FALSE}
+QGadget <- function() {....}
+```
+
+Since we are using the `miniUI`, there are a different series of UI functions we can use. The following creates a basic UI that will ask the user for a title and for a Author name. 
+
+```{r ,eval=FALSE}
+ui <- miniUI::miniPage(
+  miniUI::gadgetTitleBar("Quarto Blog Post"),
+  miniUI::miniContentPanel(
+    shiny::textInput("title", "Title", placeholder = "Post Title"),
+    shiny::textInput("author", "Author", placeholder = "")
+    )
+  )
+```
+
+The serve function really just uses the `observeEvent` function to accept the information that the user submitted. The user data is than submitted to our previous `Blog_post` function to create a new blog post.
+
+Additional the Shiny Gadget uses the `runGadget` function to actually start the Gadget. The `dialogViewer` function is passed to create a new window for the gadget. The default behaviour would be to run in the viwer panel. 
+
+```{r ,eval=FALSE}
+server <- function(input, output, session) {
+  
+  shiny::observeEvent(input$done, {
+    Blog_post(input$title, input$author)
+      stopApp("Post Created")
+      })
+  }
+
+shiny::runGadget(ui, server, viewer = shiny::dialogViewer("Quarto Blog Post"))
+```
+
+Again the previous function that we create to make a new Quarto blog post. This function is saved in the same rscript file as the Shiny Gadget, but not in the gadget function intself. 
+
+```{r ,eval=FALSE}
+Blog_post <- function(title, author){
+  data <- list(title = title,
+               author = author,
+               date = Sys.Date(),
+               categories = list("How-to", "R", "Rmarkdown"),
+               draft = 'true',
+               description = "''",
+               image = "''",
+               archives = format(date, "%Y/%m"),
+               toc = 'false',
+               fold = "show",
+               tools = 'true',
+               link =  'false')
+
+  Template <- '---
+title: {{title}}
+author: {{author}}
+date: {{date}}
+categories: [{{categories}}]
+draft: {{draft}}
+description: {{description}}
+image: {{image}}
+archives:
+  - {{archives}}
+toc: {{toc}}
+
+format:
+  html:
+    code-fold: {{fold}}
+    code-tools: {{tools}}
+---
+
+# Introduction
+
+# Conclusion
+
+'
+
+  dir.create(paste0("./posts/",data$date, "-", title))
+  writeLines(whisker::whisker.render(Template, data), paste0("./posts/",data$date, "-", title, "/index.qmd"))
+  file.edit(paste0("./posts/",data$date, "-", title, "/index.qmd"))
+}
+
+```
+# Conclusion
+
+In summary, there is no native way to create a new `quarto` post at this time. We have explored multiple different solution
+
+* Create a RMD template make a document and rename it as a QMD
+* Use the `whisker` package to create template which accepts calculated fields
+* Store the `whisker` template in a function stored in a script file, or to be loaded by default in the `.Rprofile` file
+* Create an non-interactive addin by storing the function in a package
+* Create an interactive addin by making a Shiny Gadget. 
+
+Personally, my go to answer would be to use the interactive addin. If you are interested in installing the package I have create, feel free to use the following code to install it. After it is installed, you will need to restart R for the addin to be in the addin tab. 
+
+```{r, eval=FALSE}
+devtools::install_github('mark-edney/Qpostr')
+```
+
+```{=html}
+Photo by <a href="https://unsplash.com/@kaleidico?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kaleidico</a> on <a href="https://unsplash.com/s/photos/template-structure?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ```
