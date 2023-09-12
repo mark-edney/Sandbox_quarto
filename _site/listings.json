@@ -2,6 +2,7 @@
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/2022-10-03-Tree Based Methods/index.html",
       "/posts/2022-08-15-Creating a Quarto Blog Template/index.html",
       "/posts/2022-08-01-quarto-the-successor-to-r-markdown/index.html",
       "/posts/2022-07-04-relationship-analysis-with-spacyr/index.html",
@@ -28,6 +29,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2022-10-03-Tree Based Methods/index.html",
       "/posts/2022-08-15-Creating a Quarto Blog Template/index.html",
       "/posts/2022-08-01-quarto-the-successor-to-r-markdown/index.html",
       "/posts/2022-07-12-network-graphs-in-r/index.en.html",
