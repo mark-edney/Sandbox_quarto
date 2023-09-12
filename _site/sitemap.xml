@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-10-03-Tree Based Methods/index.html</loc>
-    <lastmod>2023-09-12T16:08:56.684Z</lastmod>
+    <lastmod>2023-09-12T16:46:14.052Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-08-01-quarto-the-successor-to-r-markdown/index.html</loc>
-    <lastmod>2023-09-12T16:08:44.340Z</lastmod>
+    <lastmod>2023-09-12T16:55:04.309Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-07-04-relationship-analysis-with-spacyr/index.html</loc>
@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/archive.html</loc>
-    <lastmod>2023-09-12T16:07:21.220Z</lastmod>
+    <lastmod>2023-09-12T16:55:11.316Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/about.html</loc>
@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/index.html</loc>
-    <lastmod>2023-09-12T16:07:29.251Z</lastmod>
+    <lastmod>2023-09-12T16:55:16.354Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-01-30-job-posting-analysis/index.html</loc>
@@ -110,6 +110,6 @@
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-08-15-Creating a Quarto Blog Template/index.html</loc>
-    <lastmod>2023-09-12T16:08:47.313Z</lastmod>
+    <lastmod>2023-09-12T16:53:18.361Z</lastmod>
   </url>
 </urlset>

@@ -10,7 +10,6 @@ categories:
   - Quarto
 draft: false
 description: 'A review of Quarto, the potenial successor to R Markdown'
-image: ""
 archives:
   - 2022/08
 toc: true

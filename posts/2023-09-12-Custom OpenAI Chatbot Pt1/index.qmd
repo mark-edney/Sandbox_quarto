@@ -1,0 +1,23 @@
+---
+title: Custom OpenAI Chatbot Pt1
+author: Mark Edney
+date: 2023-09-12
+categories: [How-to,R,Rmarkdown]
+draft: true
+description: ''
+image: ''
+archives:
+  - 2023/09
+toc: false
+
+format:
+  html:
+    code-fold: show
+    code-tools: true
+---
+
+# Introduction
+
+# Conclusion
+
+

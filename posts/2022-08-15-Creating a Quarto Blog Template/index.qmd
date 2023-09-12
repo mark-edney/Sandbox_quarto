@@ -10,7 +10,7 @@ categories:
   - Shiny App
 draft: false
 description: 'A guide in creating a template for Quarto Blog posts.'
-image: ""
+image: "template.jpg"
 archives:
   - 2022/08
 toc: true
