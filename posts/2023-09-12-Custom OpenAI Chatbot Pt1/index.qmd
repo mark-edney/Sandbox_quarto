@@ -1,13 +1,13 @@
 ---
-title: Custom OpenAI Chatbot Pt1
+title: 'Custom OpenAI Chatbot Pt1: PDF scanning'
 author: Mark Edney
-date: 2023-09-12
-categories: [How-to,R,Rmarkdown]
-draft: true
-description: ''
-image: ''
+date: 2023-10-30
+categories: [How-to,Python,AI]
+draft: false
+description: 'A PDF OCR reader for the creation of an chatbot.'
+image: 'chat.jpg'
 archives:
-  - 2023/09
+  - 2023/10
 toc: false
 
 format:
@@ -16,8 +16,108 @@ format:
     code-tools: true
 ---
 
+[![Photo by Levart_Photographer on Unsplash](chat.jpg)](https://unsplash.com/@siva_photography?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+
+  
+
 # Introduction
+I have recently completed a project at work, the creation of a custom ChatGPT chatbot.
+I will break the project into two parts, the first part will scan a folder of PDF
+files into a dataframe and the second part will pass the data to OpenAI API. This
+entire project was completed in `python`. 
+
+# Project outline
+PDFs can be easily scanned in `python` with the `pypdf` module. It is easily installed
+and easily run, but I have found that the quality of the scan to be lacking. `Pypdf` also 
+seems to have some issues with PDFs that created from scanned documents, not directly
+created from a text document. For this reason, I have found an alternative method.
+
+The first step is to convert all the PDFs in a directory to PNG images. This can
+be achieved with the `convert from path` function from the `pdf2image` library with
+the poppler application. The poppler program can be downloaded [here](https://poppler.freedesktop.org/) and unzipped into its own directory. There is no Windows version on the poppler site, but I found a repo with a nearly updated Windows version [here](https://github.com/oschwartz10612/poppler-windows/releases). 
+You will need to copy the directory path into your code. We can create a for loop to
+open each PDF file one at a time. It's important to remember to change the '\' to '/' 
+for Windows users when referring to directory positions. 
+
+The second step is to then scan through the PNG images with OCR. For this task, we
+can use Tesseract. Tesseract is a Google project that is easy to use. Like Poppler,
+you will need to download the application separately. You will also need to install 
+the helper `python` package `pytessseract`. The Tesseract application can be found
+[here](https://github.com/UB-Mannheim/tesseract/wiki). I have my program to save the 
+data in a CSV file, but you can store it anyway you want. I decided to save each PDF
+file as a separate CSV file and assigning each row as a different PNG file or page 
+of the PDF. This was to ensure that may data is easily organized 
+
+The next stages require getting into the `Langchain` library. These steps will be
+included in the follow-up to this post as both post, are quite lengthy and each can
+stand alone. 
+
+# Converting PDF to PNG with Poppler
+Again, prior to running this code, you will need to install the Poppler Application.
+You also need to copy the directory to the location of the Poppler bin folder. The
+rest of this section is pretty simple, I've created a loop to go through every filename
+that ends with '.pdf' in a specific PDF folder. I also save the PNG file with the page 
+number included into the title. If the results from the OCR scans are inaccurate, you 
+can adjust the resolution of the PNG files with the parameter 'dpi = 300' passed to 
+the convert from path function. The default value is 100. Fair warning, increasing the
+resolution will slow down the entire process and can potentially add additional artifacts
+into the OCR scan. 
+
+```{python}
+#| eval: false
+import os
+import pandas as pd
+from PIL import Image
+from pdf2image import convert_from_path
+
+poppler_path = 'C:/Program Files/poppler-23.08.0/Library/bin'
+for pdf_file in [f for f in os.listdir('//Desktop/PDF') if f.endswith('.pdf')]:
+  images = convert_from_path(pdf_path = '//Desktop/PDF/' + pdf_file, poppler_path = poppler_path)
+
+  for count, img in enumerate(images):
+    img_name = f"{pdf_file[:-4]}_page_{count}.png"
+    img.save('//Desktop/PDF/' + img_name, "PNG")
+
+```
+
+# OCR from PNG files
+The Tesseract application is required for the next stage. Since every PNG from every
+PDF will need to go through the process, I've recreated the first section and included 
+the Tesseract functions into the same loop. I've also included a step to delete each 
+PNG file after it has been scanned, since it will no longer be needed. The final stage 
+is to save all the returned data as a CSV file. I have found that it is useful to 
+specify the encoding used in saving the CSV. 
+
+```{python}
+#| eval: false
+import os
+import pandas as pd
+from PIL import Image
+from pdf2image import convert_from_path
+import pytesseract
+
+poppler_path = 'C:/Program Files/poppler-23.08.0/Library/bin'
+pytesseract.pytesseract.tesseract_cmd = '//Tesseract-OCR/tesseract.exe'
+
+for pdf_file in [f for f in os.listdir('//Desktop/PDF') if f.endswith('.pdf')]:
+  images = convert_from_path(pdf_path = '//Desktop/PDF' + pdf_file, poppler_path = poppler_path)
+  extracted_text = []
+  for count, img in enumerate(images):
+    img_name = f"{pdf_file[:-4]}_page_{count}.png"
+    img.save('//Desktop/PDF' + img_name, "PNG")
+    
+    extracted_data.append(pytesseract.image_to_string(Image.open('C:/Users/Mark/Desktop/PDF' + img_name)))
+    os.remove('//Desktop/PDF' + img_name)
+    
+  df = pd.DataFrame(extracted_text)
+  df.to_csv('//Desktop/PDF' + pdf_name[:-4] + '.csv', encoding = 'utf-8-sig')
+
+```
 
 # Conclusion
-
+We are finally able to create a usable CSV file from a OCR scanned PDF file. The first
+step was to convert the pdf into PNG files with Poppler. Each png is then scanned with 
+Tesseract. And the returned values are stored in a CSV file. By why would you want to go
+through all the steps in the first place? Well, we will need to proceed with the next post
+about creating the ChatGPT chatbot. 
 

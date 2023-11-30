@@ -1,0 +1,194 @@
+---
+title: 'Custom OpenAI Chatbot Pt2: Fun with Lang Chain'
+author: Mark Edney
+date: 2023-11-29
+categories: [How-to,Python, AI]
+draft: false
+description: 'The final steps for the creation of a custom Chat GPT Chat bot'
+image: 'pexels-google-deepmind-18069697.jpg'
+archives:
+  - 2023/11
+toc: false
+
+format:
+  html:
+    code-fold: show
+    code-tools: true
+---
+![Photo by Google DeepMind](pexels-google-deepmind-18069697.jpg)
+
+# Introduction
+This is a continuation from a previous post about creating a custom ChatGPT bot with 
+Langchain. From the previous post, we have created a CSV file which contains the text
+captured from a folder full of different PDF files. We will continue from there, creating
+a custom ChatGPT bot from that CSV files. 
+
+# Loading packages
+As with any project, the first step is to load some of the necessary python packages. 
+The `load_dotenv` function from the `dotenv` plays a special role in this program. 
+In order to use the Open AI API, we will need to create and Open AI account. With this 
+account, you will receive an API key, which will be connected to any functional calls with
+your account. You can keep these API keys in your code, but it is better practice to store
+them in your environmental variables. The environmental variables is a location in windows
+where you can store some sensitive information that will be only stored on your computer. 
+You can find where your environmental variables are with the windows search, or you can 
+find it under your advanced system properties. Make a new entry in either the user variables or
+system variables (whichever you prefer) and name it "OPENAI_API_KEY". The value will be the 
+actual key you get from your Open AI account. After you save your API key, you will 
+need to restart windows. You will need to pay for your API requests for your Open 
+AI account. Using the embedding model turns out to be pretty cheap,
+while questioning the ChatGPT cost a bit more, usually only a one or two cents per
+question. 
+
+```{python}
+import os
+import sys
+import pandas as pd
+from dotenv import load_dotenv
+
+load_dotenv()
+```
+
+# Document Loading
+
+The next step is to load your CSV files into a document format used by Lang Chain. 
+I found that the best way to complete this is with the `DirectoryLoader` and the 
+`CSVLoader` functions. I have also found that it is important to specify the encoding
+used to create the CSV files from the pandas dataframes. Furthermore, I've also included an 
+additional step which will add 1 to the row numbers in the metadata. The row value
+represents the page number within the document, but the default indexing for a pandas 
+dataframe starts at 0 and not at 1. Getting the length of our documents represents 
+the overall number of pages that we have scanned from our PDF files. 
+
+```{python}
+from langchain.document_loaders import DirectoryLoader, CSVLoader
+
+loader = DirectoryLoader(path='C:/Users/Mark/Desktop/csv_files', glob = '**/*.csv', loader_cls = CSVLoader, use_multithreading = True, show_progress = True, silent_errors = True, loader_kwargs = {'encoding': 'utf-8-sig'})
+
+docs = loader.load()
+
+for doc in docs:
+  doc.metadata['row'] +=1
+print(len(docs))
+```
+Just to get an idea of the data format, we can print the 10 item stored in our documents. 
+```{python}
+docs[10]
+```
+
+# Document Transformation
+We could work with the documents we have just as they are now, but it is sometimes
+difficult to get the proper level of context from a question from an entire page 
+of information. One way to rectify this is by using the `ReqcursiveCharacterTextSplitter` 
+function which will break down the data into smaller sections. The function has some 
+built-in breakpoints point like section titles and ends of paragraphs. We could then
+use the smaller split up documents to makes sure our search's are more accurate. I 
+have found that using both the overall page documents for overall context and the smaller
+in-depth documents for smaller details together works best. We see that this drastically 
+increases the number of documents that we need to search through. 
+
+```{python}
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+text_splitter = RecursiveCharacterTextSplitter(chunk_size = 512, chunk_overlap = 100)
+
+documents = text_splitter.split_documents(docs)
+documents = documents + docs
+len(documents)
+```
+
+# Text Embeddings
+Text embeddings are the real power behind all natural language processes, including
+chatbots. A text embedding is a vector that represents the meaning behind a text 
+and not the text itself. In this way, we can search through the meaning of our documents
+for an answer without needing to match the text exactly. In order to use the Open
+AI API to answer our questions, we need to utilize the Open AI Embeddings model. The
+use of it is pretty simple, when send them a document and they return the embedding. 
+
+```{python}
+import openai
+from langchain.embeddings import OpenAIEmbeddings
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+embeddings_model = OpenAIEmbeddings(request_timeout = 60)
+
+```
+
+# Vector Store
+The next step is not 100% necessary, but it will make our lives much easier. What we
+need to do is to create a database that connects each of the documents with their 
+embedding. We can do this by creating a vector store. There are a few different 
+vector stores, the one I chose to us is `FAISS'. All we need to do is define the
+vector store, send it our stored documents and send the connection to our embedding
+model. The function will then process each document for us. 
+
+```{python}
+from langchain.vectorstores import FAISS
+
+db = FAISS.from_documents(documents, embeddings_model)
+```
+
+# MultiQuery Retriever
+What we have now is a database that we can search for ourselves if we like. You can query
+the vector store, convert that query into an embedding, and search the vector store for 
+matches. The return from this query will then be a list of documents in the vector store,
+which maybe useful, but can be difficult to interpret by itself. What a custom chatbot does
+is use this basic search results and supply it to a Large Language Model (llm) to make sense
+of it. We would like our Chatbot to have the entire vector store to look through to answer
+our questions, but there are some limitations to how much context we can provide to
+Open Ai. 
+
+For reference, the Chat GPT3 API has a limit of about 4000 tokens. What are tokens?
+Well, tokens are small sections of text. They are usually longer than 1 character
+but smaller than most words. One thing to keep in mind is that the 4000 token limitation
+covers everything, including context provided, the query and the answer returned. 
+Do to this limitation, we need to do a search through our vector store and limit the 
+context that we send to the Open AI API. 
+
+We could perform a basic query, but I prefer to create a Multi-query. In this query, 
+we are actually asking ChatGPT to create different variations to our query. We can then 
+search our vector store on multiple queries are return the best results over all queries. 
+There is some expense to this as it requires an additional API call to generate the 
+new queries.
+
+We can then send our question to our retriever which will automatically perform our
+search over the vector store, I use the default prompt as it seems to do a good job. 
+The custom Chat bot will then return the answer to our question, based on the context
+provided by the vector store search, with the source documents it used to generate
+an answer. 
+ 
+```{python}
+from langchain.chains import RetrievalQA
+from langchain.retrievers.multi_query import MultiQueryRetriever
+from langchain.llms import OpenAI
+
+retriever_from_llm = MultiQueryRetriever.from_llm(
+  retriever = db.as_retriever(search = 'mmr', search_kwags = {'k': 10}),
+  llm = OpenAI())
+  
+question = "What do Chat bots do?"
+qa = RetrievalQA.from_chain_type(llm = OpenAI(),
+chain_type = "stuff",
+retriever = retriever_from_llm,
+return_source_documents = True)
+
+ans = qa({"query":question}, return_only_outputs = True)
+print(ans)
+```
+
+If you are wondering what the default query looks like, you can use the following
+code. You can create your own prompt if you like, but the default seems to work 
+well for me. With a custom prompt you can customize the output, like make the results
+return summarized in a Markdown table if you like. 
+
+```{python}
+print(retriever_from_llm.llm_chain.prompt)
+```
+# Conclusion
+Well, there are all the steps needed to create your very own custom ChatGPT bot with
+Lang chain. We loaded our CSV files, split the documents into smaller section, created 
+a vector store of our documents, search through our vector store with a multi-query 
+and forward the context and our question to the Open AI API. The result is an answer
+that is limited to the data stored in our PDF documents. 
+
+[Photo by Google DeepMind](https://www.pexels.com/photo/an-artist-s-illustration-of-artificial-intelligence-ai-this-illustration-depicts-language-models-which-generate-text-it-was-created-by-wes-cockx-as-part-of-the-visualising-ai-project-l-18069697/)
