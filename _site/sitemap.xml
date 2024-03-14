@@ -58,7 +58,7 @@
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/archive.html</loc>
-    <lastmod>2023-11-30T01:26:03.938Z</lastmod>
+    <lastmod>2023-09-12T15:31:56.308Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/about.html</loc>
@@ -66,7 +66,7 @@
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/index.html</loc>
-    <lastmod>2023-11-30T01:26:09.220Z</lastmod>
+    <lastmod>2023-09-12T15:31:56.309Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-01-30-job-posting-analysis/index.html</loc>
@@ -114,10 +114,14 @@
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2022-08-15-Creating a Quarto Blog Template/index.html</loc>
-    <lastmod>2023-11-30T01:27:05.041Z</lastmod>
+    <lastmod>2024-03-13T23:25:19.558Z</lastmod>
   </url>
   <url>
     <loc>https://datasandbox.netlify.app/posts/2023-09-12-Custom OpenAI Chatbot Pt1/index.html</loc>
     <lastmod>2023-11-30T01:27:18.012Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datasandbox.netlify.app/posts/Toggl Data.html</loc>
+    <lastmod>2024-03-13T02:03:06.642Z</lastmod>
   </url>
 </urlset>

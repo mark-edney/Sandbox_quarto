@@ -1,0 +1,149 @@
+---
+title: Tracking you time dashboard featuring Toggl API
+author: Mark Edney
+date: 2024-03-12
+categories: [How-to,Python,Dashboard]
+draft: true
+description: 'A dashboard application that connects to the Toggl API to display tracked time.'
+image: ''
+archives:
+  - 2024/03
+toc: false
+engine: jupyter
+execute:
+   enabled: true
+format:
+  html:
+    code-fold: show
+    code-tools: true
+---
+
+# Introduction
+
+Do you lead a busy life? It sure feels like it, but how do you truly
+know how you spend your time? Would you like to focus your time on
+specific projects or sepcific tasks?
+
+The solution is to start tracking you time. I personally, started
+tracking my time almost five years ago when I had multiple jobs. I was a
+full-time graduate student with a part-time job. This created a demand
+on my time and I needed to manage my time well.
+
+I learnt about Toggl, a free easy to use time tracking application. It
+is simple to use on android with additional feature on their website.
+
+I hadn't really done anything with the data I created tracking my time,
+so I thought it would be a great opportunity to learn how to create a
+dashboard in `python`.
+
+# Inialization
+
+As always, we start with loading our python packages. There isn't really
+anything out of the ordinary, we will use the `requests` library to make
+our API call. You will need to create an account at the Toggl website
+and create a API key.
+
+I've saved the API key in my environmental variables, it is loaded into
+the script with the `os.environ` function. You also need to create a
+header for the API call, this is the part that caused the most
+difficulty for me as it is very specific in the format.
+
+```{python}
+import pandas as pd
+import os
+import base64
+import requests
+import json
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+key = os.environ['Toggl']
+
+string=key+':api_token'
+headers={
+    'Authorization':'Basic '+base64.b64encode(string.encode('ascii')).decode('utf-8'),
+    "Content-Type": "application/json"   
+}
+```
+
+# Toggl API
+
+This section goes more into the details for the API. The call accepts
+the following parameters: `since` for your starting date, `until` for
+you finishing date, `user_agent` this is your user account email and
+`workspace_id` which is found on the Toggl website when you click on
+your workspace. I have kept mine secret, you will need to replace them
+with your own values.
+
+```{python}
+params = {
+    'since':'2020-01-01',
+    'until':'2020-12-31',
+    'user_agent': 'email',
+    'workspace_id' : "workspace"
+}
+```
+
+```{python}
+#| echo: false
+params = {
+    'since':'2020-01-01',
+    'until':'2020-12-31',
+    'user_agent': 'm2edney@gmail.com',
+    'workspace_id' : "3112792"
+}
+```
+
+With the header and parameters for the API call setup, we can now use
+the requests package to make the actual call. The API call returns a
+json document, for ease I will convert that json into a dataframe. We
+can than analyze what the API call has returned.
+
+```{python}
+
+response = requests.get('https://api.track.toggl.com/reports/api/v2/details', headers = headers, params= params)
+my_json = json.loads(response.content)
+df = pd.DataFrame(my_json['data'])
+print(df.columns, df.head(5))
+```
+
+The issue with this method is that it only returns a limited number of
+values. We can see it only returned `{python} len(df)` time entries.
+
+```{python}
+print(len(df))
+```
+
+To collect all entries within the time frame, we need to try something a
+little different. The json file does include two important attributes, the total count
+and the number of entries per page. With these two values, we can loop through all 
+the pages of entries and concatenate them into a single dataframe. The previous attempt
+already retrieved the first page so we can start at the second. I also included some
+simple data cleanup to remove null entries and change the duration values into hrs. 
+
+```{python}
+page_count = int(my_json['total_count']/my_json['per_page']) + (my_json['total_count'] % my_json['per_page'] > 0)
+for page in range(1, page_count):
+    params['page']= str(page)
+    response = requests.get('https://api.track.toggl.com/reports/api/v2/details', headers = headers, params= params)
+    my_json = json.loads(response.content)
+    df =pd.concat([df, pd.DataFrame(my_json['data'])])
+    
+df['dur'] = df['dur']/1000/60/60
+df = df[~df['project'].isnull()]
+print(len(df))
+```
+
+# Simple Graphics
+
+Before creating any complicated graphics for our dashboard, we should make a simple
+graphics. In this graph we total the durations and split them by their labeled 
+project. I use the `sns.barplot` from the`seaborn` library because it is well designed
+and simple to use. 
+
+```{python}
+sns.barplot(x='project', y= 'dur', data = df, estimator = 'sum', hue= 'project')
+plt.xticks(rotation=45)
+```
+# Conclusion

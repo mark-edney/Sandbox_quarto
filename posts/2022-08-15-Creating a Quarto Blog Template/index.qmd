@@ -297,7 +297,7 @@ In summary, there is no native way to create a new `quarto` post at this time. W
 * Create an non-interactive addin by storing the function in a package
 * Create an interactive addin by making a Shiny Gadget. 
 
-Personally, my go to answer would be to use the interactive addin. If you are interested in installing the package I have create, feel free to use the following code to install it. After it is installed, you will need to restart R for the addin to be in the addin tab. 
+Personally, my go to answer would be to use the interactive addin. If you are interested in installing the package I have created, feel free to use the following code to install it. After it is installed, you will need to restart R for the addin to be in the addin tab. 
 
 ```{r, eval=FALSE}
 devtools::install_github('mark-edney/Qpostr')
