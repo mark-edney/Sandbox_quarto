@@ -146,4 +146,44 @@ and simple to use.
 sns.barplot(x='project', y= 'dur', data = df, estimator = 'sum', hue= 'project')
 plt.xticks(rotation=45)
 ```
+
+```{python}
+# Import packages
+from dash import Dash, html, dash_table, dcc, callback, Output, Input
+import pandas as pd
+import plotly.express as px
+
+
+# Initialize the app
+app = Dash(__name__)
+
+fig2 = px.pie(df, values='dur', names='project', title='Times spent by Project')
+df2 = df.groupby('project')['dur'].sum()/52
+df2['Sleep']= 8*7
+df2['Spare'] = 24*7 - df2.sum()
+
+fig3 = px.pie(df2, values='dur', names = df2.index, title='Average time spent every month')
+# App layout
+app.layout = html.Div([
+    html.Div(children='My First App with Data and a Graph'),
+    dcc.RadioItems(options=['avg', 'count', 'sum'], value='avg', id='controls-and-radio-item'),
+    dash_table.DataTable(data=df.drop('tags', axis = 1).to_dict('records'), page_size=10),
+    dcc.Graph(figure={}, id='controls-and-graph'),
+    dcc.Graph(figure = fig2),
+    dcc.Graph(figure = fig3)
+
+])
+
+@callback(
+    Output(component_id='controls-and-graph', component_property='figure'),
+    Input(component_id='controls-and-radio-item', component_property='value')
+)
+def update_graph(hist):
+    fig = px.histogram(df, x='project', y='dur', histfunc=hist)
+    return fig
+
+# Run the app
+if __name__ == '__main__':
+    app.run(debug=True)
+```
 # Conclusion
