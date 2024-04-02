@@ -26,11 +26,17 @@ specific projects or sepcific tasks?
 
 The solution is to start tracking you time. I personally, started
 tracking my time almost five years ago when I had multiple jobs. I was a
-full-time graduate student with a part-time job. This created a demand
+full-time graduate student with a few part-time job. This created a demand
 on my time and I needed to manage my time well.
 
 I learnt about Toggl, a free easy to use time tracking application. It
-is simple to use on android with additional feature on their website.
+is simple to use on android with additional feature on their website. You
+Simply start at timer and save it under a project. You can also capture the
+task which may be distinct from the project. 
+
+Its really up to your own whims on the definition of project. You can track
+one-off task, like a household repair, but I try to keep these tasks grouped together
+in a unified project. 
 
 I hadn't really done anything with the data I created tracking my time,
 so I thought it would be a great opportunity to learn how to create a
