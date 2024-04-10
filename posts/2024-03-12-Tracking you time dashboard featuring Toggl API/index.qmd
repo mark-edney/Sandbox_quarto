@@ -164,12 +164,16 @@ Interactive graphs require some additional work. Interactive graphs require the 
 input componets, sush as the radio button. We assign the button an id and define that the component 
 returned is the 'value'. 
 
+I've also taken some monthly average values by using the `group_by` method. This creates a new dataframe
+which has mulit-indexes which doesn't work well with poltly express graphs. I drop the indexes to column
+values with the `reset_index` method. I finished the summary data by sorting it by the start time with the 
+`sort_values` method. 
+
 ```{python}
 # Import packages
-from dash import Dash, html, dash_table, dcc, callback, Output, Input
+from dash import Dash, html, dash_table, dcc, callback, Output, Input, jupyter_dash
 import pandas as pd
 import plotly.express as px
-from dash import jupyter_dash
 
 jupyter_dash.default_mode="external"
 
@@ -177,29 +181,63 @@ jupyter_dash.default_mode="external"
 app = Dash(__name__)
 
 df2= df.groupby(['Month', 'project']).sum().reset_index().sort_values('start')
-fig2 = px.pie(df, values='dur', names='project', title='Times spent by Project')
-fig3 = px.line(df2, y = 'dur', x = 'Month', color = 'project', markers=True)
+```
+The next stage of the dashbaord is the `app.layout`. This forms the skeleton of the dashbaord and as such utilizes
+some basic `html`. Through some experimentation, I have found I've liked the styling of the tabs. With the tabs, I can
+display different content on different tabs. Some tabs will be interactive while others will not. 
 
+Tabs are created with the `dcc.Tabs` function were you provide a list of `dcc.Tab` functions as children. For any interactive 
+component, you have to provide an "id" so you can reference to it later, this includes the tab setup itself. For this dashboard
+I've decided to have a Datatable on tab one, an interative annual review chart on tab 2, and a monthly review chart on tab 3. I
+deceided to only make tab 2 interative as the chart in tab 3 already has some basic interactive features by th enature of being
+a plotly express graph. 
+
+```{python}
 # App layout
 app.layout = html.Div([
-    html.Div(children='My First App with Data and a Graph'),
-    dcc.RadioItems(options=['avg', 'count', 'sum'], value='avg', id='controls-and-radio-item'),
-    dash_table.DataTable(data=df.drop('tags', axis = 1).to_dict('records'), page_size=10),
-    dcc.Graph(figure={}, id='controls-and-graph'),
-    dcc.Graph(figure = fig3)
-
+    dcc.Tabs(id="tabs", value='tab-1', children=[
+        dcc.Tab(label='Data Table', value='tab-1'),
+        dcc.Tab(label='Annual Review', value='tab-2', children=[
+            dcc.RadioItems(options=['avg', 'count', 'sum'], value='sum', id='controls-and-radio-item')]),
+        dcc.Tab(label='Monthly Review', value='tab-3'),
+    ]),
+    html.Div(id='tabs-content')
 ])
+```
+The next stage is the callback functions which runs whenever an input component is changed. Mainly is where the interactive inputs 
+and output are declared. You declare them with the previously mention `Output` and `Input` functions. It is here were you reference
+the components based on the `id`s that you called them. Your outputs need to be declared prior to your inputs and the order of your inputs
+will affect your update function. The second part of each declarion is the component that is effected.  
 
+```{python}
 @callback(
-    Output(component_id='controls-and-graph', component_property='figure'),
-    Input(component_id='controls-and-radio-item', component_property='value')
+    Output('tabs-content', 'children'),
+    Input('tabs', 'value'),
+    Input('controls-and-radio-item', 'value')
 )
-def update_graph(hist):
-    fig = px.histogram(df, x='project', y='dur', color = 'description', histfunc=hist)
-    return fig
-
+```
+The final step is to define the effect on your interative elements in an update function. There are two components here for our
+dashboard, the updates due to the tab change and the updates from the radio button in the graph on tab 2. 
+```{python}
+def render_content(tab, hist):
+    if tab == 'tab-1':
+        return html.Div([
+            dash_table.DataTable(data=df.drop('tags', axis = 1).to_dict('records'), page_size=10)
+        ])
+    elif tab == 'tab-2':
+        return html.Div([
+            dcc.Graph(figure = px.histogram(df, x='project', y='dur', color = 'description', histfunc = hist),
+                     id='controls-and-graph')   
+        ])
+    elif tab == 'tab-3':
+        return html.Div([
+            dcc.Graph(figure = px.line(df2, y = 'dur', x = 'Month', color = 'project', markers=True))          
+        ])
+        
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
+
+
 ```
 # Conclusion
