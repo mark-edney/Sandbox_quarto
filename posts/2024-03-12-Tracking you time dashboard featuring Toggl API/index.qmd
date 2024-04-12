@@ -138,6 +138,10 @@ for page in range(1, page_count):
     
 df['dur'] = df['dur']/1000/60/60
 df = df[~df['project'].isnull()]
+df = df.drop(['tid','updated', 'user', 'use_stop', 'client', 'project_color', 'project_hex_color', 'task', 'billable', 'is_billable', 'cur'],
+            axis = 1)
+df['Month'] = pd.to_datetime(df['start'], utc=True).dt.month_name()
+df= df.sort_values('start')
 print(len(df))
 ```
 
@@ -233,7 +237,7 @@ def render_content(tab, hist):
         return html.Div([
             dcc.Graph(figure = px.line(df2, y = 'dur', x = 'Month', color = 'project', markers=True))          
         ])
-        
+
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
