@@ -5,7 +5,7 @@ date: 2024-03-12
 categories: [How-to,Python,Dashboard]
 draft: true
 description: 'A dashboard application that connects to the Toggl API to display tracked time.'
-image: ''
+image: 'images/tab3.png'
 archives:
   - 2024/03
 toc: false
@@ -17,7 +17,7 @@ format:
     code-fold: show
     code-tools: true
 ---
-
+![Dash Dashboard]('images/tab3.png')
 # Introduction
 
 Do you lead a busy life? It sure feels like it, but how do you truly know how you spend your time? Would you like to focus your time on specific projects or specific tasks?
