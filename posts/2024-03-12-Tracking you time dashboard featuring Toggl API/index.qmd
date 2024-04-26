@@ -1,5 +1,5 @@
 ---
-title: Tracking you time dashboard featuring Toggl API
+title: Tracking your time dashboard featuring Toggl API
 author: Mark Edney
 date: 2024-03-12
 categories: [How-to,Python,Dashboard]
@@ -127,7 +127,7 @@ plt.xticks(rotation=45)
 
 The dash dashboard has a pretty simple construction. I start with loading the libraries required. The basic libraries include 'Dash' for the basic functions, 'html' to design the dashboard layout with html and 'dcc' for adding additional core components including radio-buttons and graphs.
 
-Interactive graphs require some additional work. Interactive graphs require the use of the 'callback', 'Input' and 'Output' libraries. The input function is used to define the behaviour of the input componets, sush as the radio button. We assign the button an id and define that the component returned is the 'value'.
+Interactive graphs require some additional work. Interactive graphs require the use of the 'callback', 'Input' and 'Output' libraries. The input function is used to define the behavior of the input components, such as the radio button. We assign the button an id and define that the component returned is the 'value'.
 
 I've also taken some monthly average values by using the `group_by` method. This creates a new dataframe which has multi-indexes which doesn't work well with plotly express graphs. I drop the indexes to column values with the `reset_index` method. I finished the summary data by sorting it by the start time with the `sort_values` method.
 
